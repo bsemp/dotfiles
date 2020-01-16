@@ -1,0 +1,6 @@
+---
+- name: Install python
+  homebrew:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ python_brew_packages }}"

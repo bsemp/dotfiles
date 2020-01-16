@@ -1,0 +1,52 @@
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle command-not-found
+antigen bundle colorize
+antigen bundle colored-man-pages
+
+# OS specific plugins
+if [[ $(uname) == 'Darwin' ]]; then
+    antigen bundle osx
+fi
+
+# Automatic archive extract command 'extract or x'
+antigen bundle extract
+
+# Git Plugins
+antigen bundle git
+antigen bundle git-prompt
+
+# Python Plugins
+antigen bundle pip
+antigen bundle python
+antigen bundle virtualenv
+antigen bundle pyenv
+
+# Node Plugins
+antigen bundle node
+antigen bundle npm
+
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-history-substring-search
+
+# Load the theme.
+antigen theme romkatv/powerlevel10k
+
+# Auto update antigen
+antigen bundle unixorn/autoupdate-antigen.zshplugin
+
+# Autoenv
+AUTOENV_FILE_ENTER='.env'
+AUTOENV_FILE_LEAVE='.env.leave'
+antigen bundle Tarrasch/zsh-autoenv
+
+# Jump quickly to directories
+antigen bundle agkozak/zsh-z
+
+# Tell Antigen that you're done.
+antigen apply

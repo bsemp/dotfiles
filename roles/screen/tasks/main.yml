@@ -1,0 +1,17 @@
+---
+- name: Install screen
+  homebrew:
+    name: "{{ screen_brew_package }}"
+    state: present
+
+- name: Copy Custom zsh configuration to {{ screen_config_dir }}
+  copy:
+    src: "./files/" # trailing / is important to copy only files within the directory
+    dest: "{{ screen_config_dir }}"
+    mode: "0644"
+
+- name: Create a symbolic link to custom screenrc
+  file:
+    src: "{{ screen_config_dir }}/.screenrc"
+    dest: "~/.screenrc"
+    state: link

@@ -1,0 +1,72 @@
+---
+- name: Setup MacOS workstation
+  hosts: localhost
+
+  vars:
+    shell_config_dir: "{{ lookup('env','HOME') }}/.config/zsh"
+
+  tasks:
+    - name: Update homebrew
+      homebrew:
+        update_homebrew: yes
+      tags:
+        - homebrew-update
+
+    # - name: Install homebrew tap
+    #   homebrew_tap:
+    #     name: homebrew/cask-casks
+    #     state: present
+    #   tags:
+    #     - homebrew-tap
+
+    - import_role:
+        name: python
+      tags:
+        - python
+
+    - import_role:
+        name: zsh
+      vars:
+        zsh_config_dir: "{{ shell_config_dir }}"
+      tags:
+        - zsh
+
+    - import_role:
+        name: gnu-tools
+      vars:
+        gnu_tools_config_file: "{{ shell_config_dir }}/custom/gnu-tools.zsh"
+      tags:
+        - gnu-tools
+
+    - import_role:
+        name: cli-tools
+      tags:
+        - cli-tools
+
+    - import_role:
+        name: vim
+      tags:
+        - vim
+
+    - import_role:
+        name: screen
+      tags:
+        - screen
+
+    - import_role:
+        name: ssh
+      tags:
+        - ssh
+
+    - import_role:
+        name: iterm2
+      vars:
+        iterm2_defaults:
+          - name: OnlyWhenMoreTabs
+            type: string
+            value: true
+          - name: PromptOnQuit
+            type: bool
+            value: false
+      tags:
+        - iterm2

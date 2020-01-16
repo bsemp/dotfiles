@@ -1,0 +1,3 @@
+---
+zsh_brew_package: zsh
+zsh_config_dir: "{{ lookup('env','HOME') }}/.config/zsh"

@@ -1,0 +1,25 @@
+---
+
+- name: Install ZSH
+  homebrew:
+    name: "{{ zsh_brew_package }}"
+    state: present
+
+- name: Copy Custom zsh configuration to {{ zsh_config_dir }}
+  copy:
+    src: "./files/" # trailing / is important to copy only directory content and not the directory itself
+    dest: "{{ zsh_config_dir }}"
+    mode: 0644
+
+- name: Copy Custom zshenv to {{ zsh_config_dir }}
+  template:
+    src: ".zshenv.tpl"
+    dest: "{{ zsh_config_dir }}/.zshenv"
+    mode: 0644
+
+- name: Create a symbolic link to custom zshenv
+  file:
+    src: "{{ zsh_config_dir }}/.zshenv"
+    dest: "~/.zshenv"
+    state: link
+    mode: 0644

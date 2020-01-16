@@ -1,0 +1,8 @@
+---
+cli_tools_brew_packages:
+  - automake
+  - git
+  - hping
+  - jq
+  - openssl
+  - wget

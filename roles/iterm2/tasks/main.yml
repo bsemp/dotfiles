@@ -1,0 +1,23 @@
+---
+- name: Ensure that the {{ iterm2_brew_package }} package is installed
+  homebrew_cask:
+    name: "{{ iterm2_brew_package|lower }}"
+    state: present
+  when: iterm2_brew_package|length > 0
+
+- name: Attempting to apply {{ iterm2_brew_package }} configurations
+  osx_defaults:
+    domain: "{{ iterm2_domain }}"
+    key: "{{ item.name }}"
+    state: "{{ item.state|default('present') }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  loop: "{{ iterm2_defaults }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - item.name is defined
+    - item.type is defined
+    - item.value is defined
+    - iterm2_defaults|length > 0
+    - iterm2_domain is defined
