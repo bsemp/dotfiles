@@ -6,3 +6,4 @@ cli_tools_brew_packages:
   - jq
   - openssl
   - wget
+  - bat
