@@ -30,8 +30,12 @@ antigen bundle npm
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions
+
+# Adjust suggestions color according to terminal theme
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
 antigen bundle zsh-users/zsh-autosuggestions
+
+antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-history-substring-search
 
 # Load the theme.
