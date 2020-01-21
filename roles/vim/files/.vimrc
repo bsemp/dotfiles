@@ -15,3 +15,4 @@ set ignorecase                  " ignore case when searching
 set smartcase                   " ignore case if search pattern is all lowercase,
 set laststatus=2                " always display the status line
 set ruler                       " display column number
+syntax on                       " always set color syntax highlighting on
