@@ -25,6 +25,8 @@ SAVEHIST=10000
 
 # Define the default editor
 export EDITOR="/usr/bin/vim"
+# Define the default language
+export LANG=en_US.UTF-8
 
 # Download Antigen plugin in custom zsh configuration directory
 if [[ ! -f ${ZDOTDIR}/antigen.zsh ]]; then
