@@ -568,7 +568,7 @@
   # typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=0
   # typeset -g POWERLEVEL9K_VIRTUALENV_BACKGROUND=4
   # Don't show Python version next to the virtual environment name.
-  typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
+  typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true
   # Separate environment name from Python version only with a space.
   typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
   # Custom icon.
