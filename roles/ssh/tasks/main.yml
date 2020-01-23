@@ -36,7 +36,7 @@
       #   HostName github.com
       #   User git
       #   PreferredAuthentications publickey
-      #   IdentityFile /Users/bsemperlotti/.ssh/github_personal_account
+      #   IdentityFile ~/.ssh/github_personal_account
       #   IdentitiesOnly yes
 
       # Add default github config
