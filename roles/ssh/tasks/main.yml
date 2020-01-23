@@ -31,7 +31,7 @@
     path: "{{ ssh_config_file }}"
     block: |
       # Add default github config
-      Host *.github.com
+      Host github.com
         User git
         PreferredAuthentications publickey
 
@@ -39,6 +39,5 @@
       Host *
         AddKeysToAgent yes
         UseKeychain yes
-        IdentityFile {{ ssh_default_key_file }}
         ForwardAgent no
         Compression yes

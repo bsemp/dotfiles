@@ -1,4 +1,3 @@
 ---
 ssh_config_dir: "{{ lookup('env','HOME') }}/.ssh"
 ssh_config_file: "{{ ssh_config_dir }}/config"
-ssh_default_key_file: "{{ ssh_config_dir }}/id_rsa"
