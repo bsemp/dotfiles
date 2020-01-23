@@ -30,6 +30,15 @@
     insertafter: EOF
     path: "{{ ssh_config_file }}"
     block: |
+      # # Add a github account using another ssh key
+      # # Ex: git clone git@github-personal-account:bsemp/workstation-bootstrap.git
+      # Host github-personal-account
+      #   HostName github.com
+      #   User git
+      #   PreferredAuthentications publickey
+      #   IdentityFile /Users/bsemperlotti/.ssh/github_personal_account
+      #   IdentitiesOnly yes
+
       # Add default github config
       Host github.com
         User git
