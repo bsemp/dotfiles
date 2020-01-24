@@ -19,3 +19,4 @@ alias tfs="terraform state"
 # Kubernetes
 alias k="kubectl"
 alias kx="kubectx"
+alias kn="kubens"
