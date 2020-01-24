@@ -59,6 +59,20 @@
         - ssh
 
     - import_role:
+        name: kubernetes
+      vars:
+        k8s_config_file: "{{ shell_config_dir }}/custom/kubernetes.zsh"
+      tags:
+        - kubernetes
+
+    - import_role:
+        name: terraform
+      vars:
+        terraform_config_file: "{{ shell_config_dir }}/custom/terraform.zsh"
+      tags:
+        - terraform
+
+    - import_role:
         name: iterm2
       vars:
         iterm2_defaults:

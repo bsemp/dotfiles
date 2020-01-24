@@ -1,0 +1,4 @@
+---
+terraform_config_file: ""
+terraform_brew_packages:
+  - tfswitch

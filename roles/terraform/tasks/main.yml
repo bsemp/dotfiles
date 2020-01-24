@@ -1,0 +1,33 @@
+---
+- name: Install terraform tools
+  homebrew:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ terraform_brew_packages }}"
+
+- name: Manage configuration file
+  when: terraform_config_file != ""
+  block:
+    - name: Ansible check config files exists
+      stat:
+        path: "{{ terraform_config_file }}"
+      register: file_details
+
+    - name: Ensure config files exists
+      when: not file_details.stat.exists
+      file:
+        path: "{{ terraform_config_file }}"
+        state: touch
+        mode: 0600
+
+    - name: Create config file
+      blockinfile:
+        marker: "# {mark} - TERRAFORM - ANSIBLE MANAGED BLOCK"
+        insertafter: EOF
+        path: "{{ terraform_config_file }}"
+        block: |
+          # Aliases
+          alias tf="terraform"
+          alias tfi="terraform import"
+          alias tfw="terraform workspace"
+          alias tfs="terraform state"

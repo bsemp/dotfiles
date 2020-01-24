@@ -9,14 +9,3 @@ alias p10kconfig="${EDITOR:-vim} ${ZDOTDIR}/.p10k.zsh"
 
 # System
 alias ll="ls -lAhp --color=auto"
-
-# Terraform
-alias tf="terraform"
-alias tfi="terraform import"
-alias tfw="terraform workspace"
-alias tfs="terraform state"
-
-# Kubernetes
-alias k="kubectl"
-alias kx="kubectx"
-alias kn="kubens"
