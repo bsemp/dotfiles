@@ -1,9 +1,11 @@
 ---
 cli_tools_brew_packages:
   - automake
+  - bat
   - git
   - hping
   - jq
   - openssl
+  - tmux
+  - tree
   - wget
-  - bat
