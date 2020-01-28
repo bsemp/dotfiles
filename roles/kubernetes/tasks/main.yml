@@ -15,7 +15,7 @@
     state: latest
   loop: "{{ k8s_packages }}"
 
-- name: Install kubectl on linux
+- name: Install k8s tools on linux (no package manager)
   when:
     - ansible_system == "Linux"
     - not k8s_linux_packages
