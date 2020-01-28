@@ -1,14 +1,30 @@
 ---
+- name: Select macos package
+  when: ansible_system == "Darwin"
+  set_fact:
+    k8s_packages: "{{ k8s_brew_packages }}"
+
+- name: Select linux package
+  when: ansible_system == "Linux"
+  set_fact:
+    k8s_packages: "{{ k8s_linux_packages }}"
+
 - name: Install k8s tools
-  homebrew:
+  package:
     name: "{{ item }}"
-    state: present
-  loop: "{{ k8s_brew_packages }}"
+    state: latest
+  loop: "{{ k8s_packages }}"
+
+- name: Install kubectl on linux
+  when:
+    - ansible_system == "Linux"
+    - not k8s_linux_packages
+  import_tasks: ./linux_install.yml
 
 - name: Manage configuration file
   when: k8s_config_file != ""
   block:
-    - name: Ansible check config files exists
+    - name: Check config files exists
       stat:
         path: "{{ k8s_config_file }}"
       register: file_details

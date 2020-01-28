@@ -1,4 +1,7 @@
 ---
-terraform_config_file: ""
 terraform_brew_packages:
-  - tfswitch
+  - warrensbox/tap/tfswitch
+terraform_linux_packages: []
+terraform_config_file: ""
+
+tfswitch_linux_installer_url: https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh

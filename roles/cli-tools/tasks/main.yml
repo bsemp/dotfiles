@@ -1,6 +1,24 @@
 ---
+- name: Select macos package
+  when: ansible_system == "Darwin"
+  set_fact:
+    cli_tools_packages: "{{ cli_tools_brew_packages }}"
+
+- name: Install epel-release
+  when:
+    - ansible_system == "Linux"
+    - ansible_distribution == "CentOS"
+  package:
+    name: epel-release
+    state: latest
+
+- name: Select linux package
+  when: ansible_system == "Linux"
+  set_fact:
+    cli_tools_packages: "{{ cli_tools_linux_packages }}"
+
 - name: Install cli tools
-  homebrew:
+  package:
     name: "{{ item }}"
-    state: present
-  loop: "{{ cli_tools_brew_packages }}"
+    state: latest
+  loop: "{{ cli_tools_packages }}"

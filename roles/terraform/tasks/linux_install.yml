@@ -1,0 +1,10 @@
+---
+- name: Download tfswitch install script
+  get_url:
+    url: "{{ tfswitch_linux_installer_url }}"
+    dest: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/tfswitch_install.sh"
+    mode: '0700'
+  changed_when: false
+
+- name: Run tfswitch install script
+  command: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/tfswitch_install.sh"

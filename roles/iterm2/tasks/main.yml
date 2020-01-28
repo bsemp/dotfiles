@@ -2,7 +2,7 @@
 - name: Ensure that the {{ iterm2_brew_package }} package is installed
   homebrew_cask:
     name: "{{ iterm2_brew_package|lower }}"
-    state: present
+    state: latest
   when: iterm2_brew_package|length > 0
 
 - name: Attempting to apply {{ iterm2_brew_package }} configurations

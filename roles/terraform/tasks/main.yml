@@ -1,14 +1,30 @@
 ---
+- name: Select macos packages
+  when: ansible_system == "Darwin"
+  set_fact:
+    terraform_packages: "{{ terraform_brew_packages }}"
+
+- name: Select linux packages
+  when: ansible_system == "Linux"
+  set_fact:
+    terraform_packages: "{{ terraform_linux_packages }}"
+
 - name: Install terraform tools
-  homebrew:
+  package:
     name: "{{ item }}"
-    state: present
-  loop: "{{ terraform_brew_packages }}"
+    state: latest
+  loop: "{{ terraform_packages }}"
+
+- name: Install tfswitch on linux
+  when:
+    - ansible_system == "Linux"
+    - not terraform_linux_packages
+  import_tasks: ./linux_install.yml
 
 - name: Manage configuration file
   when: terraform_config_file != ""
   block:
-    - name: Ansible check config files exists
+    - name: Check config files exists
       stat:
         path: "{{ terraform_config_file }}"
       register: file_details

@@ -1,3 +1,5 @@
 ---
 python_brew_packages:
   - python
+python_linux_packages:
+  - python3

@@ -1,3 +1,4 @@
 ---
 vim_brew_package: vim
+vim_linux_package: vim
 vim_config_dir: "{{ lookup('env','HOME') }}/.config/vim"

@@ -1,12 +1,14 @@
 ---
-- name: Setup MacOS workstation
+- name: Setup workstation
   hosts: localhost
+  gather_facts: True
 
   vars:
     shell_config_dir: "{{ lookup('env','HOME') }}/.config/zsh"
 
   tasks:
     - name: Update homebrew
+      when: ansible_system == "Darwin"
       homebrew:
         update_homebrew: yes
       tags:
@@ -35,6 +37,7 @@
         name: gnu-tools
       vars:
         gnu_tools_config_file: "{{ shell_config_dir }}/custom/gnu-tools.zsh"
+      when: ansible_system == "Darwin"
       tags:
         - gnu-tools
 
@@ -82,5 +85,6 @@
           - name: PromptOnQuit
             type: bool
             value: false
+      when: ansible_system == "Darwin"
       tags:
         - iterm2

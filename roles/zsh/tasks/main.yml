@@ -1,9 +1,18 @@
 ---
+- name: Select macos package
+  when: ansible_system == "Darwin"
+  set_fact:
+    zsh_package: "{{ zsh_brew_package }}"
+
+- name: Select linux package
+  when: ansible_system == "Linux"
+  set_fact:
+    zsh_package: "{{ zsh_linux_package }}"
 
 - name: Install ZSH
-  homebrew:
-    name: "{{ zsh_brew_package }}"
-    state: present
+  package:
+    name: "{{ zsh_package }}"
+    state: latest
 
 - name: Copy Custom zsh configuration to {{ zsh_config_dir }}
   copy:

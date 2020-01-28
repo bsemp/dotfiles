@@ -12,7 +12,7 @@
     state: directory
     mode: 0700
 
-- name: Ansible check config files exists
+- name: Check config files exists
   stat:
     path: "{{ ssh_config_file }}"
   register: file_details

@@ -1,8 +1,18 @@
 ---
+- name: Select macos package
+  when: ansible_system == "Darwin"
+  set_fact:
+    vim_package: "{{ vim_brew_package }}"
+
+- name: Select linux package
+  when: ansible_system == "Linux"
+  set_fact:
+    vim_package: "{{ vim_linux_package }}"
+
 - name: Install vim
-  homebrew:
-    name: "{{ vim_brew_package }}"
-    state: present
+  package:
+    name: "{{ vim_package }}"
+    state: latest
 
 - name: Copy Custom vim configuration to {{ vim_config_dir }}
   copy:

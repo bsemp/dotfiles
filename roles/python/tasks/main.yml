@@ -1,6 +1,16 @@
 ---
+- name: Select macos package
+  when: ansible_system == "Darwin"
+  set_fact:
+    python_packages: "{{ python_brew_packages }}"
+
+- name: Select linux package
+  when: ansible_system == "Linux"
+  set_fact:
+    python_packages: "{{ python_linux_packages }}"
+
 - name: Install python
-  homebrew:
+  package:
     name: "{{ item }}"
-    state: present
-  loop: "{{ python_brew_packages }}"
+    state: latest
+  loop: "{{ python_packages }}"

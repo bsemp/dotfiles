@@ -1,8 +1,18 @@
 ---
+- name: Select macos package
+  when: ansible_system == "Darwin"
+  set_fact:
+    screen_package: "{{ screen_brew_package }}"
+
+- name: Select linux package
+  when: ansible_system == "Linux"
+  set_fact:
+    screen_package: "{{ screen_linux_package }}"
+
 - name: Install screen
-  homebrew:
-    name: "{{ screen_brew_package }}"
-    state: present
+  package:
+    name: "{{ screen_package }}"
+    state: latest
 
 - name: Copy Custom zsh configuration to {{ screen_config_dir }}
   copy:

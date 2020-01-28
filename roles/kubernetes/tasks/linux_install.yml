@@ -1,0 +1,79 @@
+---
+- name: Install kubectl
+  block:
+    - name: Download kubectl stable version info
+      get_url:
+        url: "{{ kubectl_linux_stable_version_url }}"
+        dest: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/kubernetes-release-stable.txt"
+        mode: '0640'
+      changed_when: false
+
+    - name: Register kubectl stable version info
+      set_fact:
+        kubectl_stable_version: "{{ lookup('file', lookup('config', 'DEFAULT_LOCAL_TMP')+'/kubernetes-release-stable.txt') }}"
+      changed_when: false
+
+    - name: Download kubectl stable version binary
+      get_url:
+        url: "{{ kubectl_linux_binary_url }}"
+        dest: "/usr/local/bin/kubectl"
+        mode: '0755'
+      changed_when: false
+
+- name: Download kubectx latest version binary
+  get_url:
+    url: "{{ kubectx_linux_binary_url }}"
+    dest: "/usr/local/bin/kubectx"
+    mode: '0755'
+  changed_when: false
+
+- name: Download kubens latest version binary
+  get_url:
+    url: "{{ kubens_linux_binary_url }}"
+    dest: "/usr/local/bin/kubens"
+    mode: '0755'
+  changed_when: false
+
+- name: Install helm
+  block:
+    - name: Download helm install script
+      get_url:
+        url: "{{ helm_linux_installer_url }}"
+        dest: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/get_helm.sh.sh"
+        mode: '0700'
+      changed_when: false
+
+    - name: Run helm install script
+      command: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/get_helm.sh.sh"
+
+- name: Install k9s
+  block:
+    - name:
+      shell: curl -sL {{ k9s_linux_installer_url }} | grep -Eo "k9s_.*_Linux_x86_64.tar.gz" | uniq
+      args:
+        warn: false
+      register: k9s_release_artifact
+      changed_when: false
+
+    - name: Download k9s release artifact
+      get_url:
+        url: "{{ k9s_linux_installer_url }}/download/{{ k9s_release_artifact.stdout }}"
+        dest: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/{{ k9s_release_artifact.stdout }}"
+        mode: '0700'
+      changed_when: false
+
+    - name: create temporary directory to extract k9s
+      file:
+        path: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/k9s"
+        state: directory
+
+    - name: Unarchive a file that needs to be downloaded (added in 2.0)
+      unarchive:
+        src: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/{{ k9s_release_artifact.stdout }}"
+        dest: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/k9s"
+
+    - name: Copy k9s binary to /usr/local/bin
+      copy:
+        src: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/k9s/k9s"
+        dest: /usr/local/bin/k9s
+        mode: '0755'
