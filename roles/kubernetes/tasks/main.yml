@@ -46,3 +46,9 @@
           alias k="kubectl"
           alias kx="kubectx"
           alias kn="kubens"
+
+          # Completion
+          if [[ "${SHELL}" =~ 'zsh' ]]; then
+            source <(kubectl completion zsh)
+            source <(stern --completion=zsh)
+          fi
