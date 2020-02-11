@@ -1,3 +1,8 @@
+# Add homebrew bin, sbin to PATH
+if [[ "$(uname)" == 'Darwin' ]]; then
+    export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:${PATH}"
+fi
+
 # ZSHconfig edition
 alias zshenv="${EDITOR:-vim} ${ZDOTDIR}/.zshenv"
 alias zshrc="${EDITOR:-vim} ${ZDOTDIR}/.zshrc"
@@ -8,4 +13,4 @@ alias antigenconfig="${EDITOR:-vim} ${ZDOTDIR}/.antigenrc"
 alias p10kconfig="${EDITOR:-vim} ${ZDOTDIR}/.p10k.zsh"
 
 # System
-alias ll="ls -lAhp --color=auto"
+alias ll="ls -lAhp"

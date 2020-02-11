@@ -29,7 +29,7 @@ export EDITOR="/usr/bin/vim"
 export LANG=en_US.UTF-8
 
 # Download Antigen plugin in custom zsh configuration directory
-if [[ ! -f ${ZDOTDIR}/antigen.zsh ]]; then
+if [[ ! -s ${ZDOTDIR}/antigen.zsh ]]; then
   curl --silent -L git.io/antigen > "${ZDOTDIR}/antigen.zsh"
 fi
 
