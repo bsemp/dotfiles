@@ -8,16 +8,4 @@ k8s_brew_packages:
   - stern
 k8s_linux_packages: []
 k8s_config_file: ""
-
-
-kubectl_linux_stable_version_url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
-kubectl_linux_binary_url: https://storage.googleapis.com/kubernetes-release/release/{{kubectl_stable_version}}/bin/linux/amd64/kubectl
-
-kubectx_linux_binary_url: https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx
-kubens_linux_binary_url: https://raw.githubusercontent.com/ahmetb/kubectx/master/kubens
-
-helm_linux_installer_url: https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
-
-k9s_linux_installer_url: https://github.com/derailed/k9s/releases/latest
-
-stern_linux_installer_url: https://github.com/wercker/stern/releases/latest
+k8s_kubectl_krew_enabled: true

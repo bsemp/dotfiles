@@ -18,8 +18,12 @@
 - name: Install k8s tools on linux (no package manager)
   when:
     - ansible_system == "Linux"
-    - not k8s_linux_packages
   import_tasks: ./linux_install.yml
+
+- name: Install kubectl plugin manager
+  when:
+    - k8s_kubectl_krew_enabled
+  import_tasks: ./krew_install.yml
 
 - name: Manage configuration file
   when: k8s_config_file != ""
@@ -46,6 +50,10 @@
           alias k="kubectl"
           alias kx="kubectx"
           alias kn="kubens"
+
+          # kubectl plugin manager
+          export KREW_ROOT="${HOME}/.config/krew"
+          export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
           # Completion
           if [[ "${SHELL}" =~ 'zsh' ]]; then
