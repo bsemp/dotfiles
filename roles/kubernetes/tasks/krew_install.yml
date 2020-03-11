@@ -1,9 +1,14 @@
 ---
 # See https://krew.sigs.k8s.io/docs/user-guide/setup/install/
+- name: Create krew config directory
+  file:
+    path: "{{ k8s_krew_config_dir }}"
+    state: directory
+    recurse: True
+
 - name: Install krew (kubectl plugin manager)
   shell: |
-    mkdir -p ${HOME}/.config/krew
-    export KREW_ROOT="${HOME}/.config/krew"
+    export KREW_ROOT="{{ k8s_krew_config_dir }}"
     (
     set -x; cd "$(mktemp -d)" &&
     curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.{tar.gz,yaml}" &&

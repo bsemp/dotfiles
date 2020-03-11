@@ -8,4 +8,5 @@ k8s_brew_packages:
   - stern
 k8s_linux_packages: []
 k8s_config_file: ""
-k8s_kubectl_krew_enabled: true
+k8s_kubectl_krew_enabled: True
+k8s_krew_config_dir: "{{ lookup('env', 'HOME') }}/.config/krew"

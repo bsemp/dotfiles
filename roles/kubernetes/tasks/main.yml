@@ -22,7 +22,7 @@
 
 - name: Install kubectl plugin manager
   when:
-    - k8s_kubectl_krew_enabled
+    - k8s_kubectl_krew_enabled | bool
   import_tasks: ./krew_install.yml
 
 - name: Manage configuration file
@@ -51,12 +51,28 @@
           alias kx="kubectx"
           alias kn="kubens"
 
+          {% if k8s_kubectl_krew_enabled|bool -%}
           # kubectl plugin manager
-          export KREW_ROOT="${HOME}/.config/krew"
+          export KREW_ROOT="{{ k8s_krew_config_dir }}"
           export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+          {% endif %}
 
-          # Completion
+          # Completion for kubectl
           if [[ "${SHELL}" =~ 'zsh' ]]; then
             source <(kubectl completion zsh)
-            source <(stern --completion=zsh)
+            # Add completion for the 'k' alias
+            complete -F __start_kubectl k
+          elif [[ "${SHELL}" =~ 'bash' ]]; then
+            source <(kubectl completion bash)
+            # Add completion for the 'k' alias
+            complete -F __start_kubectl bash
+          fi
+
+          # Completion for stern
+          if [[ -x "$(command -v stern)" ]]; then
+            if [[ "${SHELL}" =~ 'zsh' ]]; then
+              source <(stern --completion=zsh)
+            elif [[ "${SHELL}" =~ 'bash' ]]; then
+              source <(stern --completion=bash)
+            fi
           fi
