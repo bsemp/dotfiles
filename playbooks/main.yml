@@ -1,6 +1,6 @@
 ---
 - name: Setup workstation
-  hosts: localhost
+  hosts: all
   gather_facts: True
 
   vars:
