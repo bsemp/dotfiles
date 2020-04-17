@@ -5,6 +5,7 @@ cli_tools_brew_packages:
   - curl
   - git
   - hping
+  - httpie
   - jq
   - openssl
   - tmux
@@ -16,6 +17,7 @@ cli_tools_linux_packages:
   - curl
   - git
   - hping3
+  - httpie
   - jq
   - openssl
   - snapd
