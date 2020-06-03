@@ -66,6 +66,13 @@
           # Add completion for the 'k' alias
           complete -F __start_kubectl k
 
+          # Completion for helm
+          if [[ "${SHELL}" =~ 'zsh' ]]; then
+            source <(helm completion zsh)
+          elif [[ "${SHELL}" =~ 'bash' ]]; then
+            source <(helm completion bash)
+          fi
+
           # Completion for stern
           if [[ -x "$(command -v stern)" ]]; then
             if [[ "${SHELL}" =~ 'zsh' ]]; then

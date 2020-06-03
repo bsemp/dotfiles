@@ -1,0 +1,48 @@
+---
+- name: Select macos packages
+  when: ansible_system == "Darwin"
+  set_fact:
+    azure_packages: "{{ azure_brew_packages }}"
+
+- name: Select linux packages
+  when: ansible_system == "Linux"
+  set_fact:
+    azure_packages: "{{ azure_linux_packages }}"
+
+- name: Install azure tools
+  package:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ azure_packages }}"
+
+- name: Install azure tools on linux (no package manager)
+  when:
+    - ansible_system == "Linux"
+    - not azure_linux_packages
+  import_tasks: ./linux_install.yml
+
+- name: Manage configuration file
+  when: azure_config_file != ""
+  block:
+    - name: Check config files exists
+      stat:
+        path: "{{ azure_config_file }}"
+      register: file_details
+
+    - name: Ensure config files exists
+      when: not file_details.stat.exists
+      file:
+        path: "{{ azure_config_file }}"
+        state: touch
+        mode: 0600
+
+    - name: Create config file
+      blockinfile:
+        marker: "# {mark} - azure - ANSIBLE MANAGED BLOCK"
+        insertafter: EOF
+        path: "{{ azure_config_file }}"
+        block: |
+          # Load azure-cli bash_completion
+          if [ -s "/usr/local/opt/azure-cli/etc/bash_completion.d/az" ]; then
+            source "/usr/local/opt/azure-cli/etc/bash_completion.d/az"
+          fi

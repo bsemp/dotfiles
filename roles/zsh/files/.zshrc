@@ -5,6 +5,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Force default shell
+export SHELL="/bin/zsh"
+# Define the default editor
+export EDITOR="/usr/bin/vim"
+# Define the default language
+export LANG=en_US.UTF-8
+
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _complete _ignored
 zstyle ':completion:*' format 'Completing %d'
@@ -17,16 +24,15 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Enable bash completion functions in ZSH
+autoload -Uz bashcompinit
+bashcompinit
+
 # Lines configured by zsh-newuser-install
 HISTFILE=${ZDOTDIR}/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 # End of lines configured by zsh-newuser-install
-
-# Define the default editor
-export EDITOR="/usr/bin/vim"
-# Define the default language
-export LANG=en_US.UTF-8
 
 # Download Antigen plugin in custom zsh configuration directory
 if [[ ! -s ${ZDOTDIR}/antigen.zsh ]]; then

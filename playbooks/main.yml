@@ -76,6 +76,20 @@
         - terraform
 
     - import_role:
+        name: azure
+      vars:
+        azure_config_file: "{{ shell_config_dir }}/custom/azure.zsh"
+      tags:
+        - azure
+
+    - import_role:
+        name: javascript
+      vars:
+        javascript_config_file: "{{ shell_config_dir }}/custom/javascript.zsh"
+      tags:
+        - javascript
+
+    - import_role:
         name: iterm2
       vars:
         iterm2_defaults:

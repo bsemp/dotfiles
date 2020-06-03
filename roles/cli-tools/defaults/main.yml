@@ -2,6 +2,7 @@
 cli_tools_brew_packages:
   - automake
   - bat
+  - bash # install newest bash instead of macos outdated 3.2
   - curl
   - git
   - hping

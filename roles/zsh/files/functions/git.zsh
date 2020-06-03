@@ -5,3 +5,10 @@ function git-clean() {
     git branch -D $branch;
   done
 }
+
+# Find gitmojis.
+# Example: 'gitmojis config' -> { ... "code": ":wrench:", ... }
+function gitmojis() {
+  local _str="${1}"
+  curl -s https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json | jq --arg STR "${_str}" '.gitmojis[] | se
+}

@@ -26,7 +26,12 @@ antigen bundle pyenv
 
 # Node Plugins
 antigen bundle node
+antigen bundle nvm
 antigen bundle npm
+
+# Docker
+antigen bundle docker
+antigen bundle docker-compose
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
