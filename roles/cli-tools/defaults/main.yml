@@ -4,6 +4,7 @@ cli_tools_brew_packages:
   - bat
   - bash # install newest bash instead of macos outdated 3.2
   - curl
+  - fzf
   - git
   - hping
   - httpie
@@ -16,6 +17,7 @@ cli_tools_brew_packages:
 cli_tools_linux_packages:
   - automake
   - curl
+  - fzf
   - git
   - hping3
   - httpie
