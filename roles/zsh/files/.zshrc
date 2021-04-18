@@ -12,6 +12,10 @@ export EDITOR="/usr/bin/vim"
 # Define the default language
 export LANG=en_US.UTF-8
 
+# Custom completion file directory (must be set before `compinit`)
+# Completion files must start with "_" (ex "_poetry")
+fpath+="${ZDOTDIR}/completions"
+
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _complete _ignored
 zstyle ':completion:*' format 'Completing %d'
