@@ -1,6 +1,5 @@
 ---
 cli_tools_brew_packages:
-  - automake
   - bat
   - bash # install newest bash instead of macos outdated 3.2
   - curl
@@ -16,7 +15,6 @@ cli_tools_brew_packages:
   - wget
 
 cli_tools_linux_packages:
-  - automake
   - curl
   - exa
   - fzf
