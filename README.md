@@ -1,6 +1,6 @@
 # workstation-bootstrap
 
-## Install all
+## Install all
 
 ```bash
 ansible-playbook playbooks/main.yml
