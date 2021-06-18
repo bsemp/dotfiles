@@ -1,23 +1,24 @@
 ---
 cli_tools_brew_packages:
-  - bat
+  - bat # A cat(1) clone with syntax highlighting and Git integration
   - bash # install newest bash instead of macos outdated 3.2
   - curl
   - exa # A modern replacement for ls
-  - fzf
+  - fzf # A command-line fuzzy finder
   - git
   - hping
   - httpie
   - jq
   - openssl
+  - tig # A text-mode interface for git
   - tmux
   - tree
   - wget
 
 cli_tools_linux_packages:
   - curl
-  - exa
-  - fzf
+  - exa # A modern replacement for ls
+  - fzf # A command-line fuzzy finder
   - git
   - hping3
   - httpie
