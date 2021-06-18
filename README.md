@@ -6,7 +6,7 @@
 ansible-playbook playbooks/main.yml
 ```
 
-## Select components to install
+## Select components to install
 
 ### Get a list of available tags
 
