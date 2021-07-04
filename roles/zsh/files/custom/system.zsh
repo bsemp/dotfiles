@@ -29,3 +29,16 @@ else
   alias lr='ls -tRFh'
   alias lt='ls -ltFh'
 fi
+
+if command -v fzf &>/dev/null; then
+  export FZF_COMPLETION_TRIGGER='~~'
+  if command -v bat &>/dev/null; then
+    export FZF_DEFAULT_OPTS='--multi --height 40% --layout=reverse --border'
+    alias fzfp='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
+  else
+    export FZF_DEFAULT_OPTS='--multi --height 40% --layout=reverse --border'
+    alias fzfp='fzf --preview "cat {}"'
+  fi
+
+fi
+
