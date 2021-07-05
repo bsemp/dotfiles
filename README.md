@@ -62,9 +62,9 @@ brew install --cask font-fira-code-nerd-font font-jetbrains-mono-nerd-font font-
 - install python poetry
 
 ```bash
-ln -s ${HOME}/.config/zsh/completions .zfunc
+ln -s ${HOME}/.config/zsh/completions .zcompletions
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-poetry completions zsh > ~/.zfunc/_poetry
+poetry completions zsh > ~/.zcompletions/_poetry
 ```
 
 - configure iterm2 profile
