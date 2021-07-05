@@ -49,11 +49,11 @@ poetry run ansible-playbook playbooks/main.yml -t <tag>,<tag>
 
 Example:
 
-`ansible-playbook playbooks/main.yml -t kubernetes,terraform`
+`poetry run ansible-playbook playbooks/main.yml -t kubernetes,terraform`
 
 ## TODO
 
-- Automatically install python poetry
+- Automatically install python poetry + completion
 
 ```bash
 ln -s ${HOME}/.config/zsh/completions .zcompletions
