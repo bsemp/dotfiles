@@ -3,13 +3,15 @@ cli_tools_config_file: ""
 
 cli_tools_brew_packages:
   - bat # A cat(1) clone with syntax highlighting and Git integration
-  - bash # install newest bash instead of macos outdated 3.2
+  - bash # Install newest bash instead of macos outdated 3.2
+  - cheat # Interactive cheatsheets on the command-line
   - curl
   - exa # A modern replacement for ls
   - fzf # A command-line fuzzy finder
   - git
   - hping
   - httpie
+  - ipcalc # IP subnet calculator
   - jq
   - openssl
   - tig # A text-mode interface for git
