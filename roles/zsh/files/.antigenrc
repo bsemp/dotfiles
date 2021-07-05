@@ -23,6 +23,7 @@ antigen bundle pip
 antigen bundle python
 antigen bundle virtualenv
 antigen bundle pyenv
+antigen bundle darvid/zsh-poetry
 
 # Node Plugins
 antigen bundle node
@@ -50,7 +51,7 @@ antigen theme romkatv/powerlevel10k
 antigen bundle unixorn/autoupdate-antigen.zshplugin
 
 # Autoenv
-AUTOENV_FILE_ENTER='.env'
+AUTOENV_FILE_ENTER='.env.enter'
 AUTOENV_FILE_LEAVE='.env.leave'
 antigen bundle Tarrasch/zsh-autoenv
 

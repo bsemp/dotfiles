@@ -14,12 +14,10 @@
       tags:
         - homebrew-update
 
-    # - name: Install homebrew tap
-    #   homebrew_tap:
-    #     name: homebrew/cask-casks
-    #     state: present
-    #   tags:
-    #     - homebrew-tap
+    - import_role:
+        name: fonts
+      tags:
+        - fonts
 
     - import_role:
         name: python
@@ -43,6 +41,8 @@
 
     - import_role:
         name: cli-tools
+      vars:
+        cli_tools_config_file: "{{ shell_config_dir }}/custom/cli-tools.zsh"
       tags:
         - cli-tools
 

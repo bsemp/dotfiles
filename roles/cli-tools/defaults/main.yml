@@ -1,4 +1,6 @@
 ---
+cli_tools_config_file: ""
+
 cli_tools_brew_packages:
   - bat # A cat(1) clone with syntax highlighting and Git integration
   - bash # install newest bash instead of macos outdated 3.2
@@ -12,6 +14,7 @@ cli_tools_brew_packages:
   - openssl
   - tig # A text-mode interface for git
   - tmux
+  - the_silver_searcher # A code searching tool similar to ack, with a focus on speed.
   - tree
   - wget
 

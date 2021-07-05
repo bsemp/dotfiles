@@ -11,34 +11,3 @@ alias zshlogin="${EDITOR:-vim} ${ZDOTDIR}/.zlogin"
 alias zshlogout="${EDITOR:-vim} ${ZDOTDIR}/.zlogout"
 alias antigenconfig="${EDITOR:-vim} ${ZDOTDIR}/.antigenrc"
 alias p10kconfig="${EDITOR:-vim} ${ZDOTDIR}/.p10k.zsh"
-
-# System
-if command -v exa &>/dev/null; then
-  # Override common ls aliases whith exa (https://the.exa.website/) if available
-  alias ls='exa'
-  alias l='exa -lbF --git'
-  alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'
-  alias ll='exa -lah'
-  alias lt='exa --tree --level=2'
-else
-  # Override common ls aliases
-  alias ls='ls -G'
-  alias l='ls -lFh'
-  alias la='ls -lAFhp'
-  alias ll='ls -lAhp'
-  alias lr='ls -tRFh'
-  alias lt='ls -ltFh'
-fi
-
-if command -v fzf &>/dev/null; then
-  export FZF_COMPLETION_TRIGGER='~~'
-  if command -v bat &>/dev/null; then
-    export FZF_DEFAULT_OPTS='--multi --height 40% --layout=reverse --border'
-    alias fzfp='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
-  else
-    export FZF_DEFAULT_OPTS='--multi --height 40% --layout=reverse --border'
-    alias fzfp='fzf --preview "cat {}"'
-  fi
-
-fi
-

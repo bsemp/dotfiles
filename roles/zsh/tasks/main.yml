@@ -32,3 +32,10 @@
     dest: "~/.zshenv"
     state: link
     mode: 0644
+
+- name: Create a symbolic link to custom zsh completions
+  file:
+    src: "{{ zsh_config_dir }}/completions"
+    dest: "~/.zshcompletions"
+    state: link
+    mode: 0755

@@ -22,3 +22,56 @@
     name: "{{ item }}"
     state: latest
   loop: "{{ cli_tools_packages }}"
+
+- name: Manage configuration file
+  when: cli_tools_config_file != ""
+  block:
+    - name: Check config files exists
+      stat:
+        path: "{{ cli_tools_config_file }}"
+      register: file_details
+
+    - name: Ensure config files exists
+      when: not file_details.stat.exists
+      file:
+        path: "{{ cli_tools_config_file }}"
+        state: touch
+        mode: 0600
+
+    - name: Create config file
+      blockinfile:
+        marker: "# {mark} - cli-tools - ANSIBLE MANAGED BLOCK"
+        insertafter: EOF
+        path: "{{ cli_tools_config_file }}"
+        block: |
+          if command -v exa &>/dev/null; then
+            # Override common ls aliases whith exa (https://the.exa.website/) if available
+            alias ls='exa'
+            alias l='exa -lbF --git'
+            alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'
+            alias ll='exa -lah'
+            alias lt='exa --tree --level=2'
+          else
+            # Override common ls aliases
+            alias ls='ls -G'
+            alias l='ls -lFh'
+            alias la='ls -lAFhp'
+            alias ll='ls -lAhp'
+            alias lr='ls -tRFh'
+            alias lt='ls -ltFh'
+          fi
+
+          # Confugure fuzzy finder
+          if command -v fzf &>/dev/null; then
+            export FZF_COMPLETION_TRIGGER='~~'
+            export FZF_DEFAULT_OPTS='--multi --height 40% --layout=reverse --border'
+            # Use The silver searcher and enable hidden files
+            if command -v ag &>/dev/null; then
+              export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+            fi
+            if command -v bat &>/dev/null; then
+              alias fzfp='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
+            else
+              alias fzfp='fzf --preview "cat {}"'
+            fi
+          fi
