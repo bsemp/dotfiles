@@ -14,6 +14,7 @@ cli_tools_brew_packages:
   - httpie
   - ipcalc # IP subnet calculator
   - jq
+  - jsonnet
   - openssl
   - tig # A text-mode interface for git
   - tmux
@@ -30,6 +31,7 @@ cli_tools_linux_packages:
   - hping3
   - httpie
   - jq
+  - jsonnet
   - openssl
   - snapd
   - tmux
