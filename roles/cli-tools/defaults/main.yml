@@ -9,6 +9,7 @@ cli_tools_brew_packages:
   - exa # A modern replacement for ls
   - fzf # A command-line fuzzy finder
   - git
+  - gnupg
   - hping
   - httpie
   - ipcalc # IP subnet calculator
@@ -25,6 +26,7 @@ cli_tools_linux_packages:
   - exa # A modern replacement for ls
   - fzf # A command-line fuzzy finder
   - git
+  - gnupg
   - hping3
   - httpie
   - jq
