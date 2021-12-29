@@ -62,3 +62,5 @@ poetry completions zsh > ~/.zcompletions/_poetry
 ```
 
 - Automatically configure iterm2 profile
+- Automatically configure git (global git configuration, global .gitignore)
+- Setup MacOS config (ex: FileVault, ...)
