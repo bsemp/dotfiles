@@ -69,3 +69,31 @@
               export GPG_TTY=$(tty)
             fi
           fi
+
+- debug:
+    msg: |
+      Useful gpg commands:
+      - Generate a key:
+        gpg --full-generate-key
+      - List secret keys:
+        gpg --list-secret-keys --keyid-format=long
+      - List public keys:
+        gpg --list-keys --keyid-format=long
+      - Export public key:
+        gpg --armor --export <KEY_ID or email> --output ./public_pgp.key
+      - Export private key:
+        # /!\ This command is normally not necessary. 
+        # /!\ Be careful with the output file, securely delete it using "shred -zu ./private_pgp.key"
+        gpg --armor --export-secret-keys <KEY_ID or personal_email> --output ./private_pgp.key
+      - Import private or public key:
+        gpg --import some_pgp.key
+      - Sign an imported public key (tells gpg that you trust the person the key claims to be)
+        gpg --default-key <KEY_ID or personal_email> --sign-key <contact_email>
+      - Test Signature
+        echo "test" | gpg --default-key <KEY_ID or personal_email> --clear-sign | gpg --verify
+      - Test encryption/decryption
+        echo "test" | gpg --encrypt --recipient "<personal_email>" | gpg --decrypt
+      - Encrypt file with a person public key, optionally sign using your private key to certify the message is from you
+        gpg --armor [--default-key "<KEY_ID or personal_email>" --sign] --encrypt --recipient <contact_email> --output ./file.txt.gpg  ./file.txt
+      - Decrypt file:
+        gpg --decrypt --output ./file.txt ./file.txt.gpg
