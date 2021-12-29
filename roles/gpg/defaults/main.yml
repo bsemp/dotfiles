@@ -1,0 +1,5 @@
+---
+gpg_brew_package: gnupg
+gpg_linux_package: gnupg
+gpg_config_dir: "{{ lookup('env','HOME') }}/.config/gpg"
+gpg_shell_config_file: ""

@@ -26,17 +26,17 @@
   import_tasks: ./krew_install.yml
 
 - name: Manage configuration file
-  when: k8s_config_file != ""
+  when: k8s_shell_config_file != ""
   block:
     - name: Check config files exists
       stat:
-        path: "{{ k8s_config_file }}"
+        path: "{{ k8s_shell_config_file }}"
       register: file_details
 
     - name: Ensure config files exists
       when: not file_details.stat.exists
       file:
-        path: "{{ k8s_config_file }}"
+        path: "{{ k8s_shell_config_file }}"
         state: touch
         mode: 0600
 
@@ -44,7 +44,7 @@
       blockinfile:
         marker: "# {mark} - K8S - ANSIBLE MANAGED BLOCK"
         insertafter: EOF
-        path: "{{ k8s_config_file }}"
+        path: "{{ k8s_shell_config_file }}"
         block: |
           # Aliases
           alias k="kubectl"

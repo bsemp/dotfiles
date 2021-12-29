@@ -1,5 +1,5 @@
 ---
-gnu_tools_config_file: ""
+gnu_tools_shell_config_file: ""
 gnu_tools_brew_packages:
   - coreutils
   - gnu-getopt

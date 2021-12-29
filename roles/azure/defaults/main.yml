@@ -2,4 +2,4 @@
 azure_brew_packages:
   - azure-cli
 azure_linux_packages: []
-azure_config_file: ""
+azure_shell_config_file: ""

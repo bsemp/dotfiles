@@ -6,17 +6,17 @@
   loop: "{{ gnu_tools_brew_packages }}"
 
 - name: Manage configuration file (set PATH var)
-  when: gnu_tools_config_file != ""
+  when: gnu_tools_shell_config_file != ""
   block:
     - name: Check config files exists
       stat:
-        path: "{{ gnu_tools_config_file }}"
+        path: "{{ gnu_tools_shell_config_file }}"
       register: file_details
 
     - name: Ensure config files exists
       when: not file_details.stat.exists
       file:
-        path: "{{ gnu_tools_config_file }}"
+        path: "{{ gnu_tools_shell_config_file }}"
         state: touch
         mode: 0600
 
@@ -24,7 +24,7 @@
       blockinfile:
         marker: "# {mark} - GNU-TOOLS - ANSIBLE MANAGED BLOCK"
         insertafter: EOF
-        path: "{{ gnu_tools_config_file }}"
+        path: "{{ gnu_tools_shell_config_file }}"
         block: |
           export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}"
           export PATH="$(brew --prefix)/opt/grep/libexec/gnubin:${PATH}"

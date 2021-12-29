@@ -24,17 +24,17 @@
   loop: "{{ cli_tools_packages }}"
 
 - name: Manage configuration file
-  when: cli_tools_config_file != ""
+  when: cli_tools_shell_config_file != ""
   block:
     - name: Check config files exists
       stat:
-        path: "{{ cli_tools_config_file }}"
+        path: "{{ cli_tools_shell_config_file }}"
       register: file_details
 
     - name: Ensure config files exists
       when: not file_details.stat.exists
       file:
-        path: "{{ cli_tools_config_file }}"
+        path: "{{ cli_tools_shell_config_file }}"
         state: touch
         mode: 0600
 
@@ -42,7 +42,7 @@
       blockinfile:
         marker: "# {mark} - cli-tools - ANSIBLE MANAGED BLOCK"
         insertafter: EOF
-        path: "{{ cli_tools_config_file }}"
+        path: "{{ cli_tools_shell_config_file }}"
         block: |
           if command -v exa &>/dev/null; then
             # Override common ls aliases whith exa (https://the.exa.website/) if available
@@ -74,9 +74,4 @@
             else
               alias fzfp='fzf --preview "cat {}"'
             fi
-          fi
-          
-          # Configure gpg
-          if command -v gpg &>/dev/null; then
-            export GPG_TTY=$(tty)
           fi

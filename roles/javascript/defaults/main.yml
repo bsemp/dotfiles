@@ -2,6 +2,6 @@
 javascript_brew_packages:
   - nvm
 javascript_linux_packages: []
-javascript_config_file: ""
+javascript_shell_config_file: ""
 
 javascript_nvm_config_dir: "{{ lookup('env', 'HOME') }}/.config/nvm"

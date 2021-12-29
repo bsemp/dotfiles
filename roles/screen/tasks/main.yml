@@ -18,7 +18,7 @@
   copy:
     src: "./files/" # trailing / is important to copy only files within the directory
     dest: "{{ screen_config_dir }}"
-    mode: "0644"
+    mode: 0644
 
 - name: Create a symbolic link to custom screenrc
   file:

@@ -14,13 +14,13 @@
 
 - name: Check config files exists
   stat:
-    path: "{{ ssh_config_file }}"
+    path: "{{ ssh_config_dir }}/config"
   register: file_details
 
 - name: Ensure config files exists
   when: not file_details.stat.exists
   file:
-    path: "{{ ssh_config_file }}"
+    path: "{{ ssh_config_dir }}/config"
     state: touch
     mode: 0600
 
@@ -28,7 +28,7 @@
   blockinfile:
     marker: "# {mark} - SSH - ANSIBLE MANAGED BLOCK"
     insertafter: EOF
-    path: "{{ ssh_config_file }}"
+    path: "{{ ssh_config_dir }}/config"
     block: |
       # # Add a github account using another ssh key
       # # Ex: git clone git@github-personal-account:bsemp/workstation-bootstrap.git

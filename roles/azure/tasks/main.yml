@@ -22,17 +22,17 @@
   import_tasks: ./linux_install.yml
 
 - name: Manage configuration file
-  when: azure_config_file != ""
+  when: azure_shell_config_file != ""
   block:
     - name: Check config files exists
       stat:
-        path: "{{ azure_config_file }}"
+        path: "{{ azure_shell_config_file }}"
       register: file_details
 
     - name: Ensure config files exists
       when: not file_details.stat.exists
       file:
-        path: "{{ azure_config_file }}"
+        path: "{{ azure_shell_config_file }}"
         state: touch
         mode: 0600
 
@@ -40,7 +40,7 @@
       blockinfile:
         marker: "# {mark} - azure - ANSIBLE MANAGED BLOCK"
         insertafter: EOF
-        path: "{{ azure_config_file }}"
+        path: "{{ azure_shell_config_file }}"
         block: |
           # Load azure-cli bash_completion
           if [ -s "/usr/local/opt/azure-cli/etc/bash_completion.d/az" ]; then

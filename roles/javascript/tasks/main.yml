@@ -29,17 +29,17 @@
     recurse: True
 
 - name: Manage configuration file
-  when: javascript_config_file != ""
+  when: javascript_shell_config_file != ""
   block:
     - name: Check config files exists
       stat:
-        path: "{{ javascript_config_file }}"
+        path: "{{ javascript_shell_config_file }}"
       register: file_details
 
     - name: Ensure config files exists
       when: not file_details.stat.exists
       file:
-        path: "{{ javascript_config_file }}"
+        path: "{{ javascript_shell_config_file }}"
         state: touch
         mode: 0600
 
@@ -47,7 +47,7 @@
       blockinfile:
         marker: "# {mark} - javascript - ANSIBLE MANAGED BLOCK"
         insertafter: EOF
-        path: "{{ javascript_config_file }}"
+        path: "{{ javascript_shell_config_file }}"
         block: |
           export NVM_DIR="{{ javascript_nvm_config_dir }}"
           # Load nvm

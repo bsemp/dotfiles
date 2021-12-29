@@ -22,17 +22,17 @@
   import_tasks: ./linux_install.yml
 
 - name: Manage configuration file
-  when: terraform_config_file != ""
+  when: terraform_shell_config_file != ""
   block:
     - name: Check config files exists
       stat:
-        path: "{{ terraform_config_file }}"
+        path: "{{ terraform_shell_config_file }}"
       register: file_details
 
     - name: Ensure config files exists
       when: not file_details.stat.exists
       file:
-        path: "{{ terraform_config_file }}"
+        path: "{{ terraform_shell_config_file }}"
         state: touch
         mode: 0600
 
@@ -40,7 +40,7 @@
       blockinfile:
         marker: "# {mark} - TERRAFORM - ANSIBLE MANAGED BLOCK"
         insertafter: EOF
-        path: "{{ terraform_config_file }}"
+        path: "{{ terraform_shell_config_file }}"
         block: |
           # Aliases
           alias tf="terraform"
