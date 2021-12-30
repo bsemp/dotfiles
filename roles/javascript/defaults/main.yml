@@ -1,6 +1,6 @@
 ---
 javascript_brew_packages:
-  - nvm
+  - nvm  # Manage multiple Node.js versions
 javascript_linux_packages: []
 javascript_shell_config_file: ""
 

@@ -16,7 +16,7 @@
 
 - name: Copy Custom zsh configuration to {{ zsh_config_dir }}
   copy:
-    src: "./files/" # trailing / is important to copy only directory content and not the directory itself
+    src: "./files/"  # trailing / is important to copy only directory content and not the directory itself
     dest: "{{ zsh_config_dir }}"
     mode: 0644
 

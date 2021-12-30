@@ -1,0 +1,35 @@
+---
+cli_tools_shell_config_file: ""
+
+cli_tools_brew_packages:
+  - bat                  # A cat(1) clone with syntax highlighting and Git integration
+  - bash                 # Install newest bash instead of macos outdated 3.2
+  - cheat                # Interactive cheatsheets on the command-line
+  - curl                 # Get a file from an HTTP, HTTPS or FTP server
+  - exa                  # A modern replacement for ls
+  - fzf                  # A command-line fuzzy finder
+  - hping                # Command-line oriented TCP/IP packet assembler/analyzer
+  - httpie               # User-friendly cURL replacement (command-line HTTP client)
+  - ipcalc               # IP subnet calculator
+  - jq                   # Lightweight and flexible command-line JSON processor
+  - jsonnet              # Domain specific configuration language for defining JSON data
+  - openssl              # Cryptography and SSL/TLS Toolkit
+  - tig                  # A text-mode interface for git
+  - tmux                 # Terminal multiplexer
+  - the_silver_searcher  # A code searching tool similar to ack, with a focus on speed.
+  - tree                 # Display directories as trees (with optional color/HTML output)
+  - wget                 # Internet file retriever
+
+cli_tools_linux_packages:
+  - curl
+  - exa
+  - fzf
+  - hping3
+  - httpie
+  - jq
+  - jsonnet
+  - openssl
+  - snapd
+  - tmux
+  - tree
+  - wget

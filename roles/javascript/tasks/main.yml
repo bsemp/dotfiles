@@ -26,7 +26,7 @@
   file:
     path: "{{ javascript_nvm_config_dir }}"
     state: directory
-    recurse: True
+    recurse: true
 
 - name: Manage configuration file
   when: javascript_shell_config_file != ""
@@ -59,7 +59,7 @@
     msg: |
       Once NVM is installed:
         Install the latest Node.js version:
-        > nvm install node 
+        > nvm install node
         Use the installed version in any shell:
         > nvm use node
         Install any dependencies with npm

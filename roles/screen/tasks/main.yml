@@ -16,7 +16,7 @@
 
 - name: Copy Custom zsh configuration to {{ screen_config_dir }}
   copy:
-    src: "./files/" # trailing / is important to copy only files within the directory
+    src: "./files/"  # trailing / is important to copy only files within the directory
     dest: "{{ screen_config_dir }}"
     mode: 0644
 

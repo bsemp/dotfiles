@@ -1,0 +1,5 @@
+# MacOS
+.DS_Store
+
+# Backup created by a text editor or similar program
+*~

@@ -1,7 +1,7 @@
 ---
 - name: Setup workstation
   hosts: all
-  gather_facts: True
+  gather_facts: true
 
   vars:
     shell_config_dir: "{{ lookup('env','HOME') }}/.config/zsh"
@@ -10,7 +10,7 @@
     - name: Update homebrew
       when: ansible_system == "Darwin"
       homebrew:
-        update_homebrew: yes
+        update_homebrew: true
       tags:
         - homebrew-update
 
@@ -32,7 +32,7 @@
         - zsh
 
     - import_role:
-        name: gnu-tools
+        name: gnu_tools
       vars:
         gnu_tools_shell_config_file: "{{ shell_config_dir }}/custom/gnu-tools.zsh"
       when: ansible_system == "Darwin"
@@ -40,7 +40,7 @@
         - gnu-tools
 
     - import_role:
-        name: cli-tools
+        name: cli_tools
       vars:
         cli_tools_shell_config_file: "{{ shell_config_dir }}/custom/cli-tools.zsh"
       tags:

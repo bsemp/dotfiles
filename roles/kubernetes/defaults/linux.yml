@@ -1,3 +1,4 @@
+---
 kubectl_linux_stable_version_url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
 kubectl_linux_binary_url: https://storage.googleapis.com/kubernetes-release/release/{{kubectl_stable_version}}/bin/linux/amd64/kubectl
 
