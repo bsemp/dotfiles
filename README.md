@@ -1,5 +1,7 @@
 # workstation-bootstrap
 
+[![Test](https://github.com/bsemp/workstation-bootstrap/actions/workflows/test.yaml/badge.svg)](https://github.com/bsemp/workstation-bootstrap/actions/workflows/test.yaml)
+
 ## Prerequisites
 
 ### Install brew (macos)

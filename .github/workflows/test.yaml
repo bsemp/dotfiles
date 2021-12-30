@@ -1,8 +1,11 @@
 ---
-name: Linting
+name: Test
 
 on:
   pull_request:
+    paths:
+      - playbooks/**
+      - roles/**
 
 defaults:
   run:
@@ -12,8 +15,12 @@ env:
   PYTHON_VERSION: 3.9
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -43,3 +50,6 @@ jobs:
 
       - name: Run lint
         run: poetry run ansible-lint
+
+      - name: Run Ansible playbook
+        run: poetry run ansible-playbook playbooks/main.yml
