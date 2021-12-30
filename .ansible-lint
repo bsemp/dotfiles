@@ -1,0 +1,7 @@
+---
+warn_list:
+  - no-changed-when  # Commands should not change things if nothing needs doing
+
+skip_list:
+  - unnamed-task  # All tasks should be named
+  - package-latest  # Package installs should not use latest

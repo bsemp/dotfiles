@@ -18,6 +18,13 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poet
 poetry install
 ```
 
+#### Update poetry and deplendencies
+
+```bash
+poetry self update
+poetry update
+```
+
 ## Bootstrap
 
 ### Install all
@@ -39,7 +46,7 @@ Example:
     playbook: playbooks/main.yml
 
     play #1 (all): Setup workstation      TAGS: []
-        TASK TAGS: [azure, cli-tools, fonts, gnu-tools, gpg, homebrew-update, iterm2, javascript, kubernetes, python, screen, ssh, terraform, vim, zsh]
+        TASK TAGS: [azure, cli-tools, fonts, git, gnu-tools, gpg, homebrew-update, iterm2, javascript, kubernetes, python, screen, ssh, terraform, vim, zsh]
 
 #### Install selected components
 
@@ -62,5 +69,4 @@ poetry completions zsh > ~/.zcompletions/_poetry
 ```
 
 - Automatically configure iterm2 profile
-- Automatically configure git (global git configuration, global .gitignore)
 - Setup MacOS config (ex: FileVault, ...)

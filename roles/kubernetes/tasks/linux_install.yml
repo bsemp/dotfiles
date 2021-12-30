@@ -69,6 +69,7 @@
       file:
         path: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/k9s"
         state: directory
+        mode: 0700
 
     - name: Unarchive a file that needs to be downloaded (added in 2.0)
       unarchive:

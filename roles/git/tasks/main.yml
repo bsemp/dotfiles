@@ -1,0 +1,28 @@
+---
+- name: Select macos package
+  when: ansible_system == "Darwin"
+  set_fact:
+    git_package: "{{ git_brew_package }}"
+
+- name: Select linux package
+  when: ansible_system == "Linux"
+  set_fact:
+    git_package: "{{ git_linux_package }}"
+
+- name: Install git
+  package:
+    name: "{{ git_package }}"
+    state: latest
+
+- name: Copy Custom git configuration to {{ git_config_dir }}
+  copy:
+    src: "./files/"  # trailing / is important to copy only files within the directory
+    dest: "{{ git_config_dir }}"
+    mode: 0644
+
+- name: Create a symbolic link to custom .gitconfig
+  file:
+    src: "{{ git_config_dir }}/config"
+    dest: "~/.gitconfig"
+    state: link
+    mode: 0644

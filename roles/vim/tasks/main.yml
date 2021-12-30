@@ -16,7 +16,7 @@
 
 - name: Copy Custom vim configuration to {{ vim_config_dir }}
   copy:
-    src: "./files/" # trailing / is important to copy only files within the directory
+    src: "./files/"  # trailing / is important to copy only files within the directory
     dest: "{{ vim_config_dir }}"
     mode: 0644
 

@@ -1,0 +1,5 @@
+[user]
+	email = bsemperlotti@christiandior.com
+	signingkey = B193617A061BC918
+[commit]
+	gpgsign = true

@@ -34,7 +34,7 @@
 
 - name: Copy Custom gpg configuration to {{ gpg_config_dir }}
   copy:
-    src: "./files/" # trailing / is important to copy only files within the directory
+    src: "./files/"  # trailing / is important to copy only files within the directory
     dest: "{{ gpg_config_dir }}"
     mode: 0600
 
@@ -65,7 +65,7 @@
           if command -v gpg &>/dev/null; then
             if [[ "${SHELL}" =~ 'zsh' ]]; then
               export GPG_TTY=${TTY}
-            else 
+            else
               export GPG_TTY=$(tty)
             fi
           fi
@@ -82,7 +82,7 @@
       - Export public key:
         gpg --armor --export <KEY_ID or email> --output ./public_pgp.key
       - Export private key:
-        # /!\ This command is normally not necessary. 
+        # /!\ This command is normally not necessary.
         # /!\ Be careful with the output file, securely delete it using "shred -zu ./private_pgp.key"
         gpg --armor --export-secret-keys <KEY_ID or personal_email> --output ./private_pgp.key
       - Import private or public key:

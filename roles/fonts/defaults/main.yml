@@ -1,7 +1,7 @@
 ---
 nerd_fonts_brew_tap: homebrew/cask-fonts
 
-nerd_fonts_brew_packages: 
+nerd_fonts_brew_packages:
   - font-fira-code-nerd-font
   - font-jetbrains-mono-nerd-font
   - font-meslo-lg-nerd-font
