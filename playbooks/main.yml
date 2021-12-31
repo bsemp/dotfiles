@@ -32,6 +32,11 @@
         - zsh
 
     - import_role:
+        name: git
+      tags:
+        - git
+
+    - import_role:
         name: gnu_tools
       vars:
         gnu_tools_shell_config_file: "{{ shell_config_dir }}/custom/gnu-tools.zsh"

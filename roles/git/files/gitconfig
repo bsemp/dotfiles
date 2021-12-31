@@ -1,0 +1,26 @@
+[alias]
+    br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+    env = var -l
+    last = log -1 HEAD --stat
+    squash = rebase -i --autosquash
+    sweep = ! "sweep() { git fetch --prune && for branch in $( git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == \"[gone]\" {sub(\"refs/heads/\", \"\", $1); print $1}' ); do git branch -D $branch; done }; sweep"
+    undo = reset HEAD~1 --mixed
+    up = ! git fetch -a && git rebase --autostash
+    whoami = ! git var -l | grep '^GIT_.*_IDENT'
+[user]
+    email = bruno.semperlotti@gmail.com
+    name = Bruno Semperlotti
+    signingkey = 53E540D1A8BF31D0
+[pull]
+    rebase = true
+[core]
+    excludesfile = ~/.config/git/gitignore_global
+[commit]
+    gpgsign = true
+    template = ~/.config/git/gitmessage
+[gpg]
+    program = /usr/local/bin/gpg
+
+# Override configuration according git directories
+[includeIf "gitdir:~/workspaces/dior/"]
+    path = ~/.config/git/dior_gitconfig
