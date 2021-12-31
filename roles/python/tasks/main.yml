@@ -13,4 +13,5 @@
   package:
     name: "{{ item }}"
     state: latest
+  become: "{{ true if ansible_system == 'Linux' else false }}"
   loop: "{{ python_packages }}"

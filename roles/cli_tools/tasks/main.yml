@@ -11,6 +11,7 @@
   package:
     name: epel-release
     state: latest
+  become: true
 
 - name: Select linux package
   when: ansible_system == "Linux"
@@ -21,6 +22,7 @@
   package:
     name: "{{ item }}"
     state: latest
+  become: "{{ true if ansible_system == 'Linux' else false }}"
   loop: "{{ cli_tools_packages }}"
 
 - name: Manage configuration file

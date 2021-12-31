@@ -13,6 +13,7 @@
   package:
     name: "{{ zsh_package }}"
     state: latest
+  become: "{{ true if ansible_system == 'Linux' else false }}"
 
 - name: Copy Custom zsh configuration to {{ zsh_config_dir }}
   copy:

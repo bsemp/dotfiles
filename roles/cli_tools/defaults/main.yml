@@ -22,7 +22,7 @@ cli_tools_brew_packages:
 
 cli_tools_linux_packages:
   - curl
-  - exa
+  # - exa  # Only available in packaga manager in ubuntu 20.10+
   - fzf
   - hping3
   - httpie

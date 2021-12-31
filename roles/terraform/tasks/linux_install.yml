@@ -10,3 +10,4 @@
 
     - name: Run tfswitch install script
       command: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/tfswitch_install.sh"
+      become: true
