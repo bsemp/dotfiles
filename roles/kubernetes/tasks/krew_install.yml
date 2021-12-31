@@ -19,3 +19,5 @@
       tar zxvf "${KREW}.tar.gz" &&
       ./"${KREW}" install krew
     )
+  args:
+    executable: /bin/bash

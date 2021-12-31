@@ -13,6 +13,7 @@
   package:
     name: "{{ item }}"
     state: latest
+  become: "{{ true if ansible_system == 'Linux' else false }}"
   loop: "{{ k8s_packages }}"
 
 - name: Install k8s tools on linux (no package manager)
