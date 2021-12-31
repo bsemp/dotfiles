@@ -16,11 +16,11 @@
 # Install poetry
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
-# Install deplendencies
+# Install dependencies
 poetry install
 ```
 
-#### Update poetry and deplendencies
+#### Update poetry and dependencies
 
 ```bash
 poetry self update
