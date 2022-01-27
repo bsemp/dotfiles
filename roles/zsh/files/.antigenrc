@@ -51,8 +51,10 @@ antigen theme romkatv/powerlevel10k
 antigen bundle unixorn/autoupdate-antigen.zshplugin
 
 # Autoenv
-AUTOENV_FILE_ENTER='.env.enter'
-AUTOENV_FILE_LEAVE='.env.leave'
+AUTOENV_FILE_ENTER='.autoenv_enter'
+AUTOENV_FILE_LEAVE='.autoenv_leave'
+AUTOENV_LOOK_UPWARDS=1
+AUTOENV_HANDLE_LEAVE=1
 antigen bundle Tarrasch/zsh-autoenv
 
 # Jump quickly to directories
