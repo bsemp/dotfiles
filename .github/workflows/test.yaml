@@ -113,4 +113,4 @@ jobs:
           key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
 
       - name: Install playbook
-        run: poetry run ansible-playbook playbooks/main.yml
+        run: poetry run ansible-playbook playbooks/main.yml -vv
