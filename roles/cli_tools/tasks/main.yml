@@ -25,10 +25,14 @@
   become: "{{ ansible_system == 'Linux' }}"
   loop: "{{ cli_tools_packages }}"
 
+- name: Get XDG_CONFIG_HOME
+  set_fact:
+    xdg_config_home: "{{ lookup('env', 'XDG_CONFIG_HOME') | default((lookup('env', 'HOME'), '.config') | path_join, True) }}"
+
 - name: Copy custom configuration to xdg_config_home
   ansible.builtin.copy:
     src: "./files/xdg_config_home/"  # trailing / is important to copy only directory content and not the directory itself
-    dest: "{{ lookup('env', 'XDG_CONFIG_HOME') | default((lookup('env', 'HOME'), '.config') | path_join, True) }}"
+    dest: "{{ xdg_config_home }}"
     mode: 0644
 
 - name: Manage configuration file
@@ -87,4 +91,11 @@
           # Configure zoxide, smarter cd command
           if command -v zoxide &>/dev/null; then
             eval "$(zoxide init zsh)"
+          fi
+
+          # CURL
+          export CURL_HOME={{ xdg_config_home }}/curl
+          # Use brew installed CURL instead of MacOS default's one
+          if command -v brew &>/dev/null; then
+            export PATH="$(brew --prefix)/opt/curl/bin:${PATH}"
           fi
