@@ -10,7 +10,7 @@ export SHELL="/bin/zsh"
 # Define the default editor
 export EDITOR="/usr/bin/vim"
 # Define the default language
-export LANG=en_US.UTF-8
+export LANG="en_US.UTF-8"
 
 # make Homebrew’s completions available in zsh
 if type brew &>/dev/null; then
