@@ -59,21 +59,3 @@ poetry run ansible-playbook playbooks/main.yml -t <tag>,<tag>
 Example:
 
 `poetry run ansible-playbook playbooks/main.yml -t kubernetes,terraform`
-
-## TODO
-
-- Automatic prerequisites installation (use makefile ?)
-  - Automatically install brew
-  - Automatically install python poetry with completion
-
-    ```bash
-    ln -s ${XDG_CONFIG_HOME:-${HOME}/.config}/zsh/completions .zcompletions
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-    poetry completions zsh > ~/.zcompletions/_poetry
-    ```
-
-- Global playbook configuration file instead of per roles
-- Better usage of XDG_CONFIG_HOME instead of hardcoded "~/.config" directory
-- IDE configuration (vscode, vim)
-- iterm2 profile configuration
-- MacOS configuration (ex: FileVault, ...)
