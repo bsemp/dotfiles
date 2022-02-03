@@ -19,6 +19,7 @@ cli_tools_brew_packages:
   - the_silver_searcher  # A code searching tool similar to ack, with a focus on speed.
   - tree                 # Display directories as trees (with optional color/HTML output)
   - wget                 # Internet file retriever
+  - zoxide               # zoxide is a smarter cd command, inspired by z and autojump.
 
 cli_tools_linux_packages:
   - curl
@@ -33,3 +34,4 @@ cli_tools_linux_packages:
   - tmux
   - tree
   - wget
+  # - zoxide # Only available in packaga manager in ubuntu 21.04+
