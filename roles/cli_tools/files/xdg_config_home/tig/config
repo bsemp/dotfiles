@@ -1,0 +1,44 @@
+# Add commit hash in main view
+set main-view = line-number:no,interval=5 id:yes date:default author:full commit-title:yes,graph,refs,overflow=no
+set diff-options = --show-signature
+
+# Short date
+set main-view-date = custom
+set main-view-date-format = "%Y-%m-%d %H:%M"
+
+# Automatically refresh after a command
+set refresh-mode = after-command
+
+# Interactive adding
+bind main A !git add -p %(file)
+bind diff A !git add -p %(file)
+
+# Edit file
+bind main e edit
+bind diff e edit
+
+# Rebase
+bind main R !git rebase -i %(commit)^
+bind diff R !git rebase -i %(commit)^
+
+# Fixup
+bind main F !git commit --fixup %(commit)
+bind diff F !git commit --fixup %(commit)
+
+# Tag
+bind main T !git tag -f -s %(prompt) %(commit)
+
+# Push
+bind main P !git push origin
+bind status P !git push origin
+
+# Copy to clipboard commit ID or commit subject/message
+bind generic YI @sh -c "printf '%s' %(commit) | pbcopy"
+bind generic YM @sh -c "git rev-list --format=%B --max-count=1 %(commit) | sed '1d' | pbcopy"
+
+# Colors
+#color cursor         white  black   bold
+#color id             yellow default bold
+#color author         green  default bold
+#color title-blur     white  black
+#color title-focus    white  black   bold
