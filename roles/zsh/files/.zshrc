@@ -37,12 +37,6 @@ compinit
 autoload -Uz bashcompinit
 bashcompinit
 
-# Lines configured by zsh-newuser-install
-HISTFILE=${ZDOTDIR}/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-# End of lines configured by zsh-newuser-install
-
 # Download Antigen plugin in custom zsh configuration directory
 if [[ ! -s ${ZDOTDIR}/antigen.zsh ]]; then
   curl --silent -L git.io/antigen > "${ZDOTDIR}/antigen.zsh"
