@@ -1,28 +1,28 @@
 ---
 - name: Select macos package
   when: ansible_system == "Darwin"
-  set_fact:
+  ansible.builtin.set_fact:
     screen_package: "{{ screen_brew_package }}"
 
 - name: Select linux package
   when: ansible_system == "Linux"
-  set_fact:
+  ansible.builtin.set_fact:
     screen_package: "{{ screen_linux_package }}"
 
 - name: Install screen
-  package:
+  ansible.builtin.package:
     name: "{{ screen_package }}"
     state: latest
-  become: "{{ true if ansible_system == 'Linux' else false }}"
+  become: "{{ ansible_system == 'Linux' }}"
 
 - name: Copy Custom zsh configuration to {{ screen_config_dir }}
-  copy:
+  ansible.builtin.copy:
     src: "./files/"  # trailing / is important to copy only files within the directory
     dest: "{{ screen_config_dir }}"
     mode: 0644
 
 - name: Create a symbolic link to custom screenrc
-  file:
+  ansible.builtin.file:
     src: "{{ screen_config_dir }}/.screenrc"
     dest: "~/.screenrc"
     state: link

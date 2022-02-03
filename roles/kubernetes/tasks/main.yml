@@ -1,48 +1,48 @@
 ---
 - name: Select macos package
   when: ansible_system == "Darwin"
-  set_fact:
+  ansible.builtin.set_fact:
     k8s_packages: "{{ k8s_brew_packages }}"
 
 - name: Select linux package
   when: ansible_system == "Linux"
-  set_fact:
+  ansible.builtin.set_fact:
     k8s_packages: "{{ k8s_linux_packages }}"
 
 - name: Install k8s tools
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: latest
-  become: "{{ true if ansible_system == 'Linux' else false }}"
+  become: "{{ ansible_system == 'Linux' }}"
   loop: "{{ k8s_packages }}"
 
 - name: Install k8s tools on linux (no package manager)
   when:
     - ansible_system == "Linux"
-  import_tasks: ./linux_install.yml
+  ansible.builtin.import_tasks: ./linux_install.yml
 
 - name: Install kubectl plugin manager
   when:
     - k8s_kubectl_krew_enabled | bool
-  import_tasks: ./krew_install.yml
+  ansible.builtin.import_tasks: ./krew_install.yml
 
 - name: Manage configuration file
   when: k8s_shell_config_file != ""
   block:
     - name: Check config files exists
-      stat:
+      ansible.builtin.stat:
         path: "{{ k8s_shell_config_file }}"
       register: file_details
 
     - name: Ensure config files exists
       when: not file_details.stat.exists
-      file:
+      ansible.builtin.file:
         path: "{{ k8s_shell_config_file }}"
         state: touch
         mode: 0600
 
     - name: Create config file
-      blockinfile:
+      ansible.builtin.blockinfile:
         marker: "# {mark} - K8S - ANSIBLE MANAGED BLOCK"
         insertafter: EOF
         path: "{{ k8s_shell_config_file }}"

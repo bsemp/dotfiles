@@ -14,29 +14,29 @@
       tags:
         - homebrew-update
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: fonts
       tags:
         - fonts
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: python
       tags:
         - python
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: zsh
       vars:
         zsh_config_dir: "{{ shell_config_dir }}"
       tags:
         - zsh
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: git
       tags:
         - git
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: gnu_tools
       vars:
         gnu_tools_shell_config_file: "{{ shell_config_dir }}/custom/gnu-tools.zsh"
@@ -44,64 +44,64 @@
       tags:
         - gnu-tools
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: cli_tools
       vars:
         cli_tools_shell_config_file: "{{ shell_config_dir }}/custom/cli-tools.zsh"
       tags:
         - cli-tools
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: vim
       tags:
         - vim
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: screen
       tags:
         - screen
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: ssh
       tags:
         - ssh
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: gpg
       vars:
         gpg_shell_config_file: "{{ shell_config_dir }}/custom/gpg.zsh"
       tags:
         - gpg
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: kubernetes
       vars:
         k8s_shell_config_file: "{{ shell_config_dir }}/custom/kubernetes.zsh"
       tags:
         - kubernetes
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: terraform
       vars:
         terraform_shell_config_file: "{{ shell_config_dir }}/custom/terraform.zsh"
       tags:
         - terraform
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: azure
       vars:
         azure_shell_config_file: "{{ shell_config_dir }}/custom/azure.zsh"
       tags:
         - azure
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: javascript
       vars:
         javascript_shell_config_file: "{{ shell_config_dir }}/custom/javascript.zsh"
       tags:
         - javascript
 
-    - import_role:
+    - ansible.builtin.import_role:
         name: iterm2
       vars:
         iterm2_defaults:

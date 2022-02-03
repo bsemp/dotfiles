@@ -1,37 +1,37 @@
 ---
 
 - name: Ansible check ssh directory exists
-  stat:
+  ansible.builtin.stat:
     path: "{{ ssh_config_dir }}"
   register: directory_details
 
 - name: Ensure ssh directory exists
   when: not (directory_details.stat.exists and directory_details.stat.isdir)
-  file:
+  ansible.builtin.file:
     path: "{{ ssh_config_dir }}"
     state: directory
     mode: 0700
 
 - name: Check config files exists
-  stat:
+  ansible.builtin.stat:
     path: "{{ ssh_config_dir }}/config"
   register: file_details
 
 - name: Ensure config files exists
   when: not file_details.stat.exists
-  file:
+  ansible.builtin.file:
     path: "{{ ssh_config_dir }}/config"
     state: touch
     mode: 0600
 
 - name: Add default SSH config
-  blockinfile:
+  ansible.builtin.blockinfile:
     marker: "# {mark} - SSH - ANSIBLE MANAGED BLOCK"
     insertafter: EOF
     path: "{{ ssh_config_dir }}/config"
     block: |
-      # # Add a github account using another ssh key
-      # # Ex: git clone git@github-personal-account:bsemp/workstation-bootstrap.git
+      # # Add a github account using another ssh key
+      # # Ex: git clone git@github-personal-account:bsemp/workstation-bootstrap.git
       # Host github-personal-account
       #   HostName github.com
       #   User git
@@ -39,7 +39,7 @@
       #   IdentityFile ~/.ssh/github_personal_account
       #   IdentitiesOnly yes
 
-      # Add default github config
+      # Add default github config
       Host github.com
         User git
         PreferredAuthentications publickey

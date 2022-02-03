@@ -1,28 +1,28 @@
 ---
 - name: Select macos package
   when: ansible_system == "Darwin"
-  set_fact:
+  ansible.builtin.set_fact:
     cli_tools_packages: "{{ cli_tools_brew_packages }}"
 
 - name: Install epel-release
   when:
     - ansible_system == "Linux"
     - ansible_distribution == "CentOS"
-  package:
+  ansible.builtin.package:
     name: epel-release
     state: latest
   become: true
 
 - name: Select linux package
   when: ansible_system == "Linux"
-  set_fact:
+  ansible.builtin.set_fact:
     cli_tools_packages: "{{ cli_tools_linux_packages }}"
 
 - name: Install cli tools
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: latest
-  become: "{{ true if ansible_system == 'Linux' else false }}"
+  become: "{{ ansible_system == 'Linux' }}"
   loop: "{{ cli_tools_packages }}"
 
 - name: Copy custom configuration to xdg_config_home
@@ -35,19 +35,19 @@
   when: cli_tools_shell_config_file != ""
   block:
     - name: Check config files exists
-      stat:
+      ansible.builtin.stat:
         path: "{{ cli_tools_shell_config_file }}"
       register: file_details
 
     - name: Ensure config files exists
       when: not file_details.stat.exists
-      file:
+      ansible.builtin.file:
         path: "{{ cli_tools_shell_config_file }}"
         state: touch
         mode: 0600
 
     - name: Create config file
-      blockinfile:
+      ansible.builtin.blockinfile:
         marker: "# {mark} - cli-tools - ANSIBLE MANAGED BLOCK"
         insertafter: EOF
         path: "{{ cli_tools_shell_config_file }}"

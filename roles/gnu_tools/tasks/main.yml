@@ -1,6 +1,6 @@
 ---
 - name: Install gnu tools
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: latest
   loop: "{{ gnu_tools_brew_packages }}"
@@ -9,19 +9,19 @@
   when: gnu_tools_shell_config_file != ""
   block:
     - name: Check config files exists
-      stat:
+      ansible.builtin.stat:
         path: "{{ gnu_tools_shell_config_file }}"
       register: file_details
 
     - name: Ensure config files exists
       when: not file_details.stat.exists
-      file:
+      ansible.builtin.file:
         path: "{{ gnu_tools_shell_config_file }}"
         state: touch
         mode: 0600
 
     - name: Create config file to add gnu tools to PATH
-      blockinfile:
+      ansible.builtin.blockinfile:
         marker: "# {mark} - GNU-TOOLS - ANSIBLE MANAGED BLOCK"
         insertafter: EOF
         path: "{{ gnu_tools_shell_config_file }}"
