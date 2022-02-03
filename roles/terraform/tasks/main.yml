@@ -1,44 +1,44 @@
 ---
 - name: Select macos packages
   when: ansible_system == "Darwin"
-  set_fact:
+  ansible.builtin.set_fact:
     terraform_packages: "{{ terraform_brew_packages }}"
 
 - name: Select linux packages
   when: ansible_system == "Linux"
-  set_fact:
+  ansible.builtin.set_fact:
     terraform_packages: "{{ terraform_linux_packages }}"
 
 - name: Install terraform tools
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: latest
-  become: "{{ true if ansible_system == 'Linux' else false }}"
+  become: "{{ ansible_system == 'Linux' }}"
   loop: "{{ terraform_packages }}"
 
 - name: Install terraform tools on linux (no package manager)
   when:
     - ansible_system == "Linux"
     - not terraform_linux_packages
-  import_tasks: ./linux_install.yml
+  ansible.builtin.import_tasks: ./linux_install.yml
 
 - name: Manage configuration file
   when: terraform_shell_config_file != ""
   block:
     - name: Check config files exists
-      stat:
+      ansible.builtin.stat:
         path: "{{ terraform_shell_config_file }}"
       register: file_details
 
     - name: Ensure config files exists
       when: not file_details.stat.exists
-      file:
+      ansible.builtin.file:
         path: "{{ terraform_shell_config_file }}"
         state: touch
         mode: 0600
 
     - name: Create config file
-      blockinfile:
+      ansible.builtin.blockinfile:
         marker: "# {mark} - TERRAFORM - ANSIBLE MANAGED BLOCK"
         insertafter: EOF
         path: "{{ terraform_shell_config_file }}"

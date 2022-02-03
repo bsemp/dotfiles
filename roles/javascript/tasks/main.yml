@@ -1,30 +1,30 @@
 ---
 - name: Select macos packages
   when: ansible_system == "Darwin"
-  set_fact:
+  ansible.builtin.set_fact:
     javascript_packages: "{{ javascript_brew_packages }}"
 
 - name: Select linux packages
   when: ansible_system == "Linux"
-  set_fact:
+  ansible.builtin.set_fact:
     javascript_packages: "{{ javascript_linux_packages }}"
 
 - name: Install javascript tools
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: latest
-  become: "{{ true if ansible_system == 'Linux' else false }}"
+  become: "{{ ansible_system == 'Linux' }}"
   loop: "{{ javascript_packages }}"
 
 - name: Install javascript tools on linux (no package manager)
   when:
     - ansible_system == "Linux"
     - not javascript_linux_packages
-  import_tasks: ./linux_install.yml
+  ansible.builtin.import_tasks: ./linux_install.yml
 
 
 - name: Create nvm config directory
-  file:
+  ansible.builtin.file:
     path: "{{ javascript_nvm_config_dir }}"
     state: directory
     recurse: true
@@ -33,19 +33,19 @@
   when: javascript_shell_config_file != ""
   block:
     - name: Check config files exists
-      stat:
+      ansible.builtin.stat:
         path: "{{ javascript_shell_config_file }}"
       register: file_details
 
     - name: Ensure config files exists
       when: not file_details.stat.exists
-      file:
+      ansible.builtin.file:
         path: "{{ javascript_shell_config_file }}"
         state: touch
         mode: 0600
 
     - name: Create config file
-      blockinfile:
+      ansible.builtin.blockinfile:
         marker: "# {mark} - javascript - ANSIBLE MANAGED BLOCK"
         insertafter: EOF
         path: "{{ javascript_shell_config_file }}"
@@ -56,7 +56,7 @@
           # Load nvm bash_completion
           [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && source "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 
-- debug:
+- ansible.builtin.debug:
     msg: |
       Once NVM is installed:
         Install the latest Node.js version:

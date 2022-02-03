@@ -1,40 +1,40 @@
 ---
 - name: Select macos package
   when: ansible_system == "Darwin"
-  set_fact:
+  ansible.builtin.set_fact:
     gpg_package: "{{ gpg_brew_package }}"
 
 - name: Select linux package
   when: ansible_system == "Linux"
-  set_fact:
+  ansible.builtin.set_fact:
     gpg_package: "{{ gpg_linux_package }}"
 
 - name: Install gpg
-  package:
+  ansible.builtin.package:
     name: "{{ gpg_package }}"
     state: latest
-  become: "{{ true if ansible_system == 'Linux' else false }}"
+  become: "{{ ansible_system == 'Linux' }}"
 
 - name: Ansible check gpg directory exists
-  stat:
+  ansible.builtin.stat:
     path: "{{ gpg_config_dir }}"
   register: directory_details
 
 - name: Ensure gpg directory exists
   when: not (directory_details.stat.exists and directory_details.stat.isdir)
-  file:
+  ansible.builtin.file:
     path: "{{ gpg_config_dir }}"
     state: directory
     mode: 0700
 
 - name: Create a symbolic link to custom .gnupg
-  file:
+  ansible.builtin.file:
     src: "{{ gpg_config_dir }}"
     dest: "~/.gnupg"
     state: link
 
 - name: Copy Custom gpg configuration to {{ gpg_config_dir }}
-  copy:
+  ansible.builtin.copy:
     src: "./files/"  # trailing / is important to copy only files within the directory
     dest: "{{ gpg_config_dir }}"
     mode: 0600
@@ -43,19 +43,19 @@
   when: gpg_shell_config_file != ""
   block:
     - name: Check config files exists
-      stat:
+      ansible.builtin.stat:
         path: "{{ gpg_shell_config_file }}"
       register: file_details
 
     - name: Ensure config files exists
       when: not file_details.stat.exists
-      file:
+      ansible.builtin.file:
         path: "{{ gpg_shell_config_file }}"
         state: touch
         mode: 0600
 
     - name: Create config file
-      blockinfile:
+      ansible.builtin.blockinfile:
         marker: "# {mark} - GPG - ANSIBLE MANAGED BLOCK"
         insertafter: EOF
         path: "{{ gpg_shell_config_file }}"
@@ -71,7 +71,7 @@
             fi
           fi
 
-- debug:
+- ansible.builtin.debug:
     msg: |
       Useful gpg commands:
       - Generate a key:
