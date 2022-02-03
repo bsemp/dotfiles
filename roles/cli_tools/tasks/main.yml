@@ -66,7 +66,7 @@
           # Configure fuzzy finder
           if command -v fzf &>/dev/null; then
             export FZF_COMPLETION_TRIGGER='~~'
-            export FZF_DEFAULT_OPTS='--multi --height 40% --layout=reverse --border'
+            export FZF_DEFAULT_OPTS='--multi --height 50% --layout=reverse --border'
             # Use The silver searcher and enable hidden files
             if command -v ag &>/dev/null; then
               export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
@@ -76,4 +76,9 @@
             else
               alias fzfp='fzf --preview "cat {}"'
             fi
+          fi
+
+          # Configure zoxide, smarter cd command
+          if command -v zoxide &>/dev/null; then
+            eval "$(zoxide init zsh)"
           fi

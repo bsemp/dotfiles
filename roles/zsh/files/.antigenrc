@@ -55,8 +55,5 @@ AUTOENV_FILE_ENTER='.env.enter'
 AUTOENV_FILE_LEAVE='.env.leave'
 antigen bundle Tarrasch/zsh-autoenv
 
-# Jump quickly to directories
-antigen bundle agkozak/zsh-z
-
 # Tell Antigen that you're done.
 antigen apply
