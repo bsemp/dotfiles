@@ -26,7 +26,7 @@ resolvelib = ">=0.5.3,<0.6.0"
 
 [[package]]
 name = "ansible-lint"
-version = "5.3.2"
+version = "5.4.0"
 description = "Checks playbooks for practices and behaviour that could potentially be improved"
 category = "dev"
 optional = false
@@ -44,7 +44,7 @@ wcmatch = ">=7.0"
 [package.extras]
 community = ["ansible (>=2.10)"]
 core = ["ansible-core (>=2.11.4)"]
-test = ["flaky (>=3.7.0)", "pytest (>=6.0.1)", "pytest-cov (>=2.10.1)", "pytest-xdist (>=2.1.0)", "psutil"]
+test = ["coverage (>=6.2,<6.3)", "tomli (>=1.2.3,<2.0.0)", "flaky (>=3.7.0)", "pytest (>=6.0.1)", "pytest-cov (>=2.10.1)", "pytest-xdist (>=2.1.0)", "psutil"]
 yamllint = ["yamllint (>=1.25.0)"]
 
 [[package]]
@@ -284,7 +284,7 @@ pyyaml = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "981d2946fa1d5c0d3ba7d53c9a2e34abf4c13d3c0b4b04d101af7b9bb8919047"
+content-hash = "174e65930511d310e44f51e9276803be79599c21953e6a70036b5353867c701e"
 
 [metadata.files]
 ansible = [
@@ -294,8 +294,8 @@ ansible-core = [
     {file = "ansible-core-2.12.1.tar.gz", hash = "sha256:a4508707262be11bb4dd98a006f1b14817879a055e6b6c46ad9fca8894fb3073"},
 ]
 ansible-lint = [
-    {file = "ansible-lint-5.3.2.tar.gz", hash = "sha256:9ba886db4c44e59360bc8d668f0beae6193c0a1fcbb9e76127000ca3aced7c28"},
-    {file = "ansible_lint-5.3.2-py3-none-any.whl", hash = "sha256:4673e55e61809bbebf5a6376cc5ed9cac32ef5fff6a121db70ea5ab0228cd81f"},
+    {file = "ansible-lint-5.4.0.tar.gz", hash = "sha256:2160a60b4ab034c04006d701a1779340ffb0f6e28f030ff8de958e1062a88962"},
+    {file = "ansible_lint-5.4.0-py3-none-any.whl", hash = "sha256:fb57755825b50da88c226052772bd843d37714155b504175912daac0e186e8c0"},
 ]
 bracex = [
     {file = "bracex-2.2.1-py3-none-any.whl", hash = "sha256:096c4b788bf492f7af4e90ef8b5bcbfb99759ae3415ea1b83c9d29a5ed8f9a94"},
