@@ -8,7 +8,7 @@ antigen bundle colored-man-pages
 
 # OS specific plugins
 if [[ $(uname) == 'Darwin' ]]; then
-    antigen bundle osx
+    antigen bundle macos
 fi
 
 # Automatic archive extract command 'extract or x'
