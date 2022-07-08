@@ -11,7 +11,7 @@ ansible = "^5.9.0"
 
 [tool.poetry.dev-dependencies]
 ansible-lint = "^6.2.2"
-yamllint = "^1.26.3"
+yamllint = "^1.27.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
