@@ -5,10 +5,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Force default shell
-export SHELL="/bin/zsh"
-# Define the default editor
-export EDITOR="/usr/bin/vim"
+# Define the default shell and editor
+if type brew &>/dev/null; then
+  export SHELL="$(brew --prefix)/bin/zsh"
+  export EDITOR="$(brew --prefix)/bin/vim"
+else
+  export SHELL="/bin/zsh"
+  export EDITOR="/usr/bin/vim"
+fi
+
 # Define the default language
 export LANG="en_US.UTF-8"
 
@@ -43,10 +48,11 @@ if [[ ! -s ${ZDOTDIR}/antigen.zsh ]]; then
 fi
 
 # Load Antigen
+ANTIGEN_CACHE=false # FIX Completion: https://github.com/zsh-users/antigen/issues/603#issuecomment-776286903
 source ${ZDOTDIR}/antigen.zsh
 
 # Load antigen configuration
-source ${ZDOTDIR}/.antigenrc
+source ${ZDOTDIR}/.antigenrc 2&> /dev/null
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ${ZDOTDIR}/.p10k.zsh
