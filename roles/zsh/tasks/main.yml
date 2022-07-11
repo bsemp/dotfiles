@@ -22,7 +22,7 @@
     mode: 0644
 
 - name: Copy Custom zshenv to {{ zsh_config_dir }}
-  template:
+  ansible.builtin.template:
     src: ".zshenv.tpl"
     dest: "{{ zsh_config_dir }}/.zshenv"
     mode: 0644

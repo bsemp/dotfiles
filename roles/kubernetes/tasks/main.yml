@@ -72,7 +72,7 @@
           alias kx="kubectx"
           alias kn="kubens"
 
-          {% if k8s_kubectl_krew_enabled|bool -%}
+          {% if k8s_kubectl_krew_enabled | bool -%}
           # kubectl plugin manager
           export KREW_ROOT="{{ k8s_krew_config_dir }}"
           export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
