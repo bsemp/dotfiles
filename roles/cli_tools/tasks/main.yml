@@ -26,7 +26,7 @@
   loop: "{{ cli_tools_packages }}"
 
 - name: Get XDG_CONFIG_HOME
-  set_fact:
+  ansible.builtin.set_fact:
     xdg_config_home: "{{ lookup('env', 'XDG_CONFIG_HOME') | default((lookup('env', 'HOME'), '.config') | path_join, True) }}"
 
 - name: Copy custom configuration to xdg_config_home

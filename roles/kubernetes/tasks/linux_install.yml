@@ -2,7 +2,7 @@
 - name: Install kubectl
   block:
     - name: Download kubectl stable version info
-      get_url:
+      ansible.builtin.get_url:
         url: "{{ kubectl_linux_stable_version_url }}"
         dest: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/kubernetes-release-stable.txt"
         mode: 0640
@@ -14,21 +14,21 @@
       changed_when: false
 
     - name: Download kubectl stable version binary
-      get_url:
+      ansible.builtin.get_url:
         url: "{{ kubectl_linux_binary_url }}"
         dest: "/usr/local/bin/kubectl"
         mode: 0755
       changed_when: false
 
 - name: Download kubectx latest version binary
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ kubectx_linux_binary_url }}"
     dest: "/usr/local/bin/kubectx"
     mode: 0755
   changed_when: false
 
 - name: Download kubens latest version binary
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ kubens_linux_binary_url }}"
     dest: "/usr/local/bin/kubens"
     mode: 0755
@@ -37,14 +37,14 @@
 - name: Install helm
   block:
     - name: Download helm install script
-      get_url:
+      ansible.builtin.get_url:
         url: "{{ helm_linux_installer_url }}"
         dest: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/get_helm.sh.sh"
         mode: 0700
       changed_when: false
 
     - name: Run helm install script
-      command: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/get_helm.sh.sh"
+      ansible.builtin.command: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/get_helm.sh.sh"
 
 - name: Install k9s
   block:
@@ -59,7 +59,7 @@
         var: k9s_release_artifact
 
     - name: Download k9s release artifact
-      get_url:
+      ansible.builtin.get_url:
         url: "{{ k9s_linux_installer_url }}/download/{{ k9s_release_artifact.stdout }}"
         dest: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/{{ k9s_release_artifact.stdout }}"
         mode: 0700
@@ -72,7 +72,7 @@
         mode: 0700
 
     - name: Unarchive a file that needs to be downloaded (added in 2.0)
-      unarchive:
+      ansible.builtin.unarchive:
         src: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/{{ k9s_release_artifact.stdout }}"
         dest: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/k9s"
 
@@ -92,7 +92,7 @@
       changed_when: false
 
     - name: Download stern stable version binary
-      get_url:
+      ansible.builtin.get_url:
         url: "{{ stern_linux_installer_url }}/download/{{ stern_release_artifact.stdout }}"
         dest: "/usr/local/bin/stern"
         mode: 0755
