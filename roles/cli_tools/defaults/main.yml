@@ -8,6 +8,7 @@ cli_tools_brew_packages:
   - curl                 # Get a file from an HTTP, HTTPS or FTP server
   - exa                  # A modern replacement for ls
   - fzf                  # A command-line fuzzy finder
+  - gum                  # A tool for glamorous shell scripts. https://github.com/charmbracelet/gum
   - hping                # Command-line oriented TCP/IP packet assembler/analyzer
   - httpie               # User-friendly cURL replacement (command-line HTTP client)
   - ipcalc               # IP subnet calculator
