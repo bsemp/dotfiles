@@ -10,7 +10,7 @@
 
     - name: Register kubectl stable version info
       ansible.builtin.set_fact:
-        kubectl_stable_version: "{{ lookup('file', lookup('config', 'DEFAULT_LOCAL_TMP')+'/kubernetes-release-stable.txt') }}"
+        kubectl_stable_version: "{{ lookup('file', lookup('config', 'DEFAULT_LOCAL_TMP') + '/kubernetes-release-stable.txt') }}"
       changed_when: false
 
     - name: Download kubectl stable version binary
@@ -49,7 +49,9 @@
 - name: Install k9s
   block:
     - name: Retrieve k9s latest artifact
-      ansible.builtin.shell: curl -sL {{ k9s_linux_installer_url }} | grep -Eo "k9s_Linux_x86_64.tar.gz" | uniq
+      ansible.builtin.shell: |
+        set -o pipefail
+        curl -sL {{ k9s_linux_installer_url }} | grep -Eo "k9s_Linux_amd64.tar.gz" | uniq
       args:
         warn: false
       register: k9s_release_artifact
@@ -65,7 +67,7 @@
         mode: 0700
       changed_when: false
 
-    - name: create temporary directory to extract k9s
+    - name: Create temporary directory to extract k9s
       ansible.builtin.file:
         path: "{{ lookup('config', 'DEFAULT_LOCAL_TMP') }}/k9s"
         state: directory
@@ -85,7 +87,9 @@
 - name: Install stern
   block:
     - name: Retrieve stern latest artifact
-      ansible.builtin.shell: curl -sL {{ stern_linux_installer_url }} | grep -Eo "stern_linux_amd64" | uniq
+      ansible.builtin.shell: |
+        set -o pipefail
+        curl -sL {{ stern_linux_installer_url }} | grep -Eo "stern_linux_amd64" | uniq
       args:
         warn: false
       register: stern_release_artifact

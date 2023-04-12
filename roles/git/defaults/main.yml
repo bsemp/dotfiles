@@ -1,4 +1,4 @@
 ---
 git_brew_package: git
 git_linux_package: git
-git_config_dir: "{{ lookup('env','HOME') }}/.config/git"
+git_config_dir: "{{ lookup('env', 'HOME') }}/.config/git"
