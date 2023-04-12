@@ -48,7 +48,7 @@ Example:
     playbook: playbooks/main.yml
 
     play #1 (all): Setup workstation      TAGS: []
-        TASK TAGS: [azure, cli-tools, fonts, git, gnu-tools, gpg, homebrew-update, iterm2, javascript, kubernetes, python, screen, ssh, terraform, vim, zsh]
+        TASK TAGS: [azure, cli-tools, docker, fonts, git, gnu-tools, gpg, homebrew-update, iterm2, javascript, kubernetes, python, screen, ssh, terraform, vim, zsh]
 
 #### Install selected components
 
