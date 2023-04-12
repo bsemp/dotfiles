@@ -20,6 +20,14 @@ curl -sSL https://install.python-poetry.org | python3 -
 poetry install
 ```
 
+Note: if after upgrading your pythoon version, you are facing an issue like `dyld[25492]: Library not loaded: '/usr/local/Cellar/python...` when running poetry, try the following:
+
+```bash
+# Reinstall poetry
+curl -sSL https://install.python-poetry.org | python3 - --uninstall
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
 #### Update poetry and dependencies
 
 ```bash

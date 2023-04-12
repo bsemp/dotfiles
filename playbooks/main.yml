@@ -9,7 +9,7 @@
   tasks:
     - name: Update homebrew
       when: ansible_system == "Darwin"
-      homebrew:
+      community.general.homebrew:
         update_homebrew: true
       tags:
         - homebrew-update

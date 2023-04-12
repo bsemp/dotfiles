@@ -1,7 +1,7 @@
 ---
 - name: Install Homebrew Cask Fonts
   when: ansible_system == "Darwin"
-  homebrew_tap:
+  community.general.homebrew_tap:
     name: "{{ nerd_fonts_brew_tap }}"
     state: present
 
