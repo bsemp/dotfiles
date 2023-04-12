@@ -1,0 +1,8 @@
+---
+docker_shell_config_file: ""
+
+docker_brew_packages:
+  - podman
+
+docker_linux_packages:
+  - podman

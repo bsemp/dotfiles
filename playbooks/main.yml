@@ -52,6 +52,13 @@
         - cli-tools
 
     - ansible.builtin.import_role:
+        name: docker
+      vars:
+        docker_shell_config_file: "{{ shell_config_dir }}/custom/docker.zsh"
+      tags:
+        - docker
+
+    - ansible.builtin.import_role:
         name: vim
       tags:
         - vim
