@@ -11,8 +11,9 @@
 
 - name: Install gpg
   ansible.builtin.package:
-    name: "{{ gpg_package }}"
+    name: "{{ item }}"
     state: latest
+  loop: "{{ gpg_package }}"
   become: "{{ ansible_system == 'Linux' }}"
 
 - name: Ansible check gpg directory exists
