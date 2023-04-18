@@ -1,20 +1,9 @@
 ---
-- name: Select macos package
-  when: ansible_system == "Darwin"
-  ansible.builtin.set_fact:
-    gpg_package: "{{ gpg_brew_package }}"
-
-- name: Select linux package
-  when: ansible_system == "Linux"
-  ansible.builtin.set_fact:
-    gpg_package: "{{ gpg_linux_package }}"
-
 - name: Install gpg
   ansible.builtin.package:
     name: "{{ item }}"
     state: latest
-  loop: "{{ gpg_package }}"
-  become: "{{ ansible_system == 'Linux' }}"
+  loop: "{{ gpg_brew_package }}"
 
 - name: Ansible check gpg directory exists
   ansible.builtin.stat:
@@ -34,10 +23,11 @@
     dest: "~/.gnupg"
     state: link
 
-- name: Copy Custom gpg configuration to {{ gpg_config_dir }}
-  ansible.builtin.copy:
-    src: "./files/"  # trailing / is important to copy only files within the directory
-    dest: "{{ gpg_config_dir }}"
+- name: Template a file to {{ gpg_config_dir }}/gpg-agent-test.config
+  when: ansible_system == "Darwin"
+  ansible.builtin.template:
+    src: gpg-agent.conf.j2
+    dest: "{{ gpg_config_dir }}/gpg-agent.conf"
     mode: 0600
 
 - name: Manage configuration file
