@@ -1,5 +1,6 @@
 ---
 azure_brew_packages:
   - azure-cli
+  - Azure/kubelogin/kubelogin  # kubelogin is a client-go credential (exec) plugin implementing azure authentication.
 azure_linux_packages: []
 azure_shell_config_file: ""

@@ -2,7 +2,7 @@
 gpg_brew_package: 
   - gnupg
   - pinentry-mac
-gpg_linux_package: 
+gpg_linux_package:
   - gnupg
 gpg_config_dir: "{{ lookup('env', 'HOME') }}/.config/gpg"
 gpg_shell_config_file: ""

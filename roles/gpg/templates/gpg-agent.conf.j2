@@ -1,0 +1,11 @@
+# https://www.gnupg.org/documentation/manuals/gnupg/Agent-Options.html#Agent-Options
+
+# Cache passphrase 
+default-cache-ttl 21600 # Default to 6h
+max-cache-ttl 43200 # Maximum to 12h
+
+# Configuration passphrase GPG Key
+{% if ansible_architecture == 'arm64' and ansible_system == "Darwin" %}pinentry-program /opt/homebrew/bin/pinentry-mac
+{% elif ansible_architecture == 'x86_64' and ansible_system == "Darwin" %}pinentry-program /usr/local/bin/pinentry-mac
+{% else %}# No specific configuration required for GPG passphrase
+{% endif %}
