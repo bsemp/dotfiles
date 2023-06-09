@@ -1,4 +1,5 @@
 ---
-git_brew_package: git
-git_linux_package: git
-git_config_dir: "{{ lookup('env', 'HOME') }}/.config/git"
+git_brew_packages:
+  - gh # Github cli
+  - git
+  - tig # A text-mode interface for git

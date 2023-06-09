@@ -1,7 +1,3 @@
 ---
 javascript_brew_packages:
-  - nvm  # Manage multiple Node.js versions
-javascript_linux_packages: []
-javascript_shell_config_file: ""
-
-javascript_nvm_config_dir: "{{ lookup('env', 'HOME') }}/.config/nvm"
+  - nvm # Manage multiple Node.js versions

@@ -1,54 +1,15 @@
 ---
-- name: Select macos packages
-  when: ansible_system == "Darwin"
-  ansible.builtin.set_fact:
-    terraform_packages: "{{ terraform_brew_packages }}"
-
-- name: Select linux packages
-  when: ansible_system == "Linux"
-  ansible.builtin.set_fact:
-    terraform_packages: "{{ terraform_linux_packages }}"
-
-- name: Install terraform tools
+- name: Install brew packages
   ansible.builtin.package:
     name: "{{ item }}"
     state: latest
-  become: "{{ ansible_system == 'Linux' }}"
-  loop: "{{ terraform_packages }}"
+  loop: "{{ terraform_brew_packages }}"
 
-- name: Install terraform tools on linux (no package manager)
-  when:
-    - ansible_system == "Linux"
-    - not terraform_linux_packages
-  ansible.builtin.import_tasks: ./linux_install.yml
-
-- name: Manage configuration file
-  when: terraform_shell_config_file != ""
-  block:
-    - name: Check config files exists
-      ansible.builtin.stat:
-        path: "{{ terraform_shell_config_file }}"
-      register: file_details
-
-    - name: Ensure config files exists
-      when: not file_details.stat.exists
-      ansible.builtin.file:
-        path: "{{ terraform_shell_config_file }}"
-        state: touch
-        mode: 0600
-
-    - name: Create config file
-      ansible.builtin.blockinfile:
-        marker: "# {mark} - TERRAFORM - ANSIBLE MANAGED BLOCK"
-        insertafter: EOF
-        path: "{{ terraform_shell_config_file }}"
-        block: |
-          # Aliases
-          alias tf="terraform"
-          alias tfc="terraform console"
-          alias tfi="terraform import"
-          alias tfl="terraform fmt"
-          alias tfs="terraform state"
-          alias tft="terraform taint"
-          alias tfut="terraform untaint"
-          alias tfw="terraform workspace"
+- name: Create shell config file in {{ shell_config_dir }}
+  ansible.builtin.blockinfile:
+    create: true
+    marker: "# {mark} - ANSIBLE MANAGED BLOCK"
+    insertbefore: BOF # Beginning of file
+    path: "{{ shell_config_dir }}/terraform.zsh"
+    block: "{{ lookup('ansible.builtin.file', './shell_config/terraform.zsh') }}"
+    mode: "0600"

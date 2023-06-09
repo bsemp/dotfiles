@@ -1,49 +1,15 @@
 ---
-- name: Select macos packages
-  when: ansible_system == "Darwin"
-  ansible.builtin.set_fact:
-    azure_packages: "{{ azure_brew_packages }}"
-
-- name: Select linux packages
-  when: ansible_system == "Linux"
-  ansible.builtin.set_fact:
-    azure_packages: "{{ azure_linux_packages }}"
-
-- name: Install azure tools
+- name: Install brew packages
   ansible.builtin.package:
     name: "{{ item }}"
     state: latest
-  become: "{{ ansible_system == 'Linux' }}"
-  loop: "{{ azure_packages }}"
+  loop: "{{ azure_brew_packages }}"
 
-- name: Install azure tools on linux (no package manager)
-  when:
-    - ansible_system == "Linux"
-    - not azure_linux_packages
-  ansible.builtin.import_tasks: ./linux_install.yml
-
-- name: Manage configuration file
-  when: azure_shell_config_file != ""
-  block:
-    - name: Check config files exists
-      ansible.builtin.stat:
-        path: "{{ azure_shell_config_file }}"
-      register: file_details
-
-    - name: Ensure config files exists
-      when: not file_details.stat.exists
-      ansible.builtin.file:
-        path: "{{ azure_shell_config_file }}"
-        state: touch
-        mode: 0600
-
-    - name: Create config file
-      ansible.builtin.blockinfile:
-        marker: "# {mark} - azure - ANSIBLE MANAGED BLOCK"
-        insertafter: EOF
-        path: "{{ azure_shell_config_file }}"
-        block: |
-          # Load azure-cli bash_completion
-          if [ -s "/usr/local/opt/azure-cli/etc/bash_completion.d/az" ]; then
-            source "/usr/local/opt/azure-cli/etc/bash_completion.d/az"
-          fi
+- name: Create shell config file in {{ shell_config_dir }}
+  ansible.builtin.blockinfile:
+    create: true
+    marker: "# {mark} - ANSIBLE MANAGED BLOCK"
+    insertbefore: BOF # Beginning of file
+    path: "{{ shell_config_dir }}/azure.zsh"
+    block: "{{ lookup('ansible.builtin.file', './shell_config/azure.zsh') }}"
+    mode: "0600"

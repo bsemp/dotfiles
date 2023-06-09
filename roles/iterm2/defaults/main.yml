@@ -1,4 +1,10 @@
 ---
-iterm2_brew_package: iterm2
-iterm2_domain: "com.googlecode.{{ iterm2_brew_package | lower }}"
-iterm2_defaults: []
+iterm2_brew_cask_package: iterm2
+
+iterm2_defaults:
+  - name: OnlyWhenMoreTabs
+    type: string
+    value: true
+  - name: PromptOnQuit
+    type: bool
+    value: false

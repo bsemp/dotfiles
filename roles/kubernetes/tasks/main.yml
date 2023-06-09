@@ -1,104 +1,31 @@
 ---
-- name: Select macos package
-  when: ansible_system == "Darwin"
-  ansible.builtin.set_fact:
-    k8s_packages: "{{ k8s_brew_packages }}"
-
-- name: Select linux package
-  when: ansible_system == "Linux"
-  ansible.builtin.set_fact:
-    k8s_packages: "{{ k8s_linux_packages }}"
-
-- name: Install k8s tools
+- name: Install brew packages
   ansible.builtin.package:
     name: "{{ item }}"
     state: latest
   become: "{{ ansible_system == 'Linux' }}"
-  loop: "{{ k8s_packages }}"
-
-- name: Install k8s tools on linux (no package manager)
-  when:
-    - ansible_system == "Linux"
-  ansible.builtin.import_tasks: ./linux_install.yml
+  loop: "{{ k8s_brew_packages }}"
 
 - name: Install kubectl plugin manager
-  when:
-    - k8s_kubectl_krew_enabled | bool
   ansible.builtin.import_tasks: ./krew_install.yml
 
-- name: Move kube config to custom config directory
-  block:
-    - name: Ansible check kube config directory exists
-      ansible.builtin.stat:
-        path: "{{ k8s_kube_config_dir }}"
-      register: directory_details
+- name: Copy custom configuration to {{ xdg_config_home }}
+  ansible.builtin.copy:
+    src: "./files/config/" # trailing / is important to copy only directory content and not the directory itself
+    dest: "{{ xdg_config_home }}"
+    mode: "0600"
 
-    - name: Ensure kube config directory exists
-      when: not (directory_details.stat.exists and directory_details.stat.isdir)
-      ansible.builtin.file:
-        path: "{{ k8s_kube_config_dir }}"
-        state: directory
-        mode: 0700
+- name: Create a symbolic link to custom .kube
+  ansible.builtin.file:
+    src: "{{ xdg_config_home }}/kube"
+    dest: "~/.kube"
+    state: link
 
-    - name: Create a symbolic link to custom .kube
-      ansible.builtin.file:
-        src: "{{ k8s_kube_config_dir }}"
-        dest: "~/.kube"
-        state: link
-
-- name: Manage configuration file
-  when: k8s_shell_config_file != ""
-  block:
-    - name: Check config files exists
-      ansible.builtin.stat:
-        path: "{{ k8s_shell_config_file }}"
-      register: file_details
-
-    - name: Ensure config files exists
-      when: not file_details.stat.exists
-      ansible.builtin.file:
-        path: "{{ k8s_shell_config_file }}"
-        state: touch
-        mode: 0600
-
-    - name: Create config file
-      ansible.builtin.blockinfile:
-        marker: "# {mark} - K8S - ANSIBLE MANAGED BLOCK"
-        insertafter: EOF
-        path: "{{ k8s_shell_config_file }}"
-        block: |
-          # Aliases
-          alias k="kubectl"
-          alias kx="kubectx"
-          alias kn="kubens"
-
-          {% if k8s_kubectl_krew_enabled | bool -%}
-          # kubectl plugin manager
-          export KREW_ROOT="{{ k8s_krew_config_dir }}"
-          export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-          {% endif %}
-
-          # Completion for kubectl
-          if [[ "${SHELL}" =~ 'zsh' ]]; then
-            source <(kubectl completion zsh)
-          elif [[ "${SHELL}" =~ 'bash' ]]; then
-            source <(kubectl completion bash)
-          fi
-          # Add completion for the 'k' alias
-          complete -F __start_kubectl k
-
-          # Completion for helm
-          if [[ "${SHELL}" =~ 'zsh' ]]; then
-            source <(helm completion zsh)
-          elif [[ "${SHELL}" =~ 'bash' ]]; then
-            source <(helm completion bash)
-          fi
-
-          # Completion for stern
-          if [[ -x "$(command -v stern)" ]]; then
-            if [[ "${SHELL}" =~ 'zsh' ]]; then
-              source <(stern --completion=zsh)
-            elif [[ "${SHELL}" =~ 'bash' ]]; then
-              source <(stern --completion=bash)
-            fi
-          fi
+- name: Create shell config file in {{ shell_config_dir }}
+  ansible.builtin.blockinfile:
+    create: true
+    marker: "# {mark} - ANSIBLE MANAGED BLOCK"
+    insertbefore: BOF # Beginning of file
+    path: "{{ shell_config_dir }}/kubernetes.zsh"
+    block: "{{ lookup('ansible.builtin.file', './shell_config/kubernetes.zsh') }}"
+    mode: "0600"

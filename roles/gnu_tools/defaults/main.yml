@@ -1,6 +1,0 @@
----
-gnu_tools_shell_config_file: ""
-gnu_tools_brew_packages:
-  - coreutils   # GNU File, Shell, and Text utilities
-  - gnu-getopt  # Command-line option parsing utility
-  - grep        # GNU grep, egrep and fgrep

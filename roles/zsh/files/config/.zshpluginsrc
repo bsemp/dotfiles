@@ -1,0 +1,17 @@
+# Configuration for ZSH plugins installed with Antidote
+
+# A number of oh-my-zsh plugins (including cache-path in the completions.zsh file) use $ZSH_CACHE_DIR to store their data.
+# The variable is set in oh-my-zsh.sh by default, but not on antidote
+ZSH_CACHE_DIR=${XDG_CACHE_HOME}/oh-my-zsh
+if [[ ! -d $ZSH_CACHE_DIR ]]; then
+  mkdir -p $ZSH_CACHE_DIR/{completions,}
+fi
+
+# Adjust suggestions color according to terminal theme
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
+
+# Autoenv
+AUTOENV_FILE_ENTER='.autoenv_enter'
+AUTOENV_FILE_LEAVE='.autoenv_leave'
+AUTOENV_LOOK_UPWARDS=1
+AUTOENV_HANDLE_LEAVE=1

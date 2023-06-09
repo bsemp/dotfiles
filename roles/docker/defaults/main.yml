@@ -1,8 +1,7 @@
 ---
-docker_shell_config_file: ""
-
 docker_brew_packages:
   - podman
-
-docker_linux_packages:
-  - podman
+  - podman-compose
+  - docker-credential-helper # Use OSX keychain to store docker credentials
+  - trivy # Simple image security scanner: https://github.com/aquasecurity/trivy
+  - dive # A tool for exploring each layer in a docker image: https://github.com/wagoodman/dive

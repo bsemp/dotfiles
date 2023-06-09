@@ -1,9 +1,0 @@
----
-extends: default
-yaml-files:
-  - ".ansible-lint"
-  - ".yamllint"
-  - "*.yaml"
-  - "*.yml"
-rules:
-  line-length: disable

@@ -1,13 +1,11 @@
 ---
-- name: Install Homebrew Cask Fonts
-  when: ansible_system == "Darwin"
+- name: Install Homebrew tap cask-fonts
   community.general.homebrew_tap:
-    name: "{{ nerd_fonts_brew_tap }}"
+    name: homebrew/cask-fonts
     state: present
 
-- name: Install nerd fonts
-  when: ansible_system == "Darwin"
+- name: Install brew packages
   community.general.homebrew_cask:
     name: "{{ item }}"
     state: latest
-  loop: "{{ nerd_fonts_brew_packages }}"
+  loop: "{{ fonts_brew_cask_packages }}"

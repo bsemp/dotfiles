@@ -1,17 +1,6 @@
 ---
-- name: Select macos package
-  when: ansible_system == "Darwin"
-  ansible.builtin.set_fact:
-    python_packages: "{{ python_brew_packages }}"
-
-- name: Select linux package
-  when: ansible_system == "Linux"
-  ansible.builtin.set_fact:
-    python_packages: "{{ python_linux_packages }}"
-
-- name: Install python
+- name: Install brew packages
   ansible.builtin.package:
     name: "{{ item }}"
     state: latest
-  become: "{{ ansible_system == 'Linux' }}"
-  loop: "{{ python_packages }}"
+  loop: "{{ python_brew_packages }}"

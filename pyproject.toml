@@ -1,17 +1,16 @@
 [tool.poetry]
-name = "workstation-bootstrap"
-version = "0.1.0"
+name = "dotfiles"
+version = "1.0.0"
 description = ""
 authors = ["Bruno Semperlotti <bruno.semperlotti@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-ansible = "7.4.0"
+ansible = "8.0.0"
 
 [tool.poetry.dev-dependencies]
-ansible-lint = { version = "6.14.4", markers = "platform_system != 'Windows'" }
-yamllint = "1.30.0"
+ansible-lint = { version = "6.17.0", markers = "platform_system != 'Windows'" }
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

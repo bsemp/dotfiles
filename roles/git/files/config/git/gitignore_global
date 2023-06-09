@@ -1,0 +1,8 @@
+# MacOS
+.DS_Store
+
+# Backup created by a text editor or similar program
+*~
+
+# Autoenv files
+.autoenv_*
