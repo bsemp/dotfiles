@@ -1,0 +1,33 @@
+# Install zsh-users plugins
+zsh-users/zsh-autosuggestions kind:defer
+zsh-users/zsh-completions
+zsh-users/zsh-history-substring-search kind:defer
+zsh-users/zsh-syntax-highlighting
+
+# Install oh-my-zsh plugins (https://github.com/ohmyzsh/ohmyzsh/tree/master)
+ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/azure
+ohmyzsh/ohmyzsh path:plugins/colored-man-pages
+ohmyzsh/ohmyzsh path:plugins/colorize
+ohmyzsh/ohmyzsh path:plugins/command-not-found
+ohmyzsh/ohmyzsh path:plugins/docker
+ohmyzsh/ohmyzsh path:plugins/extract
+ohmyzsh/ohmyzsh path:plugins/gh
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/git-prompt
+ohmyzsh/ohmyzsh path:plugins/helm
+ohmyzsh/ohmyzsh path:plugins/kubectl
+ohmyzsh/ohmyzsh path:plugins/macos
+ohmyzsh/ohmyzsh path:plugins/node
+ohmyzsh/ohmyzsh path:plugins/npm
+ohmyzsh/ohmyzsh path:plugins/pip
+ohmyzsh/ohmyzsh path:plugins/poetry
+ohmyzsh/ohmyzsh path:plugins/pyenv
+ohmyzsh/ohmyzsh path:plugins/python
+ohmyzsh/ohmyzsh path:plugins/virtualenv
+
+# Automatically activates virtual environments created by Poetry
+darvid/zsh-poetry
+
+# Automatically sources (known/whitelisted) .autoenv files
+Tarrasch/zsh-autoenv

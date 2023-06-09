@@ -1,42 +1,42 @@
 ---
-- name: Select macos package
-  when: ansible_system == "Darwin"
-  ansible.builtin.set_fact:
-    zsh_package: "{{ zsh_brew_package }}"
-
-- name: Select linux package
-  when: ansible_system == "Linux"
-  ansible.builtin.set_fact:
-    zsh_package: "{{ zsh_linux_package }}"
-
-- name: Install ZSH
+- name: Install brew packages
   ansible.builtin.package:
-    name: "{{ zsh_package }}"
+    name: "{{ item }}"
     state: latest
-  become: "{{ ansible_system == 'Linux' }}"
+  loop: "{{ zsh_brew_packages }}"
 
 - name: Copy Custom zsh configuration to {{ zsh_config_dir }}
   ansible.builtin.copy:
-    src: "./files/"  # trailing / is important to copy only directory content and not the directory itself
+    src: "./files/config/" # trailing / is important to copy only directory content and not the directory itself
     dest: "{{ zsh_config_dir }}"
-    mode: 0644
+    mode: "0600"
+
+- name: Copy Custom zshrc to {{ zsh_config_dir }}
+  ansible.builtin.template:
+    src: ".zshrc.j2"
+    dest: "{{ zsh_config_dir }}/.zshrc"
+    mode: "0600"
+
+- name: Copy Custom zprofile to {{ zsh_config_dir }}
+  ansible.builtin.template:
+    src: ".zprofile.j2"
+    dest: "{{ zsh_config_dir }}/.zprofile"
+    mode: "0600"
 
 - name: Copy Custom zshenv to {{ zsh_config_dir }}
   ansible.builtin.template:
-    src: ".zshenv.tpl"
+    src: ".zshenv.j2"
     dest: "{{ zsh_config_dir }}/.zshenv"
-    mode: 0644
+    mode: "0600"
 
 - name: Create a symbolic link to custom zshenv
   ansible.builtin.file:
     src: "{{ zsh_config_dir }}/.zshenv"
     dest: "~/.zshenv"
     state: link
-    mode: 0644
 
 - name: Create a symbolic link to custom zsh completions
   ansible.builtin.file:
     src: "{{ zsh_config_dir }}/completions"
     dest: "~/.zshcompletions"
     state: link
-    mode: 0755

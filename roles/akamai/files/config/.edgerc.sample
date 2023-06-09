@@ -1,0 +1,5 @@
+[default]
+client_secret = <client_secret>
+host          = <host>
+access_token  = <access_token>
+client_token  = <client_token>

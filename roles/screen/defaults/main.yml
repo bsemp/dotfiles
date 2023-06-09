@@ -1,4 +1,0 @@
----
-screen_brew_package: screen
-screen_linux_package: screen
-screen_config_dir: "{{ lookup('env', 'HOME') }}/.config/screen"

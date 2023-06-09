@@ -1,15 +1,14 @@
----
 # See https://krew.sigs.k8s.io/docs/user-guide/setup/install/
 - name: Create krew config directory
   ansible.builtin.file:
-    path: "{{ k8s_krew_config_dir }}"
+    path: "{{ xdg_config_home }}/krew"
     state: directory
     recurse: true
 
 - name: Install krew (kubectl plugin manager)
   ansible.builtin.shell: |
     set -o pipefail
-    export KREW_ROOT="{{ k8s_krew_config_dir }}"
+    export KREW_ROOT="{{ xdg_config_home }}/krew"
     (
       set -x; cd "$(mktemp -d)" &&
       OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
@@ -21,3 +20,22 @@
     )
   args:
     executable: /bin/bash
+
+- name: Update krew plugin manager
+  ansible.builtin.shell: |
+    set -o pipefail
+    export KREW_ROOT="{{ xdg_config_home }}/krew"
+    export PATH="${KREW_ROOT}/bin:$PATH"
+    kubectl krew update
+  args:
+    executable: /bin/bash
+
+- name: Install krew plugins
+  ansible.builtin.shell: |
+    set -o pipefail
+    export KREW_ROOT="{{ xdg_config_home }}/krew"
+    export PATH="${KREW_ROOT}/bin:$PATH"
+    kubectl krew install {{ item }}
+  args:
+    executable: /bin/bash
+  loop: "{{ k8s_kuctl_krew_packages }}"

@@ -1,3 +1,0 @@
----
-- ansible.builtin.debug:
-    msg: "Not yet supported"

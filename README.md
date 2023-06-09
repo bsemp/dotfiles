@@ -1,13 +1,13 @@
-# workstation-bootstrap
+# Dotfiles
 
-[![Test](https://github.com/bsemp/workstation-bootstrap/actions/workflows/test.yaml/badge.svg)](https://github.com/bsemp/workstation-bootstrap/actions/workflows/test.yaml)
+[![Test](https://github.com/bsemp/dotfiles/actions/workflows/test.yaml/badge.svg)](https://github.com/bsemp/dotfiles/actions/workflows/test.yaml)
 
 ## Prerequisites
 
 ### Install brew (macos)
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 ### Setup python venv
@@ -53,10 +53,12 @@ poetry run ansible-playbook playbooks/main.yml --list-tags
 
 Example:
 
-    playbook: playbooks/main.yml
+```bash
+playbook: playbooks/main.yml
 
-    play #1 (all): Setup workstation      TAGS: []
-        TASK TAGS: [azure, cli-tools, docker, fonts, git, gnu-tools, gpg, homebrew-update, iterm2, javascript, kubernetes, python, screen, ssh, terraform, vim, zsh]
+play #1 (all): Setup workstation      TAGS: []
+    TASK TAGS: [akamai, alacritty, always, azure, cli-tools, docker, fonts, git, gpg, homebrew-update, iterm2, javascript, kubernetes, nvim, python, ssh, terraform, vim, zsh]
+```
 
 #### Install selected components
 
@@ -66,4 +68,14 @@ poetry run ansible-playbook playbooks/main.yml -t <tag>,<tag>
 
 Example:
 
-`poetry run ansible-playbook playbooks/main.yml -t kubernetes,terraform`
+```bash
+poetry run ansible-playbook playbooks/main.yml -t kubernetes,terraform
+```
+
+## Development
+
+### Code lint
+
+```bash
+poetry run ansible-lint
+```

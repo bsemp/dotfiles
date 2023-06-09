@@ -1,2 +1,1 @@
 ---
-ssh_config_dir: "{{ lookup('env', 'HOME') }}/.ssh"

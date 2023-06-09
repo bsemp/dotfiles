@@ -1,43 +1,15 @@
 ---
-- name: Select macos package
-  when: ansible_system == "Darwin"
-  ansible.builtin.set_fact:
-    docker_packages: "{{ docker_brew_packages }}"
-
-- name: Select linux package
-  when: ansible_system == "Linux"
-  ansible.builtin.set_fact:
-    docker_packages: "{{ docker_linux_packages }}"
-
-- name: Install cli tools
+- name: Install brew packages
   ansible.builtin.package:
     name: "{{ item }}"
     state: latest
-  become: "{{ ansible_system == 'Linux' }}"
-  loop: "{{ docker_packages }}"
+  loop: "{{ docker_brew_packages }}"
 
-- name: Manage configuration file
-  when: docker_shell_config_file != ""
-  block:
-    - name: Check config files exists
-      ansible.builtin.stat:
-        path: "{{ docker_shell_config_file }}"
-      register: file_details
-
-    - name: Ensure config files exists
-      when: not file_details.stat.exists
-      ansible.builtin.file:
-        path: "{{ docker_shell_config_file }}"
-        state: touch
-        mode: 0600
-
-    - name: Create config file
-      ansible.builtin.blockinfile:
-        marker: "# {mark} - cli-tools - ANSIBLE MANAGED BLOCK"
-        insertafter: EOF
-        path: "{{ docker_shell_config_file }}"
-        block: |
-          if command -v podman &>/dev/null; then
-            # Override common docker command with podman
-            alias docker='podman'
-          fi
+- name: Create shell config file in {{ shell_config_dir }}
+  ansible.builtin.blockinfile:
+    create: true
+    marker: "# {mark} - ANSIBLE MANAGED BLOCK"
+    insertbefore: BOF # Beginning of file
+    path: "{{ shell_config_dir }}/podman.zsh"
+    block: "{{ lookup('ansible.builtin.file', './shell_config/podman.zsh') }}"
+    mode: "0600"

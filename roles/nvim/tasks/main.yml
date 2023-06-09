@@ -1,0 +1,21 @@
+---
+- name: Install nvim
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ nvim_brew_packages }}"
+
+- name: Copy custom configuration to {{ xdg_config_home }}
+  ansible.builtin.copy:
+    src: "./files/config/" # trailing / is important to copy only directory content and not the directory itself
+    dest: "{{ xdg_config_home }}/nvim"
+    mode: "0600"
+
+- name: Create shell config file in {{ shell_config_dir }}
+  ansible.builtin.blockinfile:
+    create: true
+    marker: "# {mark} - ANSIBLE MANAGED BLOCK"
+    insertbefore: BOF # Beginning of file
+    path: "{{ shell_config_dir }}/nvim.zsh"
+    block: "{{ lookup('ansible.builtin.file', './shell_config/nvim.zsh') }}"
+    mode: "0600"

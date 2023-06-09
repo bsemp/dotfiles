@@ -1,0 +1,62 @@
+# Define the default language
+export LANG="en_US.UTF-8"
+
+# Define the default shell
+export SHELL="$(brew --prefix)/bin/zsh"
+
+# Define the default editor
+if command -v nvim &>/dev/null; then
+  export EDITOR="$(brew --prefix)/bin/nvim"
+else
+  export EDITOR="$(brew --prefix)/bin/vim"
+fi
+
+# make Homebrew’s completions available in zsh
+fpath+="$(brew --prefix)/share/zsh/site-functions"
+
+# Custom completion file directory (must be set before `compinit`)
+# Completion files must start with "_" (ex "_poetry")
+fpath+="${ZDOTDIR}/completions"
+
+# The following lines were added by compinstall
+zstyle ':completion:*' completer _complete _ignored
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-colors ''
+zstyle :compinstall filename "${ZDOTDIR}/.zshrc"
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# Enable bash completion functions in ZSH
+# Bash completion can be found in "$(brew --prefix)/etc/bash_completion.d"
+# WARNING: Do not load all directory content as it can conflict with previously loaded ZSH completions
+#          from "$(brew --prefix)/share/zsh/site-functions"
+#          ZSH completions are more powerful so always prefer selecting exactly the required bash completion files
+#          by sourcing them after `bashcompinit`
+autoload -Uz bashcompinit
+bashcompinit
+
+# Enable bash style backward kill (word stop delimiters)
+autoload -U select-word-style
+select-word-style bash
+
+# source antidote
+source $(brew --prefix)/share/antidote/antidote.zsh
+# source antidote plugins config (config needed before plugins loading)
+source ${ZDOTDIR:-~}/.zshpluginsrc
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+export ANTIDOTE_HOME="${XDG_CACHE_HOME}/antidote"
+zstyle ':antidote:bundle' use-friendly-names 'yes'
+antidote load
+# Antidote can update itself, and all bundles in a single pass using command `antidote update`
+
+# Extra configurations
+for CONFIG_FILE in $(find \
+    "${ZDOTDIR}/config" \
+    "{{ shell_config_dir | replace(home_directory, '${HOME}') }}" \
+    -type f -name "*.zsh" 2>/dev/null | sort -u); do
+  source "${CONFIG_FILE}"
+done

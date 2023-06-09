@@ -1,67 +1,15 @@
 ---
-- name: Select macos packages
-  when: ansible_system == "Darwin"
-  ansible.builtin.set_fact:
-    javascript_packages: "{{ javascript_brew_packages }}"
-
-- name: Select linux packages
-  when: ansible_system == "Linux"
-  ansible.builtin.set_fact:
-    javascript_packages: "{{ javascript_linux_packages }}"
-
-- name: Install javascript tools
+- name: Install brew packages
   ansible.builtin.package:
     name: "{{ item }}"
     state: latest
-  become: "{{ ansible_system == 'Linux' }}"
-  loop: "{{ javascript_packages }}"
+  loop: "{{ javascript_brew_packages }}"
 
-- name: Install javascript tools on linux (no package manager)
-  when:
-    - ansible_system == "Linux"
-    - not javascript_linux_packages
-  ansible.builtin.import_tasks: ./linux_install.yml
-
-
-- name: Create nvm config directory
-  ansible.builtin.file:
-    path: "{{ javascript_nvm_config_dir }}"
-    state: directory
-    recurse: true
-
-- name: Manage configuration file
-  when: javascript_shell_config_file != ""
-  block:
-    - name: Check config files exists
-      ansible.builtin.stat:
-        path: "{{ javascript_shell_config_file }}"
-      register: file_details
-
-    - name: Ensure config files exists
-      when: not file_details.stat.exists
-      ansible.builtin.file:
-        path: "{{ javascript_shell_config_file }}"
-        state: touch
-        mode: 0600
-
-    - name: Create config file
-      ansible.builtin.blockinfile:
-        marker: "# {mark} - javascript - ANSIBLE MANAGED BLOCK"
-        insertafter: EOF
-        path: "{{ javascript_shell_config_file }}"
-        block: |
-          export NVM_DIR="{{ javascript_nvm_config_dir }}"
-          # Load nvm
-          [ -s "/usr/local/opt/nvm/nvm.sh" ] && source "/usr/local/opt/nvm/nvm.sh"
-          # Load nvm bash_completion
-          [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && source "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
-
-- ansible.builtin.debug:
-    msg: |
-      Once NVM is installed:
-        Install the latest Node.js version:
-        > nvm install node
-        Use the installed version in any shell:
-        > nvm use node
-        Install any dependencies with npm
-        > npm install --global yarn
+- name: Create shell config file in {{ shell_config_dir }}
+  ansible.builtin.blockinfile:
+    create: true
+    marker: "# {mark} - ANSIBLE MANAGED BLOCK"
+    insertbefore: BOF # Beginning of file
+    path: "{{ shell_config_dir }}/nvm.zsh"
+    block: "{{ lookup('ansible.builtin.file', './shell_config/nvm.zsh') }}"
+    mode: "0600"

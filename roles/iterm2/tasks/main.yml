@@ -1,13 +1,12 @@
 ---
-- name: "Ensure that package is installed: {{ iterm2_brew_package }}"
+- name: Intall brew package
   community.general.homebrew_cask:
-    name: "{{ iterm2_brew_package | lower }}"
+    name: "{{ iterm2_brew_cask_package }}"
     state: latest
-  when: iterm2_brew_package|length > 0
 
-- name: Attempting to apply configurations for {{ iterm2_brew_package }}
+- name: Apply MacOs configurations
   community.general.osx_defaults:
-    domain: "{{ iterm2_domain }}"
+    domain: com.googlecode.iterm2
     key: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
     type: "{{ item.type }}"

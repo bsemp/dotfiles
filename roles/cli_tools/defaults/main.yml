@@ -1,38 +1,26 @@
 ---
-cli_tools_shell_config_file: ""
-
 cli_tools_brew_packages:
-  - bat                  # A cat(1) clone with syntax highlighting and Git integration
-  - bash                 # Install newest bash instead of macos outdated 3.2
-  - cheat                # Interactive cheatsheets on the command-line
-  - curl                 # Get a file from an HTTP, HTTPS or FTP server
-  - exa                  # A modern replacement for ls
-  - fzf                  # A command-line fuzzy finder
-  - gum                  # A tool for glamorous shell scripts. https://github.com/charmbracelet/gum
-  - hping                # Command-line oriented TCP/IP packet assembler/analyzer
-  - httpie               # User-friendly cURL replacement (command-line HTTP client)
-  - ipcalc               # IP subnet calculator
-  - jq                   # Lightweight and flexible command-line JSON processor
-  - jsonnet              # Domain specific configuration language for defining JSON data
-  - openssl              # Cryptography and SSL/TLS Toolkit
-  - tig                  # A text-mode interface for git
-  - tmux                 # Terminal multiplexer
-  - the_silver_searcher  # A code searching tool similar to ack, with a focus on speed.
-  - tree                 # Display directories as trees (with optional color/HTML output)
-  - wget                 # Internet file retriever
-  - zoxide               # zoxide is a smarter cd command, inspired by z and autojump.
-
-cli_tools_linux_packages:
-  - curl
-  # - exa  # Only available in packaga manager in ubuntu 20.10+
-  - fzf
-  - hping3
-  - httpie
-  - jq
-  - jsonnet
-  - openssl
-  - snapd
-  - tmux
-  - tree
-  - wget
-  # - zoxide # Only available in packaga manager in ubuntu 21.04+
+  - bash # Install newest bash instead of macos outdated
+  - bat # A cat(1) clone with syntax highlighting and Git integration
+  - cheat # Interactive cheatsheets on the command-line
+  - coreutils # GNU File, Shell, and Text utilities
+  - curl # Get a file from an HTTP, HTTPS or FTP server
+  - exa # A modern replacement for ls
+  - fzf # A command-line fuzzy finder
+  - gnu-getopt # Command-line option parsing utility
+  - grep # GNU grep, egrep and fgrep
+  - gum # A tool for glamorous shell scripts. https://github.com/charmbracelet/gum
+  - hping # Command-line oriented TCP/IP packet assembler/analyzer
+  - httpie # User-friendly cURL replacement (command-line HTTP client)
+  - ipcalc # IP subnet calculator
+  - jq # Lightweight and flexible command-line JSON processor
+  - jsonnet # Domain specific configuration language for defining JSON data
+  - openssl # Cryptography and SSL/TLS Toolkit
+  - screen # Terminal multiplexer
+  - the_silver_searcher # A code searching tool similar to ack, with a focus on speed.
+  - tree # Display directories as trees (with optional color/HTML output)
+  - watch # Executes a program periodically, showing output fullscreen
+  - wget # Internet file retriever
+  - yq # Process YAML, JSON, XML, CSV and properties documents from the CLI
+  - zellij # Pluggable terminal workspace, with terminal multiplexer as the base feature (https://zellij.dev/)
+  - zoxide # zoxide is a smarter cd command, inspired by z and autojump.

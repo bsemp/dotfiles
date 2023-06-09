@@ -1,123 +1,122 @@
 ---
 - name: Setup workstation
-  hosts: all
+  hosts: localhost
   gather_facts: true
 
-  vars:
-    shell_config_dir: "{{ lookup('env','HOME') }}/.config/zsh"
-
   tasks:
-    - name: Update homebrew
+    - name: Init Homebrew
       when: ansible_system == "Darwin"
-      community.general.homebrew:
-        update_homebrew: true
-      tags:
-        - homebrew-update
+      tags: always
+      block:
+        - name: Retrieve homebrew prefix
+          ansible.builtin.shell: |
+            brew --prefix
+          register: brew_prefix
+          changed_when: false
 
-    - ansible.builtin.import_role:
-        name: fonts
-      tags:
-        - fonts
+        - name: Register homebrew prefix as fact
+          ansible.builtin.set_fact:
+            homebrew_prefix: "{{ brew_prefix.stdout }}"
 
-    - ansible.builtin.import_role:
-        name: python
-      tags:
-        - python
+        - name: Disable homebrew analytics
+          ansible.builtin.shell: |
+            brew analytics off
+          changed_when: false
 
-    - ansible.builtin.import_role:
-        name: zsh
-      vars:
-        zsh_config_dir: "{{ shell_config_dir }}"
-      tags:
-        - zsh
+        - name: Update homebrew
+          community.general.homebrew:
+            update_homebrew: true
+          tags:
+            - homebrew-update
 
-    - ansible.builtin.import_role:
-        name: git
-      tags:
-        - git
+        - ansible.builtin.debug:
+            msg: |
+              Homebrew Prefix: {{ homebrew_prefix }}
 
-    - ansible.builtin.import_role:
-        name: gnu_tools
-      vars:
-        gnu_tools_shell_config_file: "{{ shell_config_dir }}/custom/gnu-tools.zsh"
+    - name: Install MacOs tools
       when: ansible_system == "Darwin"
-      tags:
-        - gnu-tools
+      block:
+        - ansible.builtin.import_role:
+            name: fonts
+          tags:
+            - fonts
 
-    - ansible.builtin.import_role:
-        name: cli_tools
-      vars:
-        cli_tools_shell_config_file: "{{ shell_config_dir }}/custom/cli-tools.zsh"
-      tags:
-        - cli-tools
+        - ansible.builtin.import_role:
+            name: python
+          tags:
+            - python
 
-    - ansible.builtin.import_role:
-        name: docker
-      vars:
-        docker_shell_config_file: "{{ shell_config_dir }}/custom/docker.zsh"
-      tags:
-        - docker
+        - ansible.builtin.import_role:
+            name: zsh
+          tags:
+            - zsh
 
-    - ansible.builtin.import_role:
-        name: vim
-      tags:
-        - vim
+        - ansible.builtin.import_role:
+            name: git
+          tags:
+            - git
 
-    - ansible.builtin.import_role:
-        name: screen
-      tags:
-        - screen
+        - ansible.builtin.import_role:
+            name: cli_tools
+          tags:
+            - cli-tools
 
-    - ansible.builtin.import_role:
-        name: ssh
-      tags:
-        - ssh
+        - ansible.builtin.import_role:
+            name: docker
+          tags:
+            - docker
 
-    - ansible.builtin.import_role:
-        name: gpg
-      vars:
-        gpg_shell_config_file: "{{ shell_config_dir }}/custom/gpg.zsh"
-      tags:
-        - gpg
+        - ansible.builtin.import_role:
+            name: vim
+          tags:
+            - vim
 
-    - ansible.builtin.import_role:
-        name: kubernetes
-      vars:
-        k8s_shell_config_file: "{{ shell_config_dir }}/custom/kubernetes.zsh"
-      tags:
-        - kubernetes
+        - ansible.builtin.import_role:
+            name: nvim
+          tags:
+            - nvim
 
-    - ansible.builtin.import_role:
-        name: terraform
-      vars:
-        terraform_shell_config_file: "{{ shell_config_dir }}/custom/terraform.zsh"
-      tags:
-        - terraform
+        - ansible.builtin.import_role:
+            name: ssh
+          tags:
+            - ssh
 
-    - ansible.builtin.import_role:
-        name: azure
-      vars:
-        azure_shell_config_file: "{{ shell_config_dir }}/custom/azure.zsh"
-      tags:
-        - azure
+        - ansible.builtin.import_role:
+            name: gpg
+          tags:
+            - gpg
 
-    - ansible.builtin.import_role:
-        name: javascript
-      vars:
-        javascript_shell_config_file: "{{ shell_config_dir }}/custom/javascript.zsh"
-      tags:
-        - javascript
+        - ansible.builtin.import_role:
+            name: kubernetes
+          tags:
+            - kubernetes
 
-    - ansible.builtin.import_role:
-        name: iterm2
-      vars:
-        iterm2_defaults:
-          - name: OnlyWhenMoreTabs
-            type: string
-            value: true
-          - name: PromptOnQuit
-            type: bool
-            value: false
-      when: ansible_system == "Darwin"
-      tags:
-        - iterm2
+        - ansible.builtin.import_role:
+            name: terraform
+          tags:
+            - terraform
+
+        - ansible.builtin.import_role:
+            name: azure
+          tags:
+            - azure
+
+        - ansible.builtin.import_role:
+            name: javascript
+          tags:
+            - javascript
+
+        - ansible.builtin.import_role:
+            name: iterm2
+          tags:
+            - iterm2
+
+        - ansible.builtin.import_role:
+            name: akamai
+          tags:
+            - akamai
+
+        - ansible.builtin.import_role:
+            name: alacritty
+          tags:
+            - alacritty

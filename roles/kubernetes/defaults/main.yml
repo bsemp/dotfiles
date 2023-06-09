@@ -1,0 +1,15 @@
+---
+k8s_brew_packages:
+  - kubectl # Kubernetes command-line interface
+  - helm # Kubernetes package manager
+  - k9s # Console graphical resource manager: https://github.com/derailed/k9s
+  - kubectx # Tool that can switch between kubectl contexts easily and create aliases
+  - kubespy # Tools for observing Kubernetes resources in real time: https://github.com/pulumi/kubespy
+  - stern # Tail multiple pods on Kubernetes and multiple containers within the pod: https://github.com/wercker/stern
+
+k8s_kuctl_krew_packages:
+  - deprecations
+  - flame
+  - neat
+  - oidc-login
+  - oomd

@@ -1,0 +1,19 @@
+# ZSH dot files directory
+export ZDOTDIR="{{ zsh_config_dir | replace(home_directory, '${HOME}') }}"
+
+# Make XDG_CONFIG explicit
+# https://specifications.freedesktop.org/basedir-spec/latest/ar01s03.html
+export XDG_DATA_HOME="{{ xdg_data_home | replace(home_directory, '${HOME}') }}"
+export XDG_CONFIG_HOME="{{ xdg_config_home | replace(home_directory, '${HOME}') }}"
+export XDG_STATE_HOME="{{ xdg_state_home | replace(home_directory, '${HOME}') }}"
+export XDG_DATA_DIRS="{{ xdg_data_dirs | replace(home_directory, '${HOME}') }}"
+export XDG_CONFIG_DIRS="{{ xdg_config_dirs | replace(home_directory, '${HOME}') }}"
+export XDG_CACHE_HOME="{{ xdg_cache_home | replace(home_directory, '${HOME}') }}"
+export XDG_RUNTIME_DIR="{{ xdg_runtime_dir | replace(home_directory, '${HOME}') }}"
+
+# ZSHconfig edition
+alias zshenv="${EDITOR:-vim} ${ZDOTDIR}/.zshenv"
+alias zshrc="${EDITOR:-vim} ${ZDOTDIR}/.zshrc"
+alias zshprofile="${EDITOR:-vim} ${ZDOTDIR}/.zprofile"
+alias zshlogin="${EDITOR:-vim} ${ZDOTDIR}/.zlogin"
+alias zshlogout="${EDITOR:-vim} ${ZDOTDIR}/.zlogout"

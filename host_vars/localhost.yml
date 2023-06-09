@@ -1,0 +1,11 @@
+home_directory: "{{ ansible_env.HOME }}"
+# XDG environment variables (https://specifications.freedesktop.org/basedir-spec/latest/ar01s03.html)
+xdg_data_home: "{{ home_directory }}/.local/share"
+xdg_config_home: "{{ home_directory }}/.config"
+xdg_state_home: "{{ home_directory }}/.local/state"
+xdg_data_dirs: "/usr/local/share/:/usr/share/"
+xdg_config_dirs: "/etc/xdg"
+xdg_cache_home: "{{ home_directory }}/.cache"
+xdg_runtime_dir: ""
+
+shell_config_dir: "{{ xdg_config_home }}/shell_config"

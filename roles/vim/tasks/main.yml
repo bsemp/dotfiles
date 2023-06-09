@@ -1,29 +1,18 @@
 ---
-- name: Select macos package
-  when: ansible_system == "Darwin"
-  ansible.builtin.set_fact:
-    vim_package: "{{ vim_brew_package }}"
-
-- name: Select linux package
-  when: ansible_system == "Linux"
-  ansible.builtin.set_fact:
-    vim_package: "{{ vim_linux_package }}"
-
-- name: Install vim
+- name: Install brew packages
   ansible.builtin.package:
-    name: "{{ vim_package }}"
+    name: "{{ item }}"
     state: latest
-  become: "{{ ansible_system == 'Linux' }}"
+  loop: "{{ vim_brew_packages }}"
 
-- name: Copy Custom vim configuration to {{ vim_config_dir }}
+- name: Copy custom configuration to {{ xdg_config_home }}
   ansible.builtin.copy:
-    src: "./files/"  # trailing / is important to copy only files within the directory
-    dest: "{{ vim_config_dir }}"
-    mode: 0644
+    src: "./files/config/" # trailing / is important to copy only directory content and not the directory itself
+    dest: "{{ xdg_config_home }}/vim"
+    mode: "0600"
 
 - name: Create a symbolic link to custom .vimrc
   ansible.builtin.file:
-    src: "{{ vim_config_dir }}/.vimrc"
+    src: "{{ xdg_config_home }}/vim/.vimrc"
     dest: "~/.vimrc"
     state: link
-    mode: 0644
