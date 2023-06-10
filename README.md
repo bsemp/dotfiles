@@ -1,7 +1,5 @@
 # Dotfiles
 
-[![Test](https://github.com/bsemp/dotfiles/actions/workflows/test.yaml/badge.svg)](https://github.com/bsemp/dotfiles/actions/workflows/test.yaml)
-
 ## Prerequisites
 
 ### Install brew (macos)
