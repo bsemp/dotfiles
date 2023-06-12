@@ -7,11 +7,10 @@
 add_newline = true
 
 format = """
-$cmd_duration\
-$line_break\
 $os\
 $all\
 $fill\
+$cmd_duration\
 $kubernetes\
 $azure\
 $aws\
