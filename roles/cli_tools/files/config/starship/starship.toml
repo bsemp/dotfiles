@@ -37,7 +37,7 @@ behind = '⇣${count}'
 [directory]
 disabled = false
 truncation_length = 3
-truncation_symbol = '[…]/'
+truncation_symbol = '…/'
 
 [docker_context]
 symbol = ' '
