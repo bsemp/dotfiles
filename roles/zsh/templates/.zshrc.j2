@@ -53,10 +53,17 @@ zstyle ':antidote:bundle' use-friendly-names 'yes'
 antidote load
 # Antidote can update itself, and all bundles in a single pass using command `antidote update`
 
-# Extra configurations
+# Extra configurations.
+# Use 'deferred' as suffix or prefix to lazy load the script and enhance shell startup time.
+# See: https://github.com/romkatv/zsh-defer
 for CONFIG_FILE in $(find \
     "${ZDOTDIR}/config" \
     "{{ shell_config_dir | replace(home_directory, '${HOME}') }}" \
     -type f -name "*.zsh" 2>/dev/null | sort -u); do
-  source "${CONFIG_FILE}"
+  if [[ "${CONFIG_FILE}" =~ ".*deferred.*" ]]; then
+    # Lazy load
+    zsh-defer source "${CONFIG_FILE}"
+  else
+    source "${CONFIG_FILE}"
+  fi
 done

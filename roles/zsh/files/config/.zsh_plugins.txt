@@ -1,3 +1,6 @@
+# Install romkatv plugins
+romkatv/zsh-defer
+
 # Install zsh-users plugins
 zsh-users/zsh-autosuggestions kind:defer
 zsh-users/zsh-completions
