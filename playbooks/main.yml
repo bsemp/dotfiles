@@ -102,6 +102,16 @@
             - azure
 
         - ansible.builtin.import_role:
+            name: aws
+          tags:
+            - aws
+
+        - ansible.builtin.import_role:
+            name: gcloud
+          tags:
+            - gcloud
+
+        - ansible.builtin.import_role:
             name: javascript
           tags:
             - javascript

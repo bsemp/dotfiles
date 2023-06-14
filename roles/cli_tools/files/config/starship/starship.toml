@@ -56,7 +56,7 @@ format = '[$symbol$context( \($namespace\))]($style) '
 symbol = '󱃾 '
 
 [aws]
-disabled = false
+disabled = true
 format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
 symbol = '󰸏 '
 
@@ -66,7 +66,7 @@ format = '[$symbol($subscription)]($style) '
 symbol = '󰠅 '
 
 [gcloud]
-disabled = false
+disabled = true
 format = '[$symbol$account(@$domain)(\($region\))]($style) '
 symbol = '󱇶 '
 
