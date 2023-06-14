@@ -8,5 +8,3 @@ function weather() {
 function meteo() {
   weather "${1}" "lang=fr&${2}"
 }
-
-alias météo="meteo"
