@@ -38,4 +38,4 @@
     kubectl krew install {{ item }}
   args:
     executable: /bin/bash
-  loop: "{{ k8s_kuctl_krew_packages }}"
+  loop: "{{ kubernetes_kuctl_krew_packages }}"

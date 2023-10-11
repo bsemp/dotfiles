@@ -4,7 +4,7 @@
     name: "{{ item }}"
     state: latest
   become: "{{ ansible_system == 'Linux' }}"
-  loop: "{{ k8s_brew_packages }}"
+  loop: "{{ kubernetes_brew_packages }}"
 
 - name: Install kubectl plugin manager
   ansible.builtin.import_tasks: ./krew_install.yml
