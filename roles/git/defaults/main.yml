@@ -2,4 +2,5 @@
 git_brew_packages:
   - gh # Github cli
   - git
+  - git-absorb # Automatically create and squash up fixup commits
   - tig # A text-mode interface for git
