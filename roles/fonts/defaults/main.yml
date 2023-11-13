@@ -3,3 +3,4 @@ fonts_brew_cask_packages:
   - font-fira-code-nerd-font
   - font-jetbrains-mono-nerd-font
   - font-meslo-lg-nerd-font
+  - font-monaspace # https://monaspace.githubnext.com/
