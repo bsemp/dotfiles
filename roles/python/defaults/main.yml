@@ -1,4 +1,12 @@
 ---
 python_brew_packages:
   - python
-  - poetry
+  - pipx
+
+python_pipx_packages:
+  - bandit # Tool designed to find common security issues in Python code
+  - black # Python code formatter
+  - mypy # Static type checker for Python
+  - poetry # Python dependency management and packaging
+  - pydocstyle # Python docstring style checker
+  - ruff # An extremely fast Python linter and code formatter, written in Rust. (alternative to black and flake8)
