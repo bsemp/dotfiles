@@ -13,6 +13,8 @@
 ```bash
 # Install poetry
 curl -sSL https://install.python-poetry.org | python3 -
+# Alternative with pipx
+# pipx install poetry
 
 # Install dependencies
 poetry install
