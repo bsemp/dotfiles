@@ -8,6 +8,7 @@ cli_tools_brew_packages:
   - exa # A modern replacement for ls
   - fzf # A command-line fuzzy finder
   - gnu-getopt # Command-line option parsing utility
+  - go-task # A task runner / build tool that aims to be simpler and easier to use than GNU Make (https://taskfile.dev/)
   - grep # GNU grep, egrep and fgrep
   - gum # A tool for glamorous shell scripts. https://github.com/charmbracelet/gum
   - hping # Command-line oriented TCP/IP packet assembler/analyzer
