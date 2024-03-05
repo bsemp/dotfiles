@@ -12,6 +12,7 @@ cli_tools_brew_packages:
   - grep # GNU grep, egrep and fgrep
   - gum # A tool for glamorous shell scripts. https://github.com/charmbracelet/gum
   - httpie # User-friendly cURL replacement (command-line HTTP client)
+  - httping # Ping-like tool for HTTP requests
   - ipcalc # IP subnet calculator
   - jq # Lightweight and flexible command-line JSON processor
   - jsonnet # Domain specific configuration language for defining JSON data
