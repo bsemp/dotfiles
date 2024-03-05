@@ -5,7 +5,7 @@ cli_tools_brew_packages:
   - cheat # Interactive cheatsheets on the command-line
   - coreutils # GNU File, Shell, and Text utilities
   - curl # Get a file from an HTTP, HTTPS or FTP server
-  - exa # A modern replacement for ls
+  - eza # A modern replacement for ls (https://eza.rocks)
   - fzf # A command-line fuzzy finder
   - gnu-getopt # Command-line option parsing utility
   - go-task # A task runner / build tool that aims to be simpler and easier to use than GNU Make (https://taskfile.dev/)
