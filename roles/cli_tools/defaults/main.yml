@@ -11,7 +11,6 @@ cli_tools_brew_packages:
   - go-task # A task runner / build tool that aims to be simpler and easier to use than GNU Make (https://taskfile.dev/)
   - grep # GNU grep, egrep and fgrep
   - gum # A tool for glamorous shell scripts. https://github.com/charmbracelet/gum
-  - hping # Command-line oriented TCP/IP packet assembler/analyzer
   - httpie # User-friendly cURL replacement (command-line HTTP client)
   - ipcalc # IP subnet calculator
   - jq # Lightweight and flexible command-line JSON processor
