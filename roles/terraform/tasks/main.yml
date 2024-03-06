@@ -14,3 +14,23 @@
     block: "{{ lookup('ansible.builtin.file', './shell_config/{{ item | basename }}') }}"
     mode: "0600"
   loop: "{{ lookup('ansible.builtin.fileglob', './shell_config/*.zsh', wantlist=True) }}"
+
+- name: Copy custom configuration to {{ xdg_config_home }}
+  ansible.builtin.copy:
+    src: "./files/config/" # trailing / is important to copy only directory content and not the directory itself
+    dest: "{{ xdg_config_home }}/terraform"
+    mode: "0600"
+
+# The directory is NOT created by terraform itself
+# WARNING: keep in sync with plugin_cache_dir in .terraformrc
+- name: Create the terraform plugin cache directory
+  ansible.builtin.file:
+    path: ~/.terraform.d/plugin-cache/lol
+    state: directory
+    mode: "0755"
+
+- name: Create a symbolic link to custom .terraformrc
+  ansible.builtin.file:
+    src: "{{ xdg_config_home }}/terraform/.terraformrc"
+    dest: "~/.terraformrc"
+    state: link
