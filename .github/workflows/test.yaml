@@ -66,6 +66,12 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+        with:
+          core: true
+          cask: true
+
       - name: Set up python
         uses: actions/setup-python@v5
         with:
