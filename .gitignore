@@ -13,4 +13,4 @@ __pycache__/
 # AutoEnv
 .env
 .env.leave
-
+.autoenv_*
