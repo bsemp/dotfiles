@@ -10,7 +10,6 @@ kubernetes_brew_packages:
 
 kubernetes_kuctl_krew_packages:
   - deprecations
-  - flame
   - neat
   - oidc-login
   - oomd
