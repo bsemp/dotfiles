@@ -1,8 +1,9 @@
 ---
 kubernetes_brew_packages:
-  - kubectl # Kubernetes command-line interface
   - helm # Kubernetes package manager
   - k9s # Console graphical resource manager: https://github.com/derailed/k9s
+  - kind # Tool for running local Kubernetes clusters using Docker container “nodes”.
+  - kubectl # Kubernetes command-line interface
   - kubectx # Tool that can switch between kubectl contexts easily and create aliases
   - kubespy # Tools for observing Kubernetes resources in real time: https://github.com/pulumi/kubespy
   - stern # Tail multiple pods on Kubernetes and multiple containers within the pod: https://github.com/wercker/stern
