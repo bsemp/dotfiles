@@ -25,7 +25,7 @@
 # WARNING: keep in sync with plugin_cache_dir in .terraformrc
 - name: Create the terraform plugin cache directory
   ansible.builtin.file:
-    path: ~/.terraform.d/plugin-cache/lol
+    path: ~/.terraform.d/plugin-cache
     state: directory
     mode: "0755"
 
