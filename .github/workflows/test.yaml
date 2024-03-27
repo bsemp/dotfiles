@@ -61,7 +61,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macOS-latest]
+        os: [macos-14]
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
