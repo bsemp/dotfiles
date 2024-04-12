@@ -18,6 +18,7 @@ cli_tools_brew_packages:
   - jsonnet # Domain specific configuration language for defining JSON data
   - openssl # Cryptography and SSL/TLS Toolkit
   - parallel # Shell command parallelization utility
+  - ripgrep # Recursively searches directories for a regex pattern
   - screen # Terminal multiplexer
   - the_silver_searcher # A code searching tool similar to ack, with a focus on speed.
   - tree # Display directories as trees (with optional color/HTML output)
