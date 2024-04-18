@@ -1,4 +1,10 @@
 ---
+- name: Add Homebrew third party repositories (taps)
+  community.general.homebrew_tap:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ terraform_brew_taps }}"
+
 - name: Install brew packages
   ansible.builtin.package:
     name: "{{ item }}"
