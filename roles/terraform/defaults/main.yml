@@ -1,3 +1,6 @@
 ---
 terraform_brew_packages:
   - warrensbox/tap/tfswitch # The tfswitch command lets you switch between terraform versions.
+
+terraform_brew_taps:
+  - warrensbox/tap
