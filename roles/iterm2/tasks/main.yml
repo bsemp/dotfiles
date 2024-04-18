@@ -3,6 +3,7 @@
   community.general.homebrew_cask:
     name: "{{ iterm2_brew_cask_package }}"
     state: latest
+    install_options: "appdir=${HOME}/Applications" # Install in user's Applications directory
 
 - name: Apply MacOs configurations
   community.general.osx_defaults:
