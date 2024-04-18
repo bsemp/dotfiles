@@ -1,5 +1,6 @@
 ---
 kubernetes_brew_packages:
+  - Azure/kubelogin/kubelogin # Plugin implementing azure authentication
   - helm # Kubernetes package manager
   - k9s # Console graphical resource manager: https://github.com/derailed/k9s
   - kind # Tool for running local Kubernetes clusters using Docker container “nodes”.
@@ -13,3 +14,7 @@ kubernetes_kuctl_krew_packages:
   - neat
   - oidc-login
   - oomd
+  - tree
+
+kubernetes_brew_taps:
+  - azure/kubelogin
