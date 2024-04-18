@@ -2,37 +2,32 @@
 
 ## Prerequisites
 
-### Install brew (macos)
+### Install MacOS Xcode Command line tools
+
+```bash
+xcode-select --install
+```
+
+### Install Homebrew
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Activate
+eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
 ### Setup python venv
 
+#### Using pipx
+
 ```bash
 # Install poetry
-curl -sSL https://install.python-poetry.org | python3 -
-# Alternative with pipx
-# pipx install poetry
+brew install pipx
+pipx ensurepath
 
 # Install dependencies
-poetry install
-```
-
-Note: if after upgrading your pythoon version, you are facing an issue like `dyld[25492]: Library not loaded: '/usr/local/Cellar/python...` when running poetry, try the following:
-
-```bash
-# Reinstall poetry
-curl -sSL https://install.python-poetry.org | python3 - --uninstall
-curl -sSL https://install.python-poetry.org | python3 -
-```
-
-#### Update poetry and dependencies
-
-```bash
-poetry self update
-poetry update
+poetry install --no-root
 ```
 
 ## Bootstrap
