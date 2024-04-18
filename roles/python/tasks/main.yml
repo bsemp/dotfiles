@@ -11,3 +11,9 @@
     state: latest
     executable: pipx # Default is "python -m pipx", but we want to use the brew-installed pipx
   loop: "{{ python_pipx_packages }}"
+
+- name: Ensure directories necessary for pipx operation are in your PATH environment variable.
+  ansible.builtin.shell: |
+    pipx ensurepath
+  args:
+    executable: /bin/bash
