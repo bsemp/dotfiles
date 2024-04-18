@@ -95,6 +95,10 @@ jobs:
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
 
+      - name: Cleanup Runner before install
+        run: |
+          rm -rf ${HOME}/.azure
+
       - name: Install playbook
         run: |
           export HOMEBREW_NO_AUTO_UPDATE=1
