@@ -3,7 +3,7 @@
   community.general.homebrew_cask:
     name: "{{ alacritty_brew_cask_package }}"
     state: latest
-    install_options: "no-quarantine"
+    install_options: "appdir=${HOME}/Applications,no-quarantine" # Install in user's Applications directory
 
 - name: Copy Custom alacritty configuration to {{ xdg_config_home }}
   ansible.builtin.copy:
