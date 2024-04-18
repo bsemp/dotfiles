@@ -1,6 +1,6 @@
 ---
 - name: Install nvim
-  ansible.builtin.package:
+  community.general.homebrew:
     name: "{{ item }}"
     state: latest
   loop: "{{ nvim_brew_packages }}"

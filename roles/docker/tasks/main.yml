@@ -1,6 +1,6 @@
 ---
 - name: Install brew packages
-  ansible.builtin.package:
+  community.general.homebrew:
     name: "{{ item }}"
     state: latest
   loop: "{{ docker_brew_packages }}"

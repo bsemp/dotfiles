@@ -6,7 +6,7 @@
   loop: "{{ kubernetes_brew_taps }}"
 
 - name: Install brew packages
-  ansible.builtin.package:
+  community.general.homebrew:
     name: "{{ item }}"
     state: latest
   become: "{{ ansible_system == 'Linux' }}"
