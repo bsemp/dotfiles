@@ -20,6 +20,7 @@ cli_tools_brew_packages:
   - parallel # Shell command parallelization utility
   - ripgrep # Recursively searches directories for a regex pattern
   - screen # Terminal multiplexer
+  - starship # Minimal and customizable shell prompt (https://starship.rs/)
   - the_silver_searcher # A code searching tool similar to ack, with a focus on speed.
   - tree # Display directories as trees (with optional color/HTML output)
   - watch # Executes a program periodically, showing output fullscreen
