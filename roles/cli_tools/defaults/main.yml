@@ -7,6 +7,7 @@ cli_tools_brew_packages:
   - curl # Get a file from an HTTP, HTTPS or FTP server
   - eza # A modern replacement for ls (https://eza.rocks)
   - fzf # A command-line fuzzy finder
+  - glow # Render markdown on the CLI https://github.com/charmbracelet/glow
   - gnu-getopt # Command-line option parsing utility
   - go-task # A task runner / build tool that aims to be simpler and easier to use than GNU Make (https://taskfile.dev/)
   - grep # GNU grep, egrep and fgrep
@@ -22,6 +23,7 @@ cli_tools_brew_packages:
   - starship # Minimal and customizable shell prompt (https://starship.rs/)
   - the_silver_searcher # A code searching tool similar to ack, with a focus on speed.
   - tree # Display directories as trees (with optional color/HTML output)
+  - vhs # Register a terminal session for presentation. https://github.com/charmbracelet/vhs
   - watch # Executes a program periodically, showing output fullscreen
   - wget # Internet file retriever
   - yq # Process YAML, JSON, XML, CSV and properties documents from the CLI
