@@ -16,6 +16,7 @@ cli_tools_brew_packages:
   - ipcalc # IP subnet calculator
   - jq # Lightweight and flexible command-line JSON processor
   - jsonnet # Domain specific configuration language for defining JSON data
+  - lnav # Log file navigator. https://lnav.org/
   - openssl # Cryptography and SSL/TLS Toolkit
   - parallel # Shell command parallelization utility
   - ripgrep # Recursively searches directories for a regex pattern
