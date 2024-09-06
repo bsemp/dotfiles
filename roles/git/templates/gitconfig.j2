@@ -16,11 +16,26 @@
     rebase = true
 [core]
     excludesfile = {{ xdg_config_home }}/git/gitignore_global
+    pager = delta
 [commit]
     gpgsign = true
     template = {{ xdg_config_home }}/git/gitmessage
 [gpg]
     program = {{ homebrew_prefix }}/bin/gpg
+[interactive]
+    diffFilter = delta --color-only
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    hyperlinks = true
+    hyperlinks-file-link-format = "vscode://file/{path}:{line}"
+    features = decorations
+[delta "decorations"]
+    keep-plus-minus-markers = false
+    line-numbers = true
 
 # Override configuration according git directories
 [includeIf "gitdir:~/workspaces/dior/"]
