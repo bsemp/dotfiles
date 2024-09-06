@@ -3,4 +3,5 @@ git_brew_packages:
   - gh # Github cli
   - git
   - git-absorb # Automatically create and squash up fixup commits
+  - git-delta # A syntax-highlighting pager for git, diff, and grep output (https://dandavison.github.io/delta/introduction.html)
   - tig # A text-mode interface for git
