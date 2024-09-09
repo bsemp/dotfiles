@@ -25,6 +25,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Install poetry
 brew install pipx
 pipx ensurepath
+pipx install poetry
 
 # Install dependencies
 poetry install --no-root
