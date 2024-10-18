@@ -5,7 +5,7 @@ export HISTSIZE=10000
 export SAVEHIST=${HISTSIZE}
 # /!\ Needs "setopt extendedglob"
 # "#" means optional. Ex: "vim#( *)#" matches "vi", "vim", "vim .*", "vi .*"
-export HISTORY_IGNORE='([bf]g *|l[alsh]#( *)#|history|cd( *)#|z( *)#|git add *|git reset *|pwd|exit|date|*--help|vault*)'
+export HISTORY_IGNORE='([bf]g( *)#|l[alsh]#( *)#|history|cd( *)#|z( *)#|git add *|git reset *|pwd|exit|*--help*)'
 
 # https://zsh.sourceforge.io/Doc/Release/Options.html#History
 setopt BANG_HIST              # Treat the '!' character specially during expansion.
