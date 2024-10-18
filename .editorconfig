@@ -15,6 +15,11 @@ charset = utf-8
 indent_style = space
 indent_size = 2
 
+# Indentation toml files
+[*.toml]
+indent_style = space
+indent_size = 2
+
 # Indentation for json and yaml files
 [*.{json,yml,yaml}]
 indent_style = space
