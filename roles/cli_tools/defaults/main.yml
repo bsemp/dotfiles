@@ -1,5 +1,6 @@
 ---
 cli_tools_brew_packages:
+  - atuin # Shell history with a SQLite database (https://docs.atuin.sh/)
   - bash # Install newest bash instead of macos outdated
   - bat # A cat(1) clone with syntax highlighting and Git integration
   - cheat # Interactive cheatsheets on the command-line
