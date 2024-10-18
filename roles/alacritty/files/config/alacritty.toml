@@ -62,7 +62,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 [window]
 dynamic_padding = true
 opacity = 0.9
-option_as_alt = "None"
+option_as_alt = "OnlyRight"
 
 [window.dimensions]
 columns = 160
