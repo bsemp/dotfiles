@@ -15,3 +15,9 @@ AUTOENV_FILE_ENTER='.autoenv_enter'
 AUTOENV_FILE_LEAVE='.autoenv_leave'
 AUTOENV_LOOK_UPWARDS=1
 AUTOENV_HANDLE_LEAVE=1
+
+# Enable alias-finder plugin
+zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
+zstyle ':omz:plugins:alias-finder' longer no # disabled by default
+zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
+zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default

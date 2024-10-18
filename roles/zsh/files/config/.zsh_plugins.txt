@@ -9,6 +9,7 @@ zsh-users/zsh-syntax-highlighting
 
 # Install oh-my-zsh plugins (https://github.com/ohmyzsh/ohmyzsh/tree/master)
 ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/alias-finder
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 ohmyzsh/ohmyzsh path:plugins/colorize
 ohmyzsh/ohmyzsh path:plugins/command-not-found
