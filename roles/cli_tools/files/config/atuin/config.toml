@@ -1,0 +1,56 @@
+# Note: By default, atuin respects XDG_* (XDG_CONFING_HOME, XDG_DATA_HOME)
+
+db_path = "${XDG_DATA_HOME}/atuin/shell_history.db"
+
+# The default filter to use when searching (global|host|session|directory).
+filter_mode = "global"
+
+# With workspace filtering enabled, Atuin will filter for commands executed in any directory within a git repository tree.
+# Filter modes can still be toggled via ctrl-r.
+workspaces = true
+
+# Search mode to use. Atuin supports “prefix”, “fulltext”, “fuzzy”, and “skim” search modes
+# skim borrowed fzf's syntax for matching items (ex: Whitespace has the meaning of AND) https://github.com/lotabout/skim#search-syntax
+search_mode = "skim"
+
+# height of the search window
+inline_height = 30
+
+# Compact UI mode
+# style = "compact"
+
+# Always inserts the selected command for editing before running it
+enter_accept = false
+
+# Whether to store commands that failed (non-zero exit status)
+# /!\ atuin seems to stops recording history if this is false
+store_failed = true
+
+## Note that these regular expressions are unanchored, i.e. if they don't start
+## with ^ or end with $, they'll match anywhere in the command.
+history_filter = [
+  "^[bf]g($| .*)",
+  "^pwd",
+  "^exit",
+  "^history",
+  "^clear",
+  "^cd($| .*)",
+  "^z($| .*)",
+  "^tree($| .*)",
+  "^pushd",
+  "^popd",
+  "^l[alsh]?($| .*)", # all ls flavors
+  "^git (add|reset|status)",
+  "^gst", # git status alias
+  "--help", # if a command has --help in it, it's probably not a command you want to repeat
+]
+
+## Note that these regular expressions are unanchored, i.e. if they don't start
+## with ^ or end with $, they'll match anywhere in the command.
+# cwd_filter = [
+#   "^/very/secret/directory",
+# ]
+
+# Do not use atuin dotfiles sync features
+[dotfiles]
+enabled = false
