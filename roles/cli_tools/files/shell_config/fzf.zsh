@@ -2,11 +2,8 @@
 ## Fuzzy Finder
 ##########
 if command -v fzf &>/dev/null; then
-  # Auto-completion
-  [[ $- == *i* ]] && source "$(brew --prefix)/opt/fzf/shell/completion.zsh" 2> /dev/null
-
-  # Key bindings
-  source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+  # Auto-completion and key bindings
+  source <(fzf --zsh)
 
   export FZF_COMPLETION_TRIGGER='~~'
   export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir tree z"
