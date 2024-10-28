@@ -17,11 +17,11 @@ defaults:
     shell: bash
 
 env:
-  PYTHON_VERSION: 3.11
+  PYTHON_VERSION: 3.13
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: macos-14
     timeout-minutes: 15
     steps:
       - name: Check out repository
@@ -32,26 +32,22 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
         with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
+          enable-cache: true
 
-      - name: Load cached venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@v4
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Create virtual environment
+        run: |
+          uv venv .venv --prompt "dotfiles_venv"
 
       - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root
+        run: |
+          # uv will install dependencies from restored cache if any
+          uv sync --frozen
 
       - name: Run lint
-        run: poetry run ansible-lint
+        run: uv run ansible-lint
 
   deploy:
     needs: lint
@@ -77,23 +73,19 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
         with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
+          enable-cache: true
 
-      - name: Load cached venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@v4
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Create virtual environment
+        run: |
+          uv venv .venv --prompt "dotfiles_venv"
 
       - name: Install dependencies
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root
+        run: |
+          # uv will install dependencies from restored cache if any
+          uv sync --frozen
 
       - name: Cleanup Runner before install
         run: |
@@ -102,4 +94,4 @@ jobs:
       - name: Install playbook
         run: |
           export HOMEBREW_NO_AUTO_UPDATE=1
-          poetry run ansible-playbook playbooks/main.yml -vv
+          uv run ansible-playbook playbooks/main.yml -vv

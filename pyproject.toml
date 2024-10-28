@@ -1,17 +1,16 @@
-[tool.poetry]
+[project]
 name = "dotfiles"
 version = "1.0.0"
 description = ""
-authors = ["Bruno Semperlotti <bruno.semperlotti@gmail.com>"]
+authors = [{name = "Bruno Semperlotti", email = "7171722+bsemp@users.noreply.github.com"}]
 license = "MIT"
+requires-python = ">=3.11"
+dependencies = [
+    "ansible==10.5.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-ansible = "10.5.0"
-
-[tool.poetry.dev-dependencies]
-ansible-lint = { version = "24.9.2", markers = "platform_system != 'Windows'" }
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.uv]
+environments = ["platform_system == 'Darwin'"]
+dev-dependencies = [
+    "ansible-lint==24.9.2",
+]
