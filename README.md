@@ -17,18 +17,30 @@ xcode-select --install
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-### Setup python venv
-
-#### Using pipx
+### Setup uv python package manager
 
 ```bash
-# Install poetry
-brew install pipx
-pipx ensurepath
-pipx install poetry
+# Install uv
+brew install uv
+```
 
+### Setup python venv
+
+```bash
+# Create a virtual environment
+uv venv .venv --prompt "dotfiles"
+```
+
+### Install dependencies
+
+```bash
+# Activate the virtual environment
+source .venv/bin/activate
+```
+
+```bash
 # Install dependencies
-poetry install --no-root
+uv sync
 ```
 
 ## Bootstrap
@@ -36,7 +48,7 @@ poetry install --no-root
 ### Install all
 
 ```bash
-poetry run ansible-playbook playbooks/main.yml
+ansible-playbook playbooks/main.yml
 ```
 
 ### Select components to install
@@ -44,7 +56,7 @@ poetry run ansible-playbook playbooks/main.yml
 #### Get a list of available tags
 
 ```bash
-poetry run ansible-playbook playbooks/main.yml --list-tags
+ansible-playbook playbooks/main.yml --list-tags
 ```
 
 Example:
@@ -59,13 +71,13 @@ play #1 (all): Setup workstation      TAGS: []
 #### Install selected components
 
 ```bash
-poetry run ansible-playbook playbooks/main.yml -t <tag>,<tag>
+ansible-playbook playbooks/main.yml -t <tag>,<tag>
 ```
 
 Example:
 
 ```bash
-poetry run ansible-playbook playbooks/main.yml -t kubernetes,terraform
+ansible-playbook playbooks/main.yml -t kubernetes,terraform
 ```
 
 ## Development
@@ -73,5 +85,5 @@ poetry run ansible-playbook playbooks/main.yml -t kubernetes,terraform
 ### Code lint
 
 ```bash
-poetry run ansible-lint
+ansible-lint
 ```
