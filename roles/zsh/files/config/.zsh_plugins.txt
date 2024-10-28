@@ -21,16 +21,9 @@ ohmyzsh/ohmyzsh path:plugins/git-prompt
 ohmyzsh/ohmyzsh path:plugins/helm
 ohmyzsh/ohmyzsh path:plugins/kubectl
 ohmyzsh/ohmyzsh path:plugins/macos
-ohmyzsh/ohmyzsh path:plugins/node
 ohmyzsh/ohmyzsh path:plugins/npm
 ohmyzsh/ohmyzsh path:plugins/pip
-ohmyzsh/ohmyzsh path:plugins/poetry
-ohmyzsh/ohmyzsh path:plugins/pyenv
-ohmyzsh/ohmyzsh path:plugins/python
 ohmyzsh/ohmyzsh path:plugins/virtualenv
-
-# Automatically activates virtual environments created by Poetry
-darvid/zsh-poetry
 
 # Automatically sources (known/whitelisted) .autoenv files
 Tarrasch/zsh-autoenv
