@@ -130,3 +130,8 @@
             name: alacritty
           tags:
             - alacritty
+
+        - ansible.builtin.import_role:
+            name: rust
+          tags:
+            - rust
