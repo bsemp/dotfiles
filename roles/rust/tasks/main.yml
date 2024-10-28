@@ -1,0 +1,6 @@
+---
+- name: Install brew packages
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ rust_brew_packages }}"

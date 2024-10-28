@@ -1,0 +1,3 @@
+---
+rust_brew_packages:
+  - rust
