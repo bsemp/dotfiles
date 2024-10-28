@@ -5,15 +5,12 @@
     state: latest
   loop: "{{ python_brew_packages }}"
 
-- name: Install pipx packages
-  community.general.pipx:
-    name: "{{ item }}"
-    state: latest
-    executable: pipx # Default is "python -m pipx", but we want to use the brew-installed pipx
-  loop: "{{ python_pipx_packages }}"
-
-- name: Ensure directories necessary for pipx operation are in your PATH environment variable.
-  ansible.builtin.shell: |
-    pipx ensurepath
-  args:
-    executable: /bin/bash
+- name: Create shell config file in {{ shell_config_dir }}
+  ansible.builtin.blockinfile:
+    create: true
+    marker: "# {mark} - ANSIBLE MANAGED BLOCK"
+    insertbefore: BOF # Beginning of file
+    path: "{{ shell_config_dir }}/{{ item | basename }}"
+    block: "{{ lookup('ansible.builtin.file', './shell_config/{{ item | basename }}') }}"
+    mode: "0600"
+  loop: "{{ lookup('ansible.builtin.fileglob', './shell_config/*.zsh', wantlist=True) }}"
