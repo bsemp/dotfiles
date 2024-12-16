@@ -11,7 +11,7 @@ workspaces = true
 
 # Search mode to use. Atuin supports “prefix”, “fulltext”, “fuzzy”, and “skim” search modes
 # skim borrowed fzf's syntax for matching items (ex: Whitespace has the meaning of AND) https://github.com/lotabout/skim#search-syntax
-search_mode = "skim"
+search_mode = "fuzzy"
 
 # height of the search window
 inline_height = 30
