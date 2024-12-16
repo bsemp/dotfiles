@@ -1,0 +1,8 @@
+[manager]
+show_hidden = true
+
+[plugin]
+prepend_previewers = [
+  { name = "*.md", run = "glow" }, # Use Glow to preview markdown files
+  { name = "*/", run = "eza-preview" }, # Use eza to previe directories
+]

@@ -1,0 +1,10 @@
+[plugin]
+deps = [
+  { use = "Reledia/glow", rev = "388e847" },
+  { use = "sharklasers996/eza-preview", rev = "7ca4c25" },
+]
+
+[flavor]
+deps = [
+  { use = "yazi-rs/flavors:catppuccin-frappe", rev = "4a3082f" },
+]

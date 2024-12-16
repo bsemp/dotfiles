@@ -14,6 +14,7 @@ cli_tools_brew_packages:
   - grep # GNU grep, egrep and fgrep
   - gum # A tool for glamorous shell scripts. https://github.com/charmbracelet/gum
   - httping # Ping-like tool for HTTP requests
+  - imagemagick # Manipulate images in many formats (https://imagemagick.org/)
   - ipcalc # IP subnet calculator
   - jq # Lightweight and flexible command-line JSON processor
   - jsonnet # Domain specific configuration language for defining JSON data
@@ -28,6 +29,7 @@ cli_tools_brew_packages:
   - vhs # Register a terminal session for presentation. https://github.com/charmbracelet/vhs
   - watch # Executes a program periodically, showing output fullscreen
   - wget # Internet file retriever
+  - yazi # Blazing fast terminal file manager (https://yazi-rs.github.io/)
   - yq # Process YAML, JSON, XML, CSV and properties documents from the CLI
   - zellij # Pluggable terminal workspace, with terminal multiplexer as the base feature (https://zellij.dev/)
   - zoxide # zoxide is a smarter cd command, inspired by z and autojump.
