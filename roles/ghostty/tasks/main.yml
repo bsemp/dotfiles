@@ -1,0 +1,12 @@
+---
+- name: Install brew packages
+  community.general.homebrew_cask:
+    name: "{{ ghostty_brew_cask_package }}"
+    state: latest
+    install_options: "appdir=${HOME}/Applications" # Install in user's Applications directory
+
+- name: Copy Custom ghostty configuration to {{ xdg_config_home }}
+  ansible.builtin.copy:
+    src: "./files/config/" # trailing / is important to copy only files within the directory
+    dest: "{{ xdg_config_home }}/ghostty"
+    mode: "0600"
