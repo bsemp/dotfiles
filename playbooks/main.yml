@@ -132,6 +132,11 @@
             - alacritty
 
         - ansible.builtin.import_role:
+            name: ghostty
+          tags:
+            - ghostty
+
+        - ansible.builtin.import_role:
             name: rust
           tags:
             - rust
