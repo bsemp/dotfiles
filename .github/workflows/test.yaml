@@ -51,13 +51,13 @@ jobs:
 
   deploy:
     needs: lint
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 120
-    if: ${{ github.actor != 'dependabot[bot]' }}
     strategy:
       fail-fast: false
       matrix:
         os: [macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 120
+    if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v5

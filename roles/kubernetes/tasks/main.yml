@@ -33,6 +33,6 @@
     marker: "# {mark} - ANSIBLE MANAGED BLOCK"
     insertbefore: BOF # Beginning of file
     path: "{{ shell_config_dir }}/{{ item | basename }}"
-    block: "{{ lookup('ansible.builtin.file', './shell_config/{{ item | basename }}') }}"
+    block: "{{ lookup('ansible.builtin.file', './shell_config/' + (item | basename)) }}"
     mode: "0600"
   loop: "{{ lookup('ansible.builtin.fileglob', './shell_config/*.zsh', wantlist=True) }}"
