@@ -21,7 +21,7 @@ env:
 
 jobs:
   lint:
-    runs-on: macos-14
+    runs-on: macos-latest
     timeout-minutes: 15
     steps:
       - name: Check out repository
@@ -57,7 +57,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-14]
+        os: [macos-latest]
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
