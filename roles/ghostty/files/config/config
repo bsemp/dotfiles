@@ -1,5 +1,6 @@
 theme = Material Design Colors
 font-family = "JetBrainsMono Nerd Font"
 font-size = 12
-
+window-height = 45
+window-width = 145
 macos-option-as-alt = right
