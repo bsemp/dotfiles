@@ -127,11 +127,6 @@
             - akamai
 
         - ansible.builtin.import_role:
-            name: alacritty
-          tags:
-            - alacritty
-
-        - ansible.builtin.import_role:
             name: ghostty
           tags:
             - ghostty
