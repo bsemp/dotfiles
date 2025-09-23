@@ -24,6 +24,7 @@ cli_tools_brew_packages:
   - parallel # Shell command parallelization utility
   - ripgrep # Recursively searches directories for a regex pattern
   - screen # Terminal multiplexer
+  - shellcheck # A shell script static analysis tool (https://github.com/koalaman/shellcheck)
   - siege # HTTP load testing and benchmarking utility (https://www.joedog.org/siege-home/)
   - starship # Minimal and customizable shell prompt (https://starship.rs/)
   - tesseract # OCR (Optical Character Recognition) engine (https://github.com/tesseract-ocr/tesseract)
