@@ -3,4 +3,6 @@ font-family = "JetBrainsMono Nerd Font"
 font-size = 12
 window-height = 45
 window-width = 145
+custom-shader = ~/.config/ghostty/shaders/customized/cursor_blaze.glsl
+custom-shader = ~/.config/ghostty/shaders/mnoise.glsl
 macos-option-as-alt = right
