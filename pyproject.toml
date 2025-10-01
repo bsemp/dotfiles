@@ -14,5 +14,5 @@ environments = ["platform_system == 'Darwin'"]
 
 [dependency-groups]
 dev = [
-    "ansible-lint==25.9.0",
+    "ansible-lint==25.9.1",
 ]
