@@ -22,6 +22,7 @@ cli_tools_brew_packages:
   - lnav # Log file navigator. https://lnav.org/
   - openssl # Cryptography and SSL/TLS Toolkit
   - parallel # Shell command parallelization utility
+  - ratchet # Improving security of CI/CD workflows by pinning and unpinning upstream versions (https://github.com/sethvargo/ratchet)
   - ripgrep # Recursively searches directories for a regex pattern
   - screen # Terminal multiplexer
   - shellcheck # A shell script static analysis tool (https://github.com/koalaman/shellcheck)
