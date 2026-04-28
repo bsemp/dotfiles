@@ -117,3 +117,30 @@ Installed 1 package in 364ms
 Resolved 31 packages in 113ms
 Checked 30 packages in 4ms
 ```
+
+## CI
+
+### Upgrade dependencies in CI/CD workflows
+
+We use `ratchet` to pin upstream versions using commit shas instead of tags or branches to improve security and stability of CI/CD workflows.
+
+See [ratchet documentation](https://github.com/sethvargo/ratchet) for more information.
+
+#### Pinning dependencies in CI/CD workflows
+
+1. Run the `ratchet pin` command to pin upstream versions using commit shas.
+    1. Special annotation can be used to skip pinning a dependency: `# ratchet:exclude`
+2. Review the changes and commit them to the repository.
+
+```bash
+ratchet pin -parser actions .github/**/*.{yml,yaml}
+```
+
+#### Upgrading dependencies in CI/CD workflows
+
+1. Run the `ratchet upgrade` command to upgrade upstream versions using commit shas.
+2. Review the changes and commit them to the repository.
+
+```bash
+ratchet upgrade -parser actions .github/**/*.{yml,yaml}
+```
