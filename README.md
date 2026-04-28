@@ -87,3 +87,33 @@ ansible-playbook playbooks/main.yml -t kubernetes,terraform
 ```bash
 ansible-lint
 ```
+
+### Upgrade application dependencies
+
+```bash
+# Show outdated dependencies
+uv tree --depth 1 --outdated
+uv add "<package>==<new_version>"
+uv sync --upgrade
+```
+
+Example:
+
+```bash
+❯ uv tree --depth 1 --outdated
+Resolved 31 packages in 5ms
+dotfiles v1.0.0
+├── ansible v13.2.0 (latest: v13.6.0)
+└── ansible-lint v26.4.0 (group: dev)
+
+❯ uv add "ansible==13.6.0"
+Resolved 31 packages in 11ms
+Uninstalled 1 package in 1.56s
+Installed 1 package in 364ms
+ - ansible==13.2.0
+ + ansible==13.6.0
+
+❯ uv sync --upgrade
+Resolved 31 packages in 113ms
+Checked 30 packages in 4ms
+```

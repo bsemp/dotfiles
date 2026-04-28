@@ -4,9 +4,9 @@ version = "1.0.0"
 description = ""
 authors = [{name = "Bruno Semperlotti", email = "7171722+bsemp@users.noreply.github.com"}]
 license = "MIT"
-requires-python = ">=3.11"
+requires-python = ">=3.14"
 dependencies = [
-    "ansible==13.2.0",
+    "ansible==13.6.0",
 ]
 
 [tool.uv]
