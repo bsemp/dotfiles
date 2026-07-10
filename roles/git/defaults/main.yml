@@ -4,4 +4,5 @@ git_brew_packages:
   - git
   - git-absorb # Automatically create and squash up fixup commits
   - git-delta # A syntax-highlighting pager for git, diff, and grep output (https://dandavison.github.io/delta/introduction.html)
+  - git-filter-repo # A versatile tool for rewriting git history (https://github.com/newren/git-filter-repo)
   - tig # A text-mode interface for git
