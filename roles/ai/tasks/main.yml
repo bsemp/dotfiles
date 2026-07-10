@@ -1,0 +1,87 @@
+---
+- name: Install brew packages
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ ai_brew_packages }}"
+
+- name: Install brew cask package
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: latest
+    install_options: "appdir=${HOME}/Applications" # Install in user's Applications directory
+  loop: "{{ ai_brew_cask_package }}"
+
+- name: Clone skillshare repo
+  ansible.builtin.git:
+    repo: https://github.com/bsemp/skillshare
+    dest: "{{ xdg_config_home }}/skillshare"
+    single_branch: true
+    version: main
+  when: ansible_facts['env'].CI is not defined # Only clone the repo if not running in CI environment
+
+- name: Install skillshare completion for zsh
+  ansible.builtin.command:
+    cmd: >-
+      skillshare completion zsh > ~/.zshcompletions/_skillshare
+  changed_when: false
+
+- name: Initialize skillshare config
+  ansible.builtin.command:
+    cmd: >-
+      skillshare init
+      --mode merge
+      --skill
+      --git
+      --git-root root
+      --source {{ xdg_config_home }}/skillshare/skills
+      --all-targets
+      --subdir .
+  changed_when: false
+
+- name: Initialize skillshare extras config for rules
+  ansible.builtin.command:
+    cmd: >-
+      skillshare extras init rules
+      --global
+      --mode merge
+      --target ~/.claude/rules
+      --target ~/.agents/rules
+      --force
+  changed_when: false
+
+- name: Initialize skillshare extras config for prompts
+  ansible.builtin.command:
+    cmd: >-
+      skillshare extras init prompts
+      --global
+      --mode merge
+      --target ~/.claude/prompts
+      --target ~/.agents/prompts
+      --force
+  changed_when: false
+
+- name: Initialize skillshare extras config for copilot-instructions
+  ansible.builtin.command:
+    cmd: >-
+      skillshare extras init copilot-instructions
+      --global
+      --mode merge
+      --target ~/.copilot/instructions
+      --force
+  changed_when: false
+
+- name: Install tracked skills
+  ansible.builtin.command:
+    cmd: skillshare install
+  changed_when: false
+
+- name: Sync skills
+  ansible.builtin.command:
+    cmd: skillshare sync --all
+  changed_when: false
+
+- name: Rtk init for copilot (VS Code + CLI)
+  ansible.builtin.command:
+    cmd: rtk init -g --copilot
+  changed_when: false

@@ -10,14 +10,14 @@ supported-markers = [
 
 [[package]]
 name = "ansible"
-version = "13.6.0"
+version = "14.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "ansible-core", marker = "sys_platform == 'darwin'" },
+    { name = "ansible-core" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/fe/30/41f9a93c339a52e944f49b59cc9b1663e0403b2feecefcf89834df8dd8b9/ansible-13.6.0.tar.gz", hash = "sha256:5141552c1bd37f56839eb5b11ef0d93e92391295c97947d507b8daf7265b12b8", size = 52989793, upload-time = "2026-04-21T15:38:04.146Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fe/97/3aeeb9d199fd0f931452adebcf5336c01c739b1de2d4bada0744ff5d18e1/ansible-14.1.0.tar.gz", hash = "sha256:1ae7918469ed897ff716857ed98d1f5d5fce1710f6a42f601f0715548b67bf00", size = 49560987, upload-time = "2026-06-18T20:38:03.236Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/58/8e/2c8754902029374e28cc9cd33d46c4be0a1ba71c02bd0efb8beb8f97f247/ansible-13.6.0-py3-none-any.whl", hash = "sha256:d011ee5f895ca68b4670e39b910cee447b416a00a3e8d1bd599f4a6dff32ff12", size = 56333598, upload-time = "2026-04-21T15:37:58.235Z" },
+    { url = "https://files.pythonhosted.org/packages/78/ba/2e7f2ef6102e79597147bba317c1648eeb92c10bd14163442ebcab9ac75b/ansible-14.1.0-py3-none-any.whl", hash = "sha256:13b7d9ce3c5b62f49b2be5cd36802adb9b1ee9f624e8db2e84b47cbfebf69cf2", size = 49543455, upload-time = "2026-06-18T20:37:56.086Z" },
 ]
 
 [[package]]
@@ -25,11 +25,11 @@ name = "ansible-compat"
 version = "26.3.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "ansible-core", marker = "sys_platform == 'darwin'" },
-    { name = "jsonschema", marker = "sys_platform == 'darwin'" },
-    { name = "packaging", marker = "sys_platform == 'darwin'" },
-    { name = "pyyaml", marker = "sys_platform == 'darwin'" },
-    { name = "subprocess-tee", marker = "sys_platform == 'darwin'" },
+    { name = "ansible-core" },
+    { name = "jsonschema" },
+    { name = "packaging" },
+    { name = "pyyaml" },
+    { name = "subprocess-tee" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/04/42/53ba59f8116e716ec0af8dc47ef65b15f5e3bc28131e8e6cbe87e50203f5/ansible_compat-26.3.0.tar.gz", hash = "sha256:15f0ea5ff6fcc5587b6b11a4a436fdeefd0fd4a46afe92d4e483c28370082ae0", size = 216754, upload-time = "2026-03-31T15:47:58.193Z" }
 wheels = [
@@ -38,45 +38,45 @@ wheels = [
 
 [[package]]
 name = "ansible-core"
-version = "2.20.5"
+version = "2.21.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cryptography", marker = "sys_platform == 'darwin'" },
-    { name = "jinja2", marker = "sys_platform == 'darwin'" },
-    { name = "packaging", marker = "sys_platform == 'darwin'" },
-    { name = "pyyaml", marker = "sys_platform == 'darwin'" },
-    { name = "resolvelib", marker = "sys_platform == 'darwin'" },
+    { name = "cryptography" },
+    { name = "jinja2" },
+    { name = "packaging" },
+    { name = "pyyaml" },
+    { name = "resolvelib" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9d/ec/690cc73e38c3546eabc8ef4118e0d7be1758a598bc23eed3e24ca1f346a7/ansible_core-2.20.5.tar.gz", hash = "sha256:82e3049d95e6e02e5d20d4a5a8e10533a55e0cc52e878e4cf77166c45410f16f", size = 3339511, upload-time = "2026-04-21T00:48:27.175Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a1/6d/14fbdae14e7d02fd8349e6a52a76c144a1f92a2df3236c46bd7030cafdce/ansible_core-2.21.2.tar.gz", hash = "sha256:c6139e662eda1bfb5af16029f12afa5edfc7f95f8cd44281b1bdb434a6d9dc70", size = 3388984, upload-time = "2026-07-13T19:39:08.347Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f9/e1/4454505e725b84ae670229565dfc20c4075480199647bf4874cf337c560e/ansible_core-2.20.5-py3-none-any.whl", hash = "sha256:ff6ff15c6a37fda07dc7400207e17e93727b24173ca48c068b3311a50d75ecc3", size = 2416843, upload-time = "2026-04-21T00:48:25.413Z" },
+    { url = "https://files.pythonhosted.org/packages/f3/0c/c3f6f78d0e28123bec95a7d1a0caf8042c51042ce71db2816a290448863b/ansible_core-2.21.2-py3-none-any.whl", hash = "sha256:c7d696c717da03109a32a569a5fe57925812a86734344eab775cba169bf57cf8", size = 2456273, upload-time = "2026-07-13T19:39:06.668Z" },
 ]
 
 [[package]]
 name = "ansible-lint"
-version = "26.4.0"
+version = "26.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "ansible-compat", marker = "sys_platform == 'darwin'" },
-    { name = "ansible-core", marker = "sys_platform == 'darwin'" },
-    { name = "black", marker = "sys_platform == 'darwin'" },
-    { name = "cffi", marker = "sys_platform == 'darwin'" },
-    { name = "cryptography", marker = "sys_platform == 'darwin'" },
-    { name = "distro", marker = "sys_platform == 'darwin'" },
-    { name = "filelock", marker = "sys_platform == 'darwin'" },
-    { name = "jsonschema", marker = "sys_platform == 'darwin'" },
-    { name = "packaging", marker = "sys_platform == 'darwin'" },
-    { name = "pathspec", marker = "sys_platform == 'darwin'" },
-    { name = "pyyaml", marker = "sys_platform == 'darwin'" },
-    { name = "referencing", marker = "sys_platform == 'darwin'" },
-    { name = "ruamel-yaml", marker = "sys_platform == 'darwin'" },
-    { name = "subprocess-tee", marker = "sys_platform == 'darwin'" },
-    { name = "wcmatch", marker = "sys_platform == 'darwin'" },
-    { name = "yamllint", marker = "sys_platform == 'darwin'" },
+    { name = "ansible-compat" },
+    { name = "ansible-core" },
+    { name = "black" },
+    { name = "cffi" },
+    { name = "cryptography" },
+    { name = "distro" },
+    { name = "filelock" },
+    { name = "jsonschema" },
+    { name = "packaging" },
+    { name = "pathspec" },
+    { name = "pyyaml" },
+    { name = "referencing" },
+    { name = "ruamel-yaml" },
+    { name = "subprocess-tee" },
+    { name = "wcmatch" },
+    { name = "yamllint" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e4/39/54f7cc264f7f02c635af786c4a57da4ab993865140f90e031cdec39dd514/ansible_lint-26.4.0.tar.gz", hash = "sha256:29e0438f8af685a4fec96f9ea3404a3beb50d2911bc8df43f283256954ceea5b", size = 736853, upload-time = "2026-04-01T14:41:02.138Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4c/e5/547e64cf118392fb4d02c179eb0cd86b06145bf7c8e18ab49cc6de5e9886/ansible_lint-26.6.0.tar.gz", hash = "sha256:790d08ff6ee56525244677411c90a17b374245d3913bc6a462b5d913ece6d615", size = 767696, upload-time = "2026-06-30T11:57:56.824Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a5/97/803cde1dba6c5cc24f1401b37df8404a2793bd26dc3f11c0a9722109b859/ansible_lint-26.4.0-py3-none-any.whl", hash = "sha256:f33c4823544a5a8e5e36614866e111d1a929eeffee5e84481ede10d524a9d6d6", size = 330939, upload-time = "2026-04-01T14:41:00.083Z" },
+    { url = "https://files.pythonhosted.org/packages/d1/66/465f210bd0ac409143d5258516bd9db5376ac86ac61707e3e4ef65b27fc4/ansible_lint-26.6.0-py3-none-any.whl", hash = "sha256:162939615eae3b59f38bd829542642b586ccee17eefb0df8718ea4b092eee222", size = 341055, upload-time = "2026-06-30T11:57:55.144Z" },
 ]
 
 [[package]]
@@ -93,12 +93,12 @@ name = "black"
 version = "26.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "click", marker = "sys_platform == 'darwin'" },
-    { name = "mypy-extensions", marker = "sys_platform == 'darwin'" },
-    { name = "packaging", marker = "sys_platform == 'darwin'" },
-    { name = "pathspec", marker = "sys_platform == 'darwin'" },
-    { name = "platformdirs", marker = "sys_platform == 'darwin'" },
-    { name = "pytokens", marker = "sys_platform == 'darwin'" },
+    { name = "click" },
+    { name = "mypy-extensions" },
+    { name = "packaging" },
+    { name = "pathspec" },
+    { name = "platformdirs" },
+    { name = "pytokens" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/e1/c5/61175d618685d42b005847464b8fb4743a67b1b8fdb75e50e5a96c31a27a/black-26.3.1.tar.gz", hash = "sha256:2c50f5063a9641c7eed7795014ba37b0f5fa227f3d408b968936e24bc0566b07", size = 666155, upload-time = "2026-03-12T03:36:03.593Z" }
 wheels = [
@@ -121,7 +121,7 @@ name = "cffi"
 version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "pycparser", marker = "implementation_name != 'PyPy' and sys_platform == 'darwin'" },
+    { name = "pycparser", marker = "implementation_name != 'PyPy'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/eb/56/b1ba7935a17738ae8453301356628e8147c79dbb825bcbc73dc7401f9846/cffi-2.0.0.tar.gz", hash = "sha256:44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529", size = 523588, upload-time = "2025-09-08T23:24:04.541Z" }
 wheels = [
@@ -145,7 +145,7 @@ name = "cryptography"
 version = "48.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cffi", marker = "platform_python_implementation != 'PyPy' and sys_platform == 'darwin'" },
+    { name = "cffi", marker = "platform_python_implementation != 'PyPy'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/12/45/870e7f4bef50e5f53b9f51d4428aee5290eedf58ba443f16b1ebb7ab8e66/cryptography-48.0.1.tar.gz", hash = "sha256:266f4ee051abb2f725b74ef8072b521ce1feacf685a3364fa6a6b45548db791a", size = 832989, upload-time = "2026-06-09T22:32:31.8Z" }
 wheels = [
@@ -168,19 +168,19 @@ name = "dotfiles"
 version = "1.0.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "ansible", marker = "sys_platform == 'darwin'" },
+    { name = "ansible" },
 ]
 
 [package.dev-dependencies]
 dev = [
-    { name = "ansible-lint", marker = "sys_platform == 'darwin'" },
+    { name = "ansible-lint" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "ansible", specifier = "==13.6.0" }]
+requires-dist = [{ name = "ansible", specifier = "==14.1.0" }]
 
 [package.metadata.requires-dev]
-dev = [{ name = "ansible-lint", specifier = "==26.4.0" }]
+dev = [{ name = "ansible-lint", specifier = "==26.6.0" }]
 
 [[package]]
 name = "filelock"
@@ -196,7 +196,7 @@ name = "jinja2"
 version = "3.1.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "markupsafe", marker = "sys_platform == 'darwin'" },
+    { name = "markupsafe" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/df/bf/f7da0350254c0ed7c72f3e33cef02e048281fec7ecec5f032d4aac52226b/jinja2-3.1.6.tar.gz", hash = "sha256:0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d", size = 245115, upload-time = "2025-03-05T20:05:02.478Z" }
 wheels = [
@@ -208,10 +208,10 @@ name = "jsonschema"
 version = "4.26.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "attrs", marker = "sys_platform == 'darwin'" },
-    { name = "jsonschema-specifications", marker = "sys_platform == 'darwin'" },
-    { name = "referencing", marker = "sys_platform == 'darwin'" },
-    { name = "rpds-py", marker = "sys_platform == 'darwin'" },
+    { name = "attrs" },
+    { name = "jsonschema-specifications" },
+    { name = "referencing" },
+    { name = "rpds-py" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/b3/fc/e067678238fa451312d4c62bf6e6cf5ec56375422aee02f9cb5f909b3047/jsonschema-4.26.0.tar.gz", hash = "sha256:0c26707e2efad8aa1bfc5b7ce170f3fccc2e4918ff85989ba9ffa9facb2be326", size = 366583, upload-time = "2026-01-07T13:41:07.246Z" }
 wheels = [
@@ -223,7 +223,7 @@ name = "jsonschema-specifications"
 version = "2025.9.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "referencing", marker = "sys_platform == 'darwin'" },
+    { name = "referencing" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/19/74/a633ee74eb36c44aa6d1095e7cc5569bebf04342ee146178e2d36600708b/jsonschema_specifications-2025.9.1.tar.gz", hash = "sha256:b540987f239e745613c7a9176f3edb72b832a4ac465cf02712288397832b5e8d", size = 32855, upload-time = "2025-09-08T01:34:59.186Z" }
 wheels = [
@@ -315,8 +315,8 @@ name = "referencing"
 version = "0.37.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "attrs", marker = "sys_platform == 'darwin'" },
-    { name = "rpds-py", marker = "sys_platform == 'darwin'" },
+    { name = "attrs" },
+    { name = "rpds-py" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/22/f5/df4e9027acead3ecc63e50fe1e36aca1523e1719559c499951bb4b53188f/referencing-0.37.0.tar.gz", hash = "sha256:44aefc3142c5b842538163acb373e24cce6632bd54bdb01b21ad5863489f50d8", size = 78036, upload-time = "2025-10-13T15:30:48.871Z" }
 wheels = [
@@ -367,7 +367,7 @@ name = "wcmatch"
 version = "10.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "bracex", marker = "sys_platform == 'darwin'" },
+    { name = "bracex" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/79/3e/c0bdc27cf06f4e47680bd5803a07cb3dfd17de84cde92dd217dcb9e05253/wcmatch-10.1.tar.gz", hash = "sha256:f11f94208c8c8484a16f4f48638a85d771d9513f4ab3f37595978801cb9465af", size = 117421, upload-time = "2025-06-22T19:14:02.49Z" }
 wheels = [
@@ -379,8 +379,8 @@ name = "yamllint"
 version = "1.38.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "pathspec", marker = "sys_platform == 'darwin'" },
-    { name = "pyyaml", marker = "sys_platform == 'darwin'" },
+    { name = "pathspec" },
+    { name = "pyyaml" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/28/a0/8fc2d68e132cf918f18273fdc8a1b8432b60d75ac12fdae4b0ef5c9d2e8d/yamllint-1.38.0.tar.gz", hash = "sha256:09e5f29531daab93366bb061e76019d5e91691ef0a40328f04c927387d1d364d", size = 142446, upload-time = "2026-01-13T07:47:53.276Z" }
 wheels = [
