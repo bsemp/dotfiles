@@ -5,7 +5,7 @@
 
   tasks:
     - name: Init Homebrew
-      when: ansible_system == "Darwin"
+      when: ansible_facts['system'] == "Darwin"
       tags: always
       block:
         - name: Retrieve homebrew prefix
@@ -34,7 +34,7 @@
               Homebrew Prefix: {{ homebrew_prefix }}
 
     - name: Install MacOs tools
-      when: ansible_system == "Darwin"
+      when: ansible_facts['system'] == "Darwin"
       block:
         - ansible.builtin.import_role:
             name: fonts
