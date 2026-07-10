@@ -4,7 +4,7 @@
     create: true
     marker: "# {mark} - ANSIBLE MANAGED BLOCK"
     insertafter: EOF
-    path: "{{ ansible_env.HOME }}/.ssh/config"
+    path: "{{ ansible_facts['env'].HOME }}/.ssh/config"
     block: |
       # Add default github config
       Host github.com

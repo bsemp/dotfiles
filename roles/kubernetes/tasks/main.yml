@@ -9,7 +9,6 @@
   community.general.homebrew:
     name: "{{ item }}"
     state: latest
-  become: "{{ ansible_system == 'Linux' }}"
   loop: "{{ kubernetes_brew_packages }}"
 
 - name: Install kubectl plugin manager
