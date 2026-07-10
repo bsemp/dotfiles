@@ -1,0 +1,10 @@
+---
+ai_brew_packages:
+  - claude-code # Anthropic's AI assistant (https://www.anthropic.com/product)
+  - codex # OpenAI's coding agent for terminal (https://learn.chatgpt.com/docs/codex/cli)
+  # - polygraph # Meta-harness that gives agents visibility across every repo boundary, and memory that survives every session. (https://trypolygraph.com/)
+  - rtk # filters and compresses shell command outputs before they reach your LLM context (https://github.com/rtk-ai/rtk)
+  - skillshare # One source of truth for AI CLI skills (https://skillshare.runkids.cc/)
+
+ai_brew_cask_package:
+  - copilot-cli # Github copilot cli (https://github.com/features/copilot/cli/)

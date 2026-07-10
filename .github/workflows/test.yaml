@@ -16,9 +16,6 @@ defaults:
   run:
     shell: bash
 
-env:
-  PYTHON_VERSION: 3.13
-
 jobs:
   lint:
     runs-on: macos-latest
@@ -30,7 +27,7 @@ jobs:
       - name: Set up python
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # ratchet:actions/setup-python@v6
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version-file: "pyproject.toml"
 
       - name: Install uv
         uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # ratchet:astral-sh/setup-uv@v8.3.2
@@ -44,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: |
           # uv will install dependencies from restored cache if any
-          uv sync --frozen
+          uv sync --locked --all-extras
 
       - name: Run lint
         run: uv run ansible-lint
