@@ -60,7 +60,7 @@ jobs:
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # ratchet:actions/checkout@v6
 
       - name: Set up Homebrew
-        uses: Homebrew/actions/setup-homebrew@18fcb8e3e06b4247c676c506750dc95ea7226479 # ratchet:Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@eb02c69dbabdb66ff183c614f4ce7ab3c077592c # ratchet:Homebrew/actions/setup-homebrew@master
         with:
           core: true
           cask: true
